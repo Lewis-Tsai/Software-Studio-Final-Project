@@ -33,13 +33,9 @@ cc.Class({
     start () {
         firebase.auth().onAuthStateChanged(function(user) {
             if (user) {
-                this.schedule(function() {  
-                    cc.director.loadScene("Menu");
-                }, 3, 0);
-            } else {
-                this.schedule(function() {  
-                    cc.director.loadScene("Login");
-                }, 3, 0);
+                cc.director.loadScene("Menu");
+            } else {  
+                cc.director.loadScene("Login");
             }
         });
     },
