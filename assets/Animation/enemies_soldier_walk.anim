@@ -1,0 +1,91 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "enemies_soldier_walk",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.9333333333333333,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 2,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "dcd9b739-d676-4546-8af4-2a810430f603"
+            }
+          },
+          {
+            "frame": 0.08333333333333333,
+            "value": {
+              "__uuid__": "5dba9599-91a8-4f46-8657-98531b189d8c"
+            }
+          },
+          {
+            "frame": 0.16666666666666666,
+            "value": {
+              "__uuid__": "7a849bb5-8b24-47f0-9e52-f1d914ed517f"
+            }
+          },
+          {
+            "frame": 0.25,
+            "value": {
+              "__uuid__": "f610cf80-cd1c-4ae0-b5be-6a7a30478e83"
+            }
+          },
+          {
+            "frame": 0.3333333333333333,
+            "value": {
+              "__uuid__": "c37ed292-0a6b-4ac9-91a0-8008d6d9f956"
+            }
+          },
+          {
+            "frame": 0.4166666666666667,
+            "value": {
+              "__uuid__": "9fad95ed-e574-4c53-a8ad-772cb46eb43f"
+            }
+          },
+          {
+            "frame": 0.5,
+            "value": {
+              "__uuid__": "758781f6-974f-4a7c-a3a1-e022dba6471e"
+            }
+          },
+          {
+            "frame": 0.5833333333333334,
+            "value": {
+              "__uuid__": "4af1257e-d14d-4625-9b1d-67b9b3cc98cf"
+            }
+          },
+          {
+            "frame": 0.6666666666666666,
+            "value": {
+              "__uuid__": "98f4fb9f-b52c-46b7-bbdd-bd8b18c3f7bf"
+            }
+          },
+          {
+            "frame": 0.75,
+            "value": {
+              "__uuid__": "2dce3b93-52fa-4c23-8bfb-1ef2f1a41ef8"
+            }
+          },
+          {
+            "frame": 0.8333333333333334,
+            "value": {
+              "__uuid__": "514d17d7-b1ac-4ec5-8242-67b0c1c393ad"
+            }
+          },
+          {
+            "frame": 0.9166666666666666,
+            "value": {
+              "__uuid__": "675c7b6c-b0d7-4fc5-bda9-666e0ed8af10"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

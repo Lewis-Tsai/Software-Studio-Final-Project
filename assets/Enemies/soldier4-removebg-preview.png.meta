@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "e47794e6-3772-4fbe-95eb-db520fa8951b",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 37,
+  "height": 73,
+  "platformSettings": {},
+  "subMetas": {
+    "soldier4-removebg-preview": {
+      "ver": "1.0.6",
+      "uuid": "f610cf80-cd1c-4ae0-b5be-6a7a30478e83",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "e47794e6-3772-4fbe-95eb-db520fa8951b",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": -1,
+      "offsetY": -1,
+      "trimX": 1,
+      "trimY": 5,
+      "width": 33,
+      "height": 65,
+      "rawWidth": 37,
+      "rawHeight": 73,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}
