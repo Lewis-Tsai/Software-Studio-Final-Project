@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "e240d759-d961-4e59-b9f5-b8b68ef01878",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 512,
+  "height": 512,
+  "platformSettings": {},
+  "subMetas": {
+    "livingBirdsDemoGround": {
+      "ver": "1.0.6",
+      "uuid": "c877b81e-f342-4ca6-9480-9b607dc0e4c8",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "e240d759-d961-4e59-b9f5-b8b68ef01878",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 512,
+      "height": 512,
+      "rawWidth": 512,
+      "rawHeight": 512,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}
