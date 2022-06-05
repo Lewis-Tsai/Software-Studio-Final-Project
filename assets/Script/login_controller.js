@@ -87,6 +87,8 @@ cc.Class({
                         email: curr_email,
                         user_name: curr_user_name,
                         score: 0,
+                        total_win: 0,
+                        total_battle: 0,
                     })
                     .then(function () {
                         console.log("profile data upload success");
