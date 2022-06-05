@@ -271,7 +271,7 @@ cc.Class({
         if(this.isDead){
             // this.animator.play("helicopter_destroy");
         }
-        else if(!this.animator.getAnimationState("helicopter_fly").isplaying){
+        else if(!this.animator.getAnimationState("helicopter_fly").isPlaying){
             this.animator.play("helicopter_fly");
         }
     },
