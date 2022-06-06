@@ -8,6 +8,7 @@ cc.Class({
         moveDuration: 0,
         speedX: 0,
         speedY: 0,
+        bullet_speed: 1000,
         onGround: true,
         isDead: false,
         HP: 200,
@@ -118,6 +119,19 @@ cc.Class({
                 
                 case macro.KEY.space:
                     // throw bomb
+                    for(const i in this.node.children) {
+                        if(this.node.children[i].name == "bomb" && this.node.children[i].active == false) {
+                            this.node.children[i].active = true;
+                            this.node.children[i].getComponent(cc.RigidBody).linearVelocity = cc.v2(0, -200);
+                            this.node.children[i].angle = -this.node.angle;
+                            this.scheduleOnce(function() {
+                                this.node.children[i].active = false;
+                                this.node.children[i].position = cc.v3(0, -50);
+                                this.node.children[i].angle = 0;
+                            }, 2.5);
+                            break;
+                        }
+                    }
                     break;
                 case macro.KEY.q:
                     this.Reborn();
@@ -152,6 +166,20 @@ cc.Class({
         switch(event.getButton()) {
             case cc.Event.EventMouse.BUTTON_LEFT:
                 // fire machine gun
+                for(const i in this.node.children) {
+                    if(this.node.children[i].name == "bullet_1" && this.node.children[i].active == false) {
+                        this.node.children[i].active = true;
+                        this.node.children[i].getComponent(cc.RigidBody).linearVelocity = cc.v2(this.bullet_speed * Math.cos(Math.PI * this.node.angle/180), this.bullet_speed * Math.sin(Math.PI * this.node.angle/180));
+                        // console.log(this.node.children[i].getComponent(cc.RigidBody).linearVelocity.x, this.node.children[i].getComponent(cc.RigidBody).linearVelocity.y);
+                        // console.log(this.node.angle);
+                        this.scheduleOnce(function() {
+                            this.node.children[i].active = false;
+                            this.node.children[i].position = cc.v3(40, -40);
+                            this.node.children[i].angle = 0;
+                        }, 2.5);
+                        break;
+                    }
+                }
                 break;
             case cc.Event.EventMouse.BUTTON_RIGHT:
                 //fire the missile
