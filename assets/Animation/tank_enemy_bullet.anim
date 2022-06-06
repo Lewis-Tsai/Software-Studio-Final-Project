@@ -1,0 +1,49 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "tank_enemy_bullet",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.3333333333333333,
+  "sample": 30,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0.03333333333333333,
+            "value": {
+              "__uuid__": "0b215ece-22f4-475a-81d5-e92f4b75d705"
+            }
+          },
+          {
+            "frame": 0.1,
+            "value": {
+              "__uuid__": "5600898c-4082-4a4a-9e31-abf591875e8f"
+            }
+          },
+          {
+            "frame": 0.16666666666666666,
+            "value": {
+              "__uuid__": "ef61d981-0ace-4d36-bcbe-a99b79b3d53a"
+            }
+          },
+          {
+            "frame": 0.23333333333333334,
+            "value": {
+              "__uuid__": "0c1025b6-fd09-4123-b999-474581a26e00"
+            }
+          },
+          {
+            "frame": 0.3,
+            "value": {
+              "__uuid__": "f0d384e4-bc8e-4cb2-85fa-81034c1aa20d"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}
