@@ -1,19 +1,9 @@
-// Learn TypeScript:
-//  - https://docs.cocos.com/creator/manual/en/scripting/typescript.html
-// Learn Attribute:
-//  - https://docs.cocos.com/creator/manual/en/scripting/reference/attributes.html
-// Learn life-cycle callbacks:
-//  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
-
 const {ccclass, property} = cc._decorator;
 
 @ccclass
 export default class tank_enemies_bullet extends cc.Component {
 
     private anim = null;
-    // when created, the bullet need to be placed at correct position and play animation.
-    //@property(cc.Prefab)
-    //tank_enemy_bullet_Prefab: cc.Prefab = null;
 
     public init(node: cc.Node) 
     {
@@ -32,7 +22,8 @@ export default class tank_enemies_bullet extends cc.Component {
 
     onBeginContact(contact, selfCollider, otherCollider)
     {
-        if(otherCollider.tag == 1){
+        if(otherCollider.tag == 1 || otherCollider.tag == 2){
+            console.log('here');
             this.node.destroy();
         }
     }

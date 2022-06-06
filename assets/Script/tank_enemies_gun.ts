@@ -1,10 +1,3 @@
-// Learn TypeScript:
-//  - https://docs.cocos.com/creator/manual/en/scripting/typescript.html
-// Learn Attribute:
-//  - https://docs.cocos.com/creator/manual/en/scripting/reference/attributes.html
-// Learn life-cycle callbacks:
-//  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
-
 const {ccclass, property} = cc._decorator;
 
 @ccclass
@@ -31,17 +24,12 @@ export default class tank_enemies_gun extends cc.Component {
         switch(event.keyCode) 
         {
             case cc.macro.KEY.z:
-
                 this.zDown = true;
-
                 this.xDown = false;
-
                 break;
 
             case cc.macro.KEY.k:
-
                 this.kDown = true;
-
                 break;
         }
     }
@@ -51,15 +39,11 @@ export default class tank_enemies_gun extends cc.Component {
         switch(event.keyCode) 
         {
             case cc.macro.KEY.z:
-
                 this.zDown = false;
-
                 break;
 
             case cc.macro.KEY.k:
-
                 this.kDown = false;
-
                 break;
         }
     }
@@ -68,7 +52,7 @@ export default class tank_enemies_gun extends cc.Component {
         //if the friendly_tank is on the left hand side, aims the left side, and vise versa
     }
     private playerAnimation(){
-        if(this.kDown) 
+        if(this.kDown){
             //virsion 1
             /*var bullet = cc.instantiate(this.tank_enemy_bullet_Prefab);
             bullet.setPosition(this.node.x,this.node.y,0);
@@ -76,8 +60,8 @@ export default class tank_enemies_gun extends cc.Component {
             bullet.runAction(action);
             cc.find("Canvas").addChild(bullet);*/
             var bullet = cc.instantiate(this.tank_enemy_bullet_Prefab);
-            //bullet.setPosition(this.node.x,this.node.y,0);
             bullet.getComponent('tank_enemies_bullet').init(this.node);
             cc.find("Canvas").addChild(bullet);
+        }
     }
 }
