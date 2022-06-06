@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "98c6dbad-5dd0-478a-85b1-2eb5ca4dcf9c",
+  "uuid": "898e1aeb-1df6-4105-a0f5-85eefd702651",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "machine gun": {
       "ver": "1.0.6",
-      "uuid": "6ac6e561-1ffd-4f22-bda4-febf4e1241a2",
+      "uuid": "2b3cafb9-4194-4fe0-9872-7732ec91da17",
       "importer": "sprite-frame",
-      "rawTextureUuid": "98c6dbad-5dd0-478a-85b1-2eb5ca4dcf9c",
+      "rawTextureUuid": "898e1aeb-1df6-4105-a0f5-85eefd702651",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

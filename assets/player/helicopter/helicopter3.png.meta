@@ -1,6 +1,6 @@
 {
   "ver": "2.3.7",
-  "uuid": "cb1b0e1d-8bd2-4f5c-bfe0-d489a35f7ab9",
+  "uuid": "81487fa7-84ad-48fd-a84c-ceab81f2d779",
   "importer": "texture",
   "type": "sprite",
   "wrapMode": "clamp",
@@ -14,9 +14,9 @@
   "subMetas": {
     "helicopter3": {
       "ver": "1.0.6",
-      "uuid": "49e0cc77-9ce0-4f0d-94a0-9f951880722a",
+      "uuid": "ec0ebd90-4b06-47f6-b6bc-865efb6d8c8e",
       "importer": "sprite-frame",
-      "rawTextureUuid": "cb1b0e1d-8bd2-4f5c-bfe0-d489a35f7ab9",
+      "rawTextureUuid": "81487fa7-84ad-48fd-a84c-ceab81f2d779",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
