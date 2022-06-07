@@ -60,8 +60,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        177.799,
-        -221.98,
+        -144.408,
+        -122.191,
         0,
         0,
         0,
@@ -120,6 +120,17 @@
     "_id": ""
   },
   {
+    "__type__": "eff08j71hhJVZ+K1nqYahWX",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "player": null,
+    "_id": ""
+  },
+  {
     "__type__": "cc.Animation",
     "_name": "",
     "_objFlags": 0,
@@ -134,16 +145,6 @@
       }
     ],
     "playOnLoad": true,
-    "_id": ""
-  },
-  {
-    "__type__": "eff08j71hhJVZ+K1nqYahWX",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
     "_id": ""
   },
   {
