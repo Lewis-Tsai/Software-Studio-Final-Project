@@ -2725,8 +2725,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        131.782,
-        -216.177,
+        115.119,
+        -218.954,
         0,
         0,
         0,
@@ -2792,7 +2792,9 @@
       "__id__": 68
     },
     "_enabled": true,
-    "tank_enemy_bullet_Prefab": null,
+    "tank_enemy_bullet_Prefab": {
+      "__uuid__": "3030a4c4-e587-4536-8620-c0f37f90de06"
+    },
     "player": {
       "__id__": 7
     },

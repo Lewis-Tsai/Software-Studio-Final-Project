@@ -17,10 +17,18 @@ export default class tank_enemies_bullet extends cc.Component {
         this.node.y = y;
         this.anim.play('tank_enemy_bullet');
         let action = cc.moveBy(1, angle_x, angle_y);
-        this.node.runAction(action);
-        //this.fire_bullet(x, y);
-        //let action = cc.moveBy(1,-500,0);
         //this.node.runAction(action);
+        let finished = cc.callFunc(() => {
+            //this.bulletManager.put(this.node);
+            this.node.destroy();
+        });
+
+        // after playing animation, the bullet move 0.8s and destroy itself(put back to the bullet manager)
+        this.scheduleOnce(() => {
+            this.node.runAction(cc.sequence(action, finished));
+        }); 
+
+        //this.node.destroy();
     }
 
     private fire_bullet(x: number, y:number){
