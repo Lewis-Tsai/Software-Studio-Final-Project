@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>Custom Edited - Metal Slug Customs - Girida-G (10).png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{40,23}</string>
+                <key>spriteSourceSize</key>
+                <string>{40,23}</string>
+                <key>textureRect</key>
+                <string>{{0,0},{40,23}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>Custom Edited - Metal Slug Customs - Girida-G (11).png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{41,31}</string>
+                <key>spriteSourceSize</key>
+                <string>{41,31}</string>
+                <key>textureRect</key>
+                <string>{{0,23},{41,31}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>3</integer>
+            <key>pixelFormat</key>
+            <string>RGBA8888</string>
+            <key>premultiplyAlpha</key>
+            <false/>
+            <key>realTextureFileName</key>
+            <string>add.png</string>
+            <key>size</key>
+            <string>{41,54}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:c09163d6f2a357caf3495a70dffd2c8c:db20f10676fd3b9a0f94237956ae0f44:e076a541fd041675955478b32e8ed73d$</string>
+            <key>textureFileName</key>
+            <string>add.png</string>
+        </dict>
+    </dict>
+</plist>

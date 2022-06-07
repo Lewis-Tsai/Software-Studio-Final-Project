@@ -6,11 +6,12 @@ export default class tank_enemies_gun extends cc.Component {
     private animateState = null; //this will use to record animationState
     @property(cc.Prefab)
     tank_enemy_bullet_Prefab: cc.Prefab = null;
+    @property(cc.Node)
+    player:cc.Node = null;
 
     update(dt)
     {
         this.playerMovement(dt);
-
         this.playerAnimation();
     }
     start() 
@@ -49,7 +50,13 @@ export default class tank_enemies_gun extends cc.Component {
     }
     private playerMovement(dt)
     {
-        //if the friendly_tank is on the left hand side, aims the left side, and vise versa
+        //rotate gun
+        var dx = this.player.x - this.node.x;
+        var dy = this.player.y - this.node.y;
+        var dir = cc.v2(dx,dy);
+        var angle = dir.signAngle(cc.v2(1,0));
+        var degree = angle / Math.PI * 180;
+        this.node.rotation = degree + 160;
     }
     private playerAnimation(){
         if(this.kDown){

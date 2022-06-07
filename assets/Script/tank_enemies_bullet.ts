@@ -10,9 +10,12 @@ export default class tank_enemies_bullet extends cc.Component {
         this.anim = this.getComponent(cc.Animation);
         this.setInitPos(node);
         this.anim.play('tank_enemy_bullet');
-        let action = cc.moveBy(1,-500,0);
-        this.node.runAction(action);
-        //cc.find("Canvas").addChild(bullet)
+        //let action = cc.moveBy(1,-500,0);
+        //this.node.runAction(action);
+    }
+
+    private fire_bullet(){
+        //let action = cc.moveBy(1,-500,0);
     }
 
     setInitPos(node: cc.Node){

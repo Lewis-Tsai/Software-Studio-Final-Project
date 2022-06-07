@@ -1,0 +1,59 @@
+{
+  "ver": "1.2.6",
+  "uuid": "ae5aba93-0efa-4ee7-8dfd-1511c0ac4be6",
+  "importer": "asset",
+  "rawTextureUuid": "5517502c-d9ca-4fa7-bead-c8267ab61b66",
+  "size": {
+    "width": 41,
+    "height": 54
+  },
+  "type": "Texture Packer",
+  "subMetas": {
+    "Custom Edited - Metal Slug Customs - Girida-G (10).png": {
+      "ver": "1.0.6",
+      "uuid": "1b1eb0ab-d1c4-4b9f-877c-d7a59e3c088a",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "5517502c-d9ca-4fa7-bead-c8267ab61b66",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 40,
+      "height": 23,
+      "rawWidth": 40,
+      "rawHeight": 23,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "spriteType": "normal",
+      "subMetas": {}
+    },
+    "Custom Edited - Metal Slug Customs - Girida-G (11).png": {
+      "ver": "1.0.6",
+      "uuid": "37420614-3331-46d9-8dc4-98760e88d463",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "5517502c-d9ca-4fa7-bead-c8267ab61b66",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 23,
+      "width": 41,
+      "height": 31,
+      "rawWidth": 41,
+      "rawHeight": 31,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "spriteType": "normal",
+      "subMetas": {}
+    }
+  }
+}
