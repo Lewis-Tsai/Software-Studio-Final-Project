@@ -10,25 +10,20 @@ export default class tank_enemies_bullet extends cc.Component {
 
     public init(node: cc.Node, x: number, y: number, angle_x: number, angle_y: number) 
     {
-        console.log('x = ',x);
         this.anim = this.getComponent(cc.Animation);
-        //this.setInitPos(node);
         this.node.x = x;
         this.node.y = y;
         this.anim.play('tank_enemy_bullet');
-        let action = cc.moveBy(1, angle_x, angle_y);
-        //this.node.runAction(action);
+        const body = this.getComponent(cc.RigidBody);
+        body.linearVelocity = cc.v2(angle_x,angle_y);
+        /*let action = cc.moveBy(1, angle_x, angle_y);
         let finished = cc.callFunc(() => {
-            //this.bulletManager.put(this.node);
             this.node.destroy();
         });
 
-        // after playing animation, the bullet move 0.8s and destroy itself(put back to the bullet manager)
         this.scheduleOnce(() => {
             this.node.runAction(cc.sequence(action, finished));
-        }); 
-
-        //this.node.destroy();
+        }); */
     }
 
     private fire_bullet(x: number, y:number){
@@ -51,5 +46,16 @@ export default class tank_enemies_bullet extends cc.Component {
             console.log('here');
             this.node.destroy();
         }
+    }
+
+    timeToLive = 4000
+    
+    timeAlive = 0
+
+    update(dt) {
+        if (!cc.isValid(this.node)) return
+
+        this.timeAlive += dt * 1000
+        if (this.timeAlive >= this.timeToLive) this.node.destroy()
     }
 }
