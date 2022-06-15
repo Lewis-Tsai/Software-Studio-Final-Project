@@ -14,6 +14,8 @@ cc.Class({
         HP: 200,
         maxHP: 200,
         score: 0,
+        bombs: 10,
+        missles: 10,
         successaudio:{
             type : cc.AudioClip,
             default : null
@@ -36,6 +38,14 @@ cc.Class({
             default: null
         },
         hp_icon:{
+            type: cc.Node,
+            default: null
+        },
+        bomb_num:{
+            type: cc.Node,
+            default: null
+        },
+        missle_num:{
             type: cc.Node,
             default: null
         }
@@ -121,7 +131,8 @@ cc.Class({
                 case macro.KEY.space:
                     // throw bomb
                     for(const i in this.node.children) {
-                        if(this.node.children[i].name == "bomb" && this.node.children[i].active == false) {
+                        if(this.node.children[i].name == "bomb" && this.node.children[i].active == false && this.bombs > 0) {
+                            this.bombs--;
                             this.node.children[i].active = true;
                             this.node.children[i].getComponent(cc.RigidBody).linearVelocity = cc.v2(0, -200);
                             this.node.children[i].angle = -this.node.angle;
@@ -205,27 +216,19 @@ cc.Class({
         let helicopter_y = this.node.position.y - this.camera.position.y;
         let delta_x = event.getLocationX() - helicopter_x - 480;
         let delta_y = event.getLocationY() - helicopter_y - 320;
-        if(this.node.scaleX > 0) {
-            if(delta_x > 0) {
-                this.node.angle = Math.atan(delta_y/delta_x) * 180 / Math.PI;
-            }
-            else {
-                if(delta_y > 0)
-                    this.node.angle = 90;
-                else
-                    this.node.angle = -90;
-            }
+        if(this.node.scaleX > 0 && delta_x > 0) {
+            this.node.angle = Math.atan(delta_y/delta_x) * 180 / Math.PI;
+            if(this.node.angle > 30)
+                this.node.angle = 30;
+            else if(this.node.angle < -30)
+                this.node.angle = -30;
         }
-        else {
-            if(delta_x < 0) {
-                this.node.angle = Math.atan(delta_y/delta_x) * 180 / Math.PI;
-            }
-            else {
-                if(delta_y > 0)
-                    this.node.angle = -90;
-                else
-                    this.node.angle = 90;
-            }
+        else if(this.node.scaleX < 0 && delta_x < 0) {
+            this.node.angle = Math.atan(delta_y/delta_x) * 180 / Math.PI;
+            if(this.node.angle > 30)
+                this.node.angle = 30;
+            else if(this.node.angle < -30)
+                this.node.angle = -30;
         }
     },
 
@@ -283,6 +286,8 @@ cc.Class({
             }
             // console.log(this.camera.position.x, this.camera.position.y);
             this.hp_bar.node.position = cc.v3(this.camera.position.x, this.camera.position.y + 288, 0);
+            this.missle_num.position = cc.v3(this.camera.position.x - 400, this.camera.position.y + 64, 0);
+            this.bomb_num.position = cc.v3(this.camera.position.x - 400, this.camera.position.y - 128, 0);
         }
         else if(scene.name == "Stage 2"){
             if(this.node.x < -580)
@@ -315,6 +320,8 @@ cc.Class({
             else {
                 this.hp_bar.getComponent(cc.ProgressBar).progress = this.HP / this.maxHP;
                 this.hp_icon.x = 300 * (this.HP - this.maxHP/2) / this.maxHP;
+                this.missle_num.getComponent(cc.Sprite).fillRange = this.missles / 10;
+                this.bomb_num.getComponent(cc.Sprite).fillRange = this.bombs / 10;
             }
         }
     },
