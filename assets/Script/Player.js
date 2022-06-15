@@ -12,6 +12,7 @@ cc.Class({
         onGround: true,
         isDead: false,
         HP: 200,
+        maxHP: 200,
         score: 0,
         successaudio:{
             type : cc.AudioClip,
@@ -30,12 +31,12 @@ cc.Class({
             type: cc.Node,
             default: null
         },
-        hp_label:{
-            type: cc.Label,
+        hp_bar:{
+            type: cc.ProgressBar,
             default: null
         },
-        score_label:{
-            type: cc.Label,
+        hp_icon:{
+            type: cc.Node,
             default: null
         }
     },
@@ -281,8 +282,7 @@ cc.Class({
                 this.background.x = (this.node.x + 490) * 500 / 2410 + 478;
             }
             // console.log(this.camera.position.x, this.camera.position.y);
-            this.hp_label.node.position = cc.v3(this.camera.position.x - 380, this.camera.position.y + 260, 0);
-            this.score_label.node.position = cc.v3(this.camera.position.x + 350, this.camera.position.y + 260, 0);
+            this.hp_bar.node.position = cc.v3(this.camera.position.x, this.camera.position.y + 288, 0);
         }
         else if(scene.name == "Stage 2"){
             if(this.node.x < -580)
@@ -313,11 +313,8 @@ cc.Class({
                 this.isDead = true;
             }
             else {
-                this.hp_label.getComponent(cc.Label).string = this.HP.toString();
-                let s = this.score.toString();
-                for(let i=s.length; i<=6; i++)
-                    s = "0" + s;
-                this.score_label.getComponent(cc.Label).string = s;
+                this.hp_bar.getComponent(cc.ProgressBar).progress = this.HP / this.maxHP;
+                this.hp_icon.x = 300 * (this.HP - this.maxHP/2) / this.maxHP;
             }
         }
     },
