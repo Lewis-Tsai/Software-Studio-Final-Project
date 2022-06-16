@@ -30,7 +30,7 @@ export class tank_enemies_gun extends cc.Component {
                 var dir = cc.v2(dx,dy);
                 var angle = dir.signAngle(cc.v2(1,0)); //in radiant
                 var degree = angle / Math.PI * 180;
-                this.node.rotation = degree + 160;
+                this.node.angle = -(degree + 160);
                 var bullet = cc.instantiate(this.tank_enemy_bullet_Prefab);
                 bullet.getComponent('tank_enemies_bullet').init(
                     this.node, this.node.x+67*Math.cos(angle), this.node.y-67*Math.sin(angle)+10, 
@@ -75,7 +75,7 @@ export class tank_enemies_gun extends cc.Component {
         var dir = cc.v2(dx,dy);
         var angle = dir.signAngle(cc.v2(1,0)); //in radiant
         var degree = angle / Math.PI * 180;
-        this.node.rotation = degree + 160;
+        this.node.angle = -(degree + 160);
         /*this.schedule(function(){
             var bullet = cc.instantiate(this.tank_enemy_bullet_Prefab);
             bullet.getComponent('tank_enemies_bullet').init(

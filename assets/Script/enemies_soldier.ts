@@ -17,6 +17,9 @@ export default class enemies_soldier extends cc.Component {
     @property
     text: string = 'hello';
 
+    @property(cc.Prefab)
+    private bullet: cc.Prefab = null;
+
     private player: cc.Node = null
  
     private physicManager: cc.PhysicsManager = null;
@@ -41,17 +44,26 @@ export default class enemies_soldier extends cc.Component {
         this.node.scaleX = -1;
         console.log(this.player.position);
         //console.log(this.player.getComponent("Player").isDead)
+        //this.loadgun();
     }
  
     start () {
-        this.loadgun();
+        //this.loadgun();
+        //this.schedule(this.firegun,0.2);
     }
     loadgun(){
-        this.schedule(this.firegun,1);
+        let node_b = cc.instantiate(this.bullet);
+        let canvas = cc.find("Canvas");
+        canvas.addChild(node_b);
+        //node.parent = cc.director.getScene();
+        node_b.setPosition(this.node.position.x,this.node.position.y);
+        //console.log(this.node.name);
+        //this.schedule(this.firegun,1);
     }
      update (dt) {
         //console.log(this.Living);
         if (this.Living && !this.player.getComponent("Player").isDead){ // all live =>move
+            this.firegun();
             if(this.node.x - cc.find("Canvas/Main Camera").x < 960) this.node.x += this.Speed * dt;//can view=> moving
         }
  
@@ -72,7 +84,16 @@ export default class enemies_soldier extends cc.Component {
     }
     
     firegun(){
-        let X = -this.node.position.x + this.player.position.x;
+        this.loadgun();
+        for (var i = 0 ;i<this.node.childrenCount ;i++){
+            if (this.node.children[i].name == "bullet_emeny"){
+                console.log(this.node.children[i].name)
+                this.node.children[i].active = true;
+                //this.node.children[i].parent = cc.find("Canvas");
+                break;
+            }
+        }
+        /*let X = -this.node.position.x + this.player.position.x;
         let Y = -this.node.position.y + this.player.position.y;
     
         let cos = X/Math.sqrt(X*X + Y*Y);
@@ -89,7 +110,7 @@ export default class enemies_soldier extends cc.Component {
             this.node.children[0].active = false;
             this.node.children[0].position.x = that.node.position.x;
             this.node.children[0].position.y = that.node.position.y;
-        }, 0.95);
+        }, 0.95);*/
     }
     
      onBeginContact(contact,self,other){

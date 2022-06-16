@@ -359,7 +359,7 @@ cc.Class({
             this.HP -= 5;
             otherCollider.node.active = false;
         }
-        else if(otherCollider.node.name == "tank_enemies_bullet") {
+        else if(otherCollider.node.name == "tank_enemies_bullet" || otherCollider.node.name == "bullet_enemy") {
             // hit by bullet from enemies
             this.HP -= 5;
         }
