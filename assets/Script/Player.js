@@ -9,13 +9,14 @@ cc.Class({
         speedX: 0,
         speedY: 0,
         bullet_speed: 1000,
+        missile_speed: 300,
         onGround: true,
         isDead: false,
         HP: 200,
         maxHP: 200,
         score: 0,
         bombs: 10,
-        missles: 10,
+        missiles: 10,
         successaudio:{
             type : cc.AudioClip,
             default : null
@@ -181,9 +182,10 @@ cc.Class({
                 for(const i in this.node.children) {
                     if(this.node.children[i].name == "bullet_1" && this.node.children[i].active == false) {
                         this.node.children[i].active = true;
-                        this.node.children[i].getComponent(cc.RigidBody).linearVelocity = cc.v2(this.bullet_speed * Math.cos(Math.PI * this.node.angle/180), this.bullet_speed * Math.sin(Math.PI * this.node.angle/180));
-                        // console.log(this.node.children[i].getComponent(cc.RigidBody).linearVelocity.x, this.node.children[i].getComponent(cc.RigidBody).linearVelocity.y);
-                        // console.log(this.node.angle);
+                        if(this.node.scaleX > 0)
+                            this.node.children[i].getComponent(cc.RigidBody).linearVelocity = cc.v2(this.bullet_speed * Math.cos(Math.PI * this.node.angle/180), this.bullet_speed * Math.sin(Math.PI * this.node.angle/180));
+                        else
+                            this.node.children[i].getComponent(cc.RigidBody).linearVelocity = cc.v2(-this.bullet_speed * Math.cos(Math.PI * this.node.angle/180), -this.bullet_speed * Math.sin(Math.PI * this.node.angle/180));
                         this.scheduleOnce(function() {
                             this.node.children[i].active = false;
                             this.node.children[i].position = cc.v3(40, -40);
@@ -195,6 +197,23 @@ cc.Class({
                 break;
             case cc.Event.EventMouse.BUTTON_RIGHT:
                 //fire the missile
+                for(const i in this.node.children) {
+                    if(this.node.children[i].name == "missile" && this.node.children[i].active == false && this.missiles > 0) {
+                        this.missiles--;
+                        this.node.children[i].active = true;
+                        console.log(this.node.children[i].angle);
+                        if(this.node.scaleX > 0)
+                            this.node.children[i].getComponent(cc.RigidBody).linearVelocity = cc.v2(this.missile_speed * Math.cos(Math.PI * this.node.angle/180), this.missile_speed * Math.sin(Math.PI * this.node.angle/180));
+                        else
+                            this.node.children[i].getComponent(cc.RigidBody).linearVelocity = cc.v2(-this.missile_speed * Math.cos(Math.PI * this.node.angle/180), -this.missile_speed * Math.sin(Math.PI * this.node.angle/180));
+                        this.scheduleOnce(function() {
+                            this.node.children[i].active = false;
+                            this.node.children[i].position = cc.v3(80, -32);
+                            this.node.children[i].angle = -90;
+                        }, 2.5);
+                        break;
+                    }
+                }
                 break; 
         }
     },
@@ -320,7 +339,7 @@ cc.Class({
             else {
                 this.hp_bar.getComponent(cc.ProgressBar).progress = this.HP / this.maxHP;
                 this.hp_icon.x = 300 * (this.HP - this.maxHP/2) / this.maxHP;
-                this.missle_num.getComponent(cc.Sprite).fillRange = this.missles / 10;
+                this.missle_num.getComponent(cc.Sprite).fillRange = this.missiles / 10;
                 this.bomb_num.getComponent(cc.Sprite).fillRange = this.bombs / 10;
             }
         }
@@ -340,7 +359,7 @@ cc.Class({
             this.HP -= 5;
             otherCollider.node.active = false;
         }
-        else if(otherCollider.node.name == "bullet") {
+        else if(otherCollider.node.name == "tank_enemies_bullet") {
             // hit by bullet from enemies
             this.HP -= 5;
         }
