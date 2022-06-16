@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "ab568dee-c9fc-4844-a095-6d63c5ae1f09",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 3000,
+  "height": 3000,
+  "platformSettings": {},
+  "subMetas": {
+    "SoilBeach0087_11_L_NRM_V2": {
+      "ver": "1.0.6",
+      "uuid": "c4051361-4373-4bd9-beb9-de0cf63fc37c",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "ab568dee-c9fc-4844-a095-6d63c5ae1f09",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 3000,
+      "height": 3000,
+      "rawWidth": 3000,
+      "rawHeight": 3000,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}
