@@ -1,0 +1,778 @@
+{
+  "ver": "1.1.3",
+  "uuid": "2be3ea4c-0ebb-4b4d-b576-2ab8ca13860a",
+  "importer": "fbx",
+  "scaleFactor": 1,
+  "boneCount": 0,
+  "precomputeJointMatrix": true,
+  "animationFrameRate": 30,
+  "subMetas": {
+    "buffer.bin": {
+      "ver": "1.0.2",
+      "uuid": "7fe25336-e7c2-4db7-a57e-36604f7da941",
+      "importer": "buffer",
+      "name": "buffer.bin",
+      "subMetas": {}
+    },
+    "L7_Wheel.mesh": {
+      "ver": "1.0.3",
+      "uuid": "b3a90b77-eed3-4df6-8da7-ea115241e707",
+      "importer": "mesh",
+      "verts": 216,
+      "tris": 204,
+      "submeshes": 1,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0"
+        ]
+      ],
+      "minPos": {
+        "x": -0.0168046485632658,
+        "y": 0.000395839975681156,
+        "z": 0.0207072589546442
+      },
+      "maxPos": {
+        "x": -0.0114813297986984,
+        "y": 0.00691145984455943,
+        "z": 0.0272228680551052
+      },
+      "name": "L7_Wheel.mesh",
+      "subMetas": {}
+    },
+    "L6_Wheel.mesh": {
+      "ver": "1.0.3",
+      "uuid": "0a4692d1-9f1e-41fa-ad21-e36357a0689d",
+      "importer": "mesh",
+      "verts": 216,
+      "tris": 204,
+      "submeshes": 1,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0"
+        ]
+      ],
+      "minPos": {
+        "x": -0.0168046485632658,
+        "y": 0.000395839975681156,
+        "z": 0.0133673502132297
+      },
+      "maxPos": {
+        "x": -0.0114813297986984,
+        "y": 0.00691145984455943,
+        "z": 0.0198829602450132
+      },
+      "name": "L6_Wheel.mesh",
+      "subMetas": {}
+    },
+    "L5_Wheel.mesh": {
+      "ver": "1.0.3",
+      "uuid": "efab4ace-f1d9-4357-b9a6-5ea4d058227c",
+      "importer": "mesh",
+      "verts": 216,
+      "tris": 204,
+      "submeshes": 1,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0"
+        ]
+      ],
+      "minPos": {
+        "x": -0.0168046485632658,
+        "y": 0.000395839975681156,
+        "z": 0.00613199872896075
+      },
+      "maxPos": {
+        "x": -0.0114813297986984,
+        "y": 0.00691145984455943,
+        "z": 0.0126476092264056
+      },
+      "name": "L5_Wheel.mesh",
+      "subMetas": {}
+    },
+    "L4_Wheel.mesh": {
+      "ver": "1.0.3",
+      "uuid": "2bf7e307-d523-40ba-b5f6-2140ac439e71",
+      "importer": "mesh",
+      "verts": 216,
+      "tris": 204,
+      "submeshes": 1,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0"
+        ]
+      ],
+      "minPos": {
+        "x": -0.0168046485632658,
+        "y": 0.000395839975681156,
+        "z": -0.00124973175115883
+      },
+      "maxPos": {
+        "x": -0.0114813297986984,
+        "y": 0.00691145984455943,
+        "z": 0.00526587851345539
+      },
+      "name": "L4_Wheel.mesh",
+      "subMetas": {}
+    },
+    "L3_Wheel.mesh": {
+      "ver": "1.0.3",
+      "uuid": "9ebace91-9b84-465a-9d5b-2b66e2876010",
+      "importer": "mesh",
+      "verts": 216,
+      "tris": 204,
+      "submeshes": 1,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0"
+        ]
+      ],
+      "minPos": {
+        "x": -0.0168046485632658,
+        "y": 0.000395839975681156,
+        "z": -0.0085059953853488
+      },
+      "maxPos": {
+        "x": -0.0114813297986984,
+        "y": 0.00691145984455943,
+        "z": -0.00199038512073457
+      },
+      "name": "L3_Wheel.mesh",
+      "subMetas": {}
+    },
+    "L2_Wheel.mesh": {
+      "ver": "1.0.3",
+      "uuid": "8eb84f79-a259-40d5-b06e-8a013382c6b0",
+      "importer": "mesh",
+      "verts": 216,
+      "tris": 204,
+      "submeshes": 1,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0"
+        ]
+      ],
+      "minPos": {
+        "x": -0.0168046485632658,
+        "y": 0.000395839975681156,
+        "z": -0.0158249922096729
+      },
+      "maxPos": {
+        "x": -0.0114813297986984,
+        "y": 0.00691145984455943,
+        "z": -0.00930938217788935
+      },
+      "name": "L2_Wheel.mesh",
+      "subMetas": {}
+    },
+    "L1_Wheel.mesh": {
+      "ver": "1.0.3",
+      "uuid": "c9b0f550-a15e-4e9e-940c-e026c90d01f6",
+      "importer": "mesh",
+      "verts": 216,
+      "tris": 204,
+      "submeshes": 1,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0"
+        ]
+      ],
+      "minPos": {
+        "x": -0.0168046485632658,
+        "y": 0.000395839975681156,
+        "z": -0.0246496107429266
+      },
+      "maxPos": {
+        "x": -0.0114813297986984,
+        "y": 0.00691145984455943,
+        "z": -0.0181339997798204
+      },
+      "name": "L1_Wheel.mesh",
+      "subMetas": {}
+    },
+    "LF_Wheel.mesh": {
+      "ver": "1.0.3",
+      "uuid": "ec005603-f9a6-4574-88f4-a2926aca59ae",
+      "importer": "mesh",
+      "verts": 216,
+      "tris": 204,
+      "submeshes": 1,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0"
+        ]
+      ],
+      "minPos": {
+        "x": -0.0168046485632658,
+        "y": 0.00489179510623217,
+        "z": -0.0355235487222672
+      },
+      "maxPos": {
+        "x": -0.0114813297986984,
+        "y": 0.0114074153825641,
+        "z": -0.0290079396218061
+      },
+      "name": "LF_Wheel.mesh",
+      "subMetas": {}
+    },
+    "LR_Wheel.mesh": {
+      "ver": "1.0.3",
+      "uuid": "f95e485d-3fc7-4576-8649-124865ca8077",
+      "importer": "mesh",
+      "verts": 840,
+      "tris": 770,
+      "submeshes": 1,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0"
+        ]
+      ],
+      "minPos": {
+        "x": -0.0174571890383959,
+        "y": 0.00461840955540538,
+        "z": 0.0272964090108871
+      },
+      "maxPos": {
+        "x": -0.0108923399820924,
+        "y": 0.0121142193675041,
+        "z": 0.0348730981349945
+      },
+      "name": "LR_Wheel.mesh",
+      "subMetas": {}
+    },
+    "R7_Wheel.mesh": {
+      "ver": "1.0.3",
+      "uuid": "a6de6efc-8ce8-416a-b740-212693b5c2f6",
+      "importer": "mesh",
+      "verts": 216,
+      "tris": 204,
+      "submeshes": 1,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0"
+        ]
+      ],
+      "minPos": {
+        "x": 0.0114813316613436,
+        "y": 0.000395839975681156,
+        "z": 0.0207072589546442
+      },
+      "maxPos": {
+        "x": 0.0168046485632658,
+        "y": 0.00691145984455943,
+        "z": 0.0272228680551052
+      },
+      "name": "R7_Wheel.mesh",
+      "subMetas": {}
+    },
+    "R6_Wheel.mesh": {
+      "ver": "1.0.3",
+      "uuid": "be245650-02ad-4a84-bf8b-3d7a4079d495",
+      "importer": "mesh",
+      "verts": 216,
+      "tris": 204,
+      "submeshes": 1,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0"
+        ]
+      ],
+      "minPos": {
+        "x": 0.0114813297986984,
+        "y": 0.000395839975681156,
+        "z": 0.0133673502132297
+      },
+      "maxPos": {
+        "x": 0.0168046485632658,
+        "y": 0.00691145984455943,
+        "z": 0.0198829602450132
+      },
+      "name": "R6_Wheel.mesh",
+      "subMetas": {}
+    },
+    "R5_Wheel.mesh": {
+      "ver": "1.0.3",
+      "uuid": "626d87bf-0a8b-40fa-95f2-f517c850f232",
+      "importer": "mesh",
+      "verts": 216,
+      "tris": 204,
+      "submeshes": 1,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0"
+        ]
+      ],
+      "minPos": {
+        "x": 0.0114813316613436,
+        "y": 0.000395839975681156,
+        "z": 0.00613199872896075
+      },
+      "maxPos": {
+        "x": 0.0168046485632658,
+        "y": 0.00691145984455943,
+        "z": 0.0126476092264056
+      },
+      "name": "R5_Wheel.mesh",
+      "subMetas": {}
+    },
+    "R4_Wheel.mesh": {
+      "ver": "1.0.3",
+      "uuid": "83a26dd1-e792-499b-96f8-f3b85d117b1b",
+      "importer": "mesh",
+      "verts": 216,
+      "tris": 204,
+      "submeshes": 1,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0"
+        ]
+      ],
+      "minPos": {
+        "x": 0.0114813316613436,
+        "y": 0.000395839975681156,
+        "z": -0.00124973175115883
+      },
+      "maxPos": {
+        "x": 0.0168046485632658,
+        "y": 0.00691145984455943,
+        "z": 0.00526587851345539
+      },
+      "name": "R4_Wheel.mesh",
+      "subMetas": {}
+    },
+    "R3_Wheel.mesh": {
+      "ver": "1.0.3",
+      "uuid": "5e9795f0-ca60-4218-85c1-cc95dfda95a9",
+      "importer": "mesh",
+      "verts": 216,
+      "tris": 204,
+      "submeshes": 1,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0"
+        ]
+      ],
+      "minPos": {
+        "x": 0.0114813316613436,
+        "y": 0.000395839975681156,
+        "z": -0.0085059953853488
+      },
+      "maxPos": {
+        "x": 0.0168046485632658,
+        "y": 0.00691145984455943,
+        "z": -0.00199038512073457
+      },
+      "name": "R3_Wheel.mesh",
+      "subMetas": {}
+    },
+    "R2_Wheel.mesh": {
+      "ver": "1.0.3",
+      "uuid": "35b0363f-eb62-45f6-b522-c0838673770b",
+      "importer": "mesh",
+      "verts": 216,
+      "tris": 204,
+      "submeshes": 1,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0"
+        ]
+      ],
+      "minPos": {
+        "x": 0.0114813316613436,
+        "y": 0.000395839975681156,
+        "z": -0.0158249922096729
+      },
+      "maxPos": {
+        "x": 0.0168046485632658,
+        "y": 0.00691145984455943,
+        "z": -0.00930938217788935
+      },
+      "name": "R2_Wheel.mesh",
+      "subMetas": {}
+    },
+    "R1_Wheel.mesh": {
+      "ver": "1.0.3",
+      "uuid": "ebc5cefb-af95-4f3f-86dd-987a96c65f5c",
+      "importer": "mesh",
+      "verts": 216,
+      "tris": 204,
+      "submeshes": 1,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0"
+        ]
+      ],
+      "minPos": {
+        "x": 0.0114813316613436,
+        "y": 0.000395839975681156,
+        "z": -0.0246496107429266
+      },
+      "maxPos": {
+        "x": 0.0168046485632658,
+        "y": 0.00691145984455943,
+        "z": -0.0181339997798204
+      },
+      "name": "R1_Wheel.mesh",
+      "subMetas": {}
+    },
+    "RF_Wheel.mesh": {
+      "ver": "1.0.3",
+      "uuid": "60040a49-7a55-4cd1-ad3d-b4ec892103a6",
+      "importer": "mesh",
+      "verts": 216,
+      "tris": 204,
+      "submeshes": 1,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0"
+        ]
+      ],
+      "minPos": {
+        "x": 0.0114813316613436,
+        "y": 0.00489179510623217,
+        "z": -0.0355235487222672
+      },
+      "maxPos": {
+        "x": 0.0168046485632658,
+        "y": 0.0114074153825641,
+        "z": -0.0290079396218061
+      },
+      "name": "RF_Wheel.mesh",
+      "subMetas": {}
+    },
+    "RR_Wheel.mesh": {
+      "ver": "1.0.3",
+      "uuid": "57eaf92b-c33b-4832-8758-6e373f6ac10f",
+      "importer": "mesh",
+      "verts": 840,
+      "tris": 770,
+      "submeshes": 1,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0"
+        ]
+      ],
+      "minPos": {
+        "x": 0.010892340913415,
+        "y": 0.00461840955540538,
+        "z": 0.0272964090108871
+      },
+      "maxPos": {
+        "x": 0.0174571890383959,
+        "y": 0.0121142193675041,
+        "z": 0.0348730981349945
+      },
+      "name": "RR_Wheel.mesh",
+      "subMetas": {}
+    },
+    "chassis.mesh": {
+      "ver": "1.0.3",
+      "uuid": "8e57fb99-cda8-4138-8eb3-95cea61a5b94",
+      "importer": "mesh",
+      "verts": 3883,
+      "tris": 2479,
+      "submeshes": 3,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0"
+        ],
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0"
+        ],
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0"
+        ]
+      ],
+      "minPos": {
+        "x": -0.0183212794363499,
+        "y": 0.00402184017002583,
+        "z": -0.0411692596971989
+      },
+      "maxPos": {
+        "x": 0.0183257404714823,
+        "y": 0.0168207194656134,
+        "z": 0.0382126793265343
+      },
+      "name": "chassis.mesh",
+      "subMetas": {}
+    },
+    "tower.mesh": {
+      "ver": "1.0.3",
+      "uuid": "e03b9990-fc75-44ff-a395-fbad2eedd4b5",
+      "importer": "mesh",
+      "verts": 7043,
+      "tris": 4523,
+      "submeshes": 2,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0"
+        ],
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0"
+        ]
+      ],
+      "minPos": {
+        "x": -0.0176947806030512,
+        "y": 0.0143616599962115,
+        "z": -0.0249315593391657
+      },
+      "maxPos": {
+        "x": 0.0176350809633732,
+        "y": 0.0391377881169319,
+        "z": 0.028049249202013
+      },
+      "name": "tower.mesh",
+      "subMetas": {}
+    },
+    "turret.mesh": {
+      "ver": "1.0.3",
+      "uuid": "de605865-cce8-4004-a41f-10a09a9cf8ed",
+      "importer": "mesh",
+      "verts": 896,
+      "tris": 754,
+      "submeshes": 1,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0"
+        ]
+      ],
+      "minPos": {
+        "x": -0.00228006974793971,
+        "y": 0.0146016590297222,
+        "z": -0.0613716952502728
+      },
+      "maxPos": {
+        "x": 0.00386457028798759,
+        "y": 0.0215240586549044,
+        "z": -0.0154425501823425
+      },
+      "name": "turret.mesh",
+      "subMetas": {}
+    },
+    "track.mesh": {
+      "ver": "1.0.3",
+      "uuid": "c64acac1-757b-4f8e-8df4-7ee5f0f45702",
+      "importer": "mesh",
+      "verts": 486,
+      "tris": 368,
+      "submeshes": 1,
+      "attributes": [
+        [
+          "a_normal",
+          "a_position",
+          "a_uv0"
+        ]
+      ],
+      "minPos": {
+        "x": -0.0101805692538619,
+        "y": 0.0000128099991343333,
+        "z": -0.0360064096748829
+      },
+      "maxPos": {
+        "x": 0.0243205986917019,
+        "y": 0.0118303494527936,
+        "z": 0.0346187204122543
+      },
+      "name": "track.mesh",
+      "subMetas": {}
+    },
+    "Tank.prefab": {
+      "ver": "1.3.2",
+      "uuid": "fdc03454-63b8-4b06-acd1-884accf826cf",
+      "importer": "prefab",
+      "optimizationPolicy": "AUTO",
+      "asyncLoadAssets": false,
+      "readonly": true,
+      "content": [
+        {
+          "__type__": "cc.Prefab",
+          "_name": "",
+          "_objFlags": 0,
+          "data": {
+            "__id__": 1
+          }
+        },
+        {
+          "__type__": "cc.Node",
+          "_name": "Sprite",
+          "_objFlags": 0,
+          "_opacity": 255,
+          "_color": {
+            "__type__": "cc.Color",
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "a": 255
+          },
+          "_cascadeOpacityEnabled": true,
+          "_parent": null,
+          "_anchorPoint": {
+            "__type__": "cc.Vec2",
+            "x": 0.5,
+            "y": 0.5
+          },
+          "_contentSize": {
+            "__type__": "cc.Size",
+            "width": 40,
+            "height": 36
+          },
+          "_children": [],
+          "_skewX": 0,
+          "_skewY": 0,
+          "_localZOrder": 0,
+          "_globalZOrder": 0,
+          "_tag": -1,
+          "_opacityModifyRGB": false,
+          "_reorderChildDirty": false,
+          "_id": "",
+          "_active": true,
+          "_components": [
+            {
+              "__id__": 2
+            }
+          ],
+          "_prefab": {
+            "__id__": 3
+          },
+          "_eulerAngles": {
+            "__type__": "cc.Vec3",
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "_trs": {
+            "__type__": "TypedArray",
+            "ctor": "Float64Array",
+            "array": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1,
+              1
+            ]
+          }
+        },
+        {
+          "__type__": "cc.Sprite",
+          "_name": "",
+          "_objFlags": 0,
+          "node": {
+            "__id__": 1
+          },
+          "_enabled": true,
+          "_spriteFrame": {
+            "__uuid__": "8cdb44ac-a3f6-449f-b354-7cd48cf84061"
+          },
+          "_type": 0,
+          "_sizeMode": 1,
+          "_fillType": 0,
+          "_fillCenter": {
+            "__type__": "cc.Vec2",
+            "x": 0,
+            "y": 0
+          },
+          "_fillStart": 0,
+          "_fillRange": 0,
+          "_isTrimmedMode": true,
+          "_srcBlendFactor": 770,
+          "_dstBlendFactor": 771,
+          "_atlas": null
+        },
+        {
+          "__type__": "cc.PrefabInfo",
+          "root": {
+            "__id__": 1
+          },
+          "asset": null,
+          "fileId": "d7118yAG5lKybkFOAh8koPL"
+        }
+      ],
+      "name": "Tank.prefab",
+      "subMetas": {}
+    },
+    "mesh2_mesh2_abrams_details_veh_M1A2Abrams_01_det1.mtl": {
+      "ver": "1.0.5",
+      "uuid": "4aea72b7-5d46-4cbe-9d9f-63d8f940b471",
+      "importer": "material",
+      "dataAsSubAsset": "{\n  \"__type__\": \"cc.Material\",\n  \"_name\": \"\",\n  \"_objFlags\": 0,\n  \"_native\": \"\",\n  \"_effectAsset\": {\n    \"__uuid__\": \"6d91e591-4ce0-465c-809f-610ec95019c6\"\n  },\n  \"_techniqueIndex\": 0,\n  \"_techniqueData\": {\n    \"0\": {\n      \"props\": {\n        \"diffuseColor\": {\n          \"__type__\": \"cc.Color\",\n          \"r\": 61,\n          \"g\": 56,\n          \"b\": 56,\n          \"a\": 255\n        },\n        \"diffuseTexture\": {\n          \"__uuid__\": \"23e2afcb-cd9f-475c-8f73-575abc1cb06e\"\n        }\n      },\n      \"defines\": {\n        \"USE_DIFFUSE_TEXTURE\": true\n      }\n    }\n  }\n}",
+      "name": "mesh2_mesh2_abrams_details_veh_M1A2Abrams_01_det1.mtl",
+      "subMetas": {}
+    },
+    "mesh_abrams_body_b_veh_M1A2Abrams_01_bod1.mtl": {
+      "ver": "1.0.5",
+      "uuid": "c043c925-86dd-41a0-95cf-7beae42b0d58",
+      "importer": "material",
+      "dataAsSubAsset": "{\n  \"__type__\": \"cc.Material\",\n  \"_name\": \"\",\n  \"_objFlags\": 0,\n  \"_native\": \"\",\n  \"_effectAsset\": {\n    \"__uuid__\": \"6d91e591-4ce0-465c-809f-610ec95019c6\"\n  },\n  \"_techniqueIndex\": 0,\n  \"_techniqueData\": {\n    \"0\": {\n      \"props\": {\n        \"diffuseColor\": {\n          \"__type__\": \"cc.Color\",\n          \"r\": 78,\n          \"g\": 70,\n          \"b\": 70,\n          \"a\": 255\n        },\n        \"diffuseTexture\": {\n          \"__uuid__\": \"a1d74ce3-c519-4dcb-b5b6-f65657dca99a\"\n        }\n      },\n      \"defines\": {\n        \"USE_DIFFUSE_TEXTURE\": true\n      }\n    }\n  }\n}",
+      "name": "mesh_abrams_body_b_veh_M1A2Abrams_01_bod1.mtl",
+      "subMetas": {}
+    },
+    "mesh1_abrams_body_veh_M1A2Abrams_02.mtl": {
+      "ver": "1.0.5",
+      "uuid": "dc29fbf5-cfa1-4eaa-b724-8d6034e16fd7",
+      "importer": "material",
+      "dataAsSubAsset": "{\n  \"__type__\": \"cc.Material\",\n  \"_name\": \"\",\n  \"_objFlags\": 0,\n  \"_native\": \"\",\n  \"_effectAsset\": {\n    \"__uuid__\": \"6d91e591-4ce0-465c-809f-610ec95019c6\"\n  },\n  \"_techniqueIndex\": 0,\n  \"_techniqueData\": {\n    \"0\": {\n      \"props\": {\n        \"diffuseColor\": {\n          \"__type__\": \"cc.Color\",\n          \"r\": 58,\n          \"g\": 52,\n          \"b\": 52,\n          \"a\": 255\n        },\n        \"diffuseTexture\": {\n          \"__uuid__\": \"b593dffa-6abc-4464-b328-9bc09a7ca472\"\n        }\n      },\n      \"defines\": {\n        \"USE_DIFFUSE_TEXTURE\": true\n      }\n    }\n  }\n}",
+      "name": "mesh1_abrams_body_veh_M1A2Abrams_02.mtl",
+      "subMetas": {}
+    },
+    "mesh3_abrams_lanctalp_veh_M1A2Abrams_01_cat1.mtl": {
+      "ver": "1.0.5",
+      "uuid": "d38fd0b7-9e1e-445d-875e-a7bfc9789134",
+      "importer": "material",
+      "dataAsSubAsset": "{\n  \"__type__\": \"cc.Material\",\n  \"_name\": \"\",\n  \"_objFlags\": 0,\n  \"_native\": \"\",\n  \"_effectAsset\": {\n    \"__uuid__\": \"6d91e591-4ce0-465c-809f-610ec95019c6\"\n  },\n  \"_techniqueIndex\": 0,\n  \"_techniqueData\": {\n    \"0\": {\n      \"props\": {\n        \"diffuseColor\": {\n          \"__type__\": \"cc.Color\",\n          \"r\": 71,\n          \"g\": 66,\n          \"b\": 66,\n          \"a\": 255\n        },\n        \"diffuseTexture\": {\n          \"__uuid__\": \"93f6ba23-030a-441c-a8c1-e15d6eb3fe51\"\n        }\n      },\n      \"defines\": {\n        \"USE_DIFFUSE_TEXTURE\": true\n      }\n    }\n  }\n}",
+      "name": "mesh3_abrams_lanctalp_veh_M1A2Abrams_01_cat1.mtl",
+      "subMetas": {}
+    }
+  }
+}

@@ -8,7 +8,7 @@ export default class tank_enemies_bullet extends cc.Component {
 
     private anim = null;
 
-    public init(node: cc.Node, x: number, y: number, angle_x: number, angle_y: number) 
+    public init(x: number, y: number, angle_x: number, angle_y: number) 
     {
         this.anim = this.getComponent(cc.Animation);
         this.node.x = x;
@@ -32,12 +32,6 @@ export default class tank_enemies_bullet extends cc.Component {
         let action = cc.moveBy(1,dx,dy);
         this.node.runAction(action);
         console.log('gigigigiigigigigig');
-    }
-
-    setInitPos(node: cc.Node){
-        //this.node.x = node.x - 50;
-        //this.node.x = this.gun.bullet_x;
-        this.node.y = node.y;
     }
 
     onBeginContact(contact, selfCollider, otherCollider)
