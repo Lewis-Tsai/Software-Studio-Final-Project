@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "a8232a0c-1def-4653-8b7d-3628164f0d2b",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 370,
+  "height": 112,
+  "platformSettings": {},
+  "subMetas": {
+    "enemy_tank_gun": {
+      "ver": "1.0.6",
+      "uuid": "940b20e7-1cb0-4aa7-bd34-c2801ae73427",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "a8232a0c-1def-4653-8b7d-3628164f0d2b",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": -0.5,
+      "offsetY": -4.5,
+      "trimX": 116,
+      "trimY": 50,
+      "width": 137,
+      "height": 21,
+      "rawWidth": 370,
+      "rawHeight": 112,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

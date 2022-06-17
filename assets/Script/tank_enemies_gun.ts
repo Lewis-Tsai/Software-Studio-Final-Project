@@ -9,86 +9,40 @@ export class tank_enemies_gun extends cc.Component {
     @property(cc.Node)
     player:cc.Node = null;
 
-    public bullet_x: number = 30;
-    public bullet_y: number = 30;
+    @property(cc.Node)
+    tank:cc.Node = null;
 
     update(dt)
     {
         this.playerMovement(dt);
-        //this.playerAnimation();
-        
     }
     start() 
     {
         // add key down and key up event
-        cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
-        cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
         this.schedule(function(){
-            if(Math.abs(this.node.x - this.player.x) < 500 ){
-                var dx = this.player.x - this.node.x;
-                var dy = this.player.y - this.node.y;
+            if(Math.abs(this.tank.x - this.player.x) < 500 ){
+                var dx = this.player.x - this.tank.x;
+                var dy = this.player.y - this.tank.y;
                 var dir = cc.v2(dx,dy);
                 var angle = dir.signAngle(cc.v2(1,0)); //in radiant
                 var degree = angle / Math.PI * 180;
                 this.node.angle = -(degree + 160);
                 var bullet = cc.instantiate(this.tank_enemy_bullet_Prefab);
                 bullet.getComponent('tank_enemies_bullet').init(
-                    this.node, this.node.x+67*Math.cos(angle), this.node.y-67*Math.sin(angle)+10, 
-                    this.player.x - (this.node.x+67*Math.cos(angle)), this.player.y-(this.node.y-67*Math.sin(angle)+10));
+                    this.tank.x+105*Math.cos(angle), this.tank.y-105*Math.sin(angle)-50, 
+                    this.player.x - (this.tank.x-50*Math.cos(angle)), this.player.y-(this.tank.y+50*Math.sin(angle)));
                 cc.find("Canvas").addChild(bullet);
             }
         },2);
     }
-    onKeyDown(event) 
-    {
-        switch(event.keyCode) 
-        {
-            case cc.macro.KEY.z:
-                this.zDown = true;
-                this.xDown = false;
-                break;
-
-            case cc.macro.KEY.k:
-                this.kDown = true;
-                break;
-        }
-    }
-
-    onKeyUp(event)
-    {
-        switch(event.keyCode) 
-        {
-            case cc.macro.KEY.z:
-                this.zDown = false;
-                break;
-
-            case cc.macro.KEY.k:
-                this.kDown = false;
-                break;
-        }
-    }
     private playerMovement(dt)
     {
-        //rotate gun
-        var dx = this.player.x - this.node.x;
-        var dy = this.player.y - this.node.y;
+        var dx = this.player.x - this.tank.x;
+        var dy = this.player.y - this.tank.y;
         var dir = cc.v2(dx,dy);
         var angle = dir.signAngle(cc.v2(1,0)); //in radiant
+        console.log(angle);
         var degree = angle / Math.PI * 180;
         this.node.angle = -(degree + 160);
-        /*this.schedule(function(){
-            var bullet = cc.instantiate(this.tank_enemy_bullet_Prefab);
-            bullet.getComponent('tank_enemies_bullet').init(
-                this.node, this.node.x+67*Math.cos(angle), this.node.y-67*Math.sin(angle)+10, 
-                this.player.x - (this.node.x+67*Math.cos(angle)), this.player.y-(this.node.y-67*Math.sin(angle)+10));
-            cc.find("Canvas").addChild(bullet);
-        },2);*/
-        /*if(this.kDown){
-            var bullet = cc.instantiate(this.tank_enemy_bullet_Prefab);
-            bullet.getComponent('tank_enemies_bullet').init(
-                this.node, this.node.x+67*Math.cos(angle), this.node.y-67*Math.sin(angle)+10, 
-                this.player.x - (this.node.x+67*Math.cos(angle)), this.player.y-(this.node.y-67*Math.sin(angle)+10));
-            cc.find("Canvas").addChild(bullet);
-        }*/
     }
 }
