@@ -18,7 +18,7 @@ export default class enemies_soldier extends cc.Component {
     text: string = 'hello';
 
     @property(cc.Prefab)
-    private bullet: cc.Prefab = null;
+    private bullet_enemy: cc.Prefab = null;
 
     private player: cc.Node = null
  
@@ -49,21 +49,23 @@ export default class enemies_soldier extends cc.Component {
  
     start () {
         //this.loadgun();
-        //this.schedule(this.firegun,0.2);
+        this.schedule(this.firegun,0.2);
     }
     loadgun(){
-        let node_b = cc.instantiate(this.bullet);
+        let node_b = cc.instantiate(this.bullet_enemy);
         let canvas = cc.find("Canvas");
-        canvas.addChild(node_b);
+        this.node.addChild(node_b);
+        //canvas.addChild(node_b);
         //node.parent = cc.director.getScene();
-        node_b.setPosition(this.node.position.x,this.node.position.y);
+        node_b.setPosition(0,0);
+        //node_b.setPosition(this.node.position.x,this.node.position.y);
         //console.log(this.node.name);
         //this.schedule(this.firegun,1);
     }
      update (dt) {
         //console.log(this.Living);
         if (this.Living && !this.player.getComponent("Player").isDead){ // all live =>move
-            this.firegun();
+            //this.firegun();
             if(this.node.x - cc.find("Canvas/Main Camera").x < 960) this.node.x += this.Speed * dt;//can view=> moving
         }
  
@@ -85,26 +87,17 @@ export default class enemies_soldier extends cc.Component {
     
     firegun(){
         this.loadgun();
+        
+        //
         for (var i = 0 ;i<this.node.childrenCount ;i++){
-            if (this.node.children[i].name == "bullet_emeny"){
-                console.log(this.node.children[i].name)
-                this.node.children[i].active = true;
+            if (this.node.children[i].name == "bullet_enemy"){
+                
+                //this.node.children[i].active = true;
                 //this.node.children[i].parent = cc.find("Canvas");
                 break;
             }
         }
-        /*let X = -this.node.position.x + this.player.position.x;
-        let Y = -this.node.position.y + this.player.position.y;
-    
-        let cos = X/Math.sqrt(X*X + Y*Y);
-        let sin = Y/Math.sqrt(X*X + Y*Y);
-
-        this.node.children[0].active = true;
-        this.node.children[0].getComponent(cc.RigidBody).linearVelocity = cc.v2(this.bullet_speed * cos, this.bullet_speed * sin);
-        let temp_angle = Math.asin(sin) * 180 / Math.PI;
-        console.log(temp_angle);
-        if (temp_angle >= 0) this.node.children[0].angle = temp_angle;
-        else this.node.children[0].angle = 180 - temp_angle;
+        /*
         var that = this;
         this.scheduleOnce(function() {    
             this.node.children[0].active = false;

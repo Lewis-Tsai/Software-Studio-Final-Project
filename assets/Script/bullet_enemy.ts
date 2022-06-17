@@ -19,7 +19,6 @@ export default class bullet_emeny extends cc.Component {
 
     private canvas: cc.Node = null
  
- 
     //private anim = null;
  
     //private Living:boolean = true;
@@ -72,23 +71,43 @@ export default class bullet_emeny extends cc.Component {
     findtarget(){  //target closest friend
         let closest = 100000000.0;
         for (var i = 0;i < this.canvas.childrenCount; i++){
-            if ( this.canvas.children[i].name == "friendly_soldier" || this.canvas.children[i].name == "Player"){
-                console.log(this.canvas.children[i].name);
-                let X = -this.node.position.x + this.canvas.children[i].position.x;
-                let Y = -this.node.position.y + this.canvas.children[i].position.y;            
-                if ( Math.sqrt(X*X + Y*Y) < closest){
-                    console.log(this.target);
+            if ( this.canvas.children[i].name == "friendly_soldier" /*|| this.canvas.children[i].name == */){
+                //console.log(this.canvas.children[i].name);
+                let X = -this.node.position.x + this.canvas.children[i].position.x; // cos
+                let Y = -this.node.position.y + this.canvas.children[i].position.y;        // sin
+                let cos = X/Math.sqrt(X*X + Y*Y);
+                let sin = Y/Math.sqrt(X*X + Y*Y);
+
+                if ( Math.sqrt(X*X + Y*Y) < closest && sin <= 0.5 && sin>= -0.5 && cos <= 0){
+                    
                     closest = Math.sqrt(X*X + Y*Y);
                     this.target = this.canvas.children[i];
+                    console.log(this.target.name);
                 }
                 //this.canvas.children[i]
+            }else if (this.canvas.children[i].name == "Player"){
+                let X = -this.node.position.x + this.canvas.children[i].position.x; // cos
+                let Y = -this.node.position.y + this.canvas.children[i].position.y;        // sin
+                let cos = X/Math.sqrt(X*X + Y*Y);
+                //let sin = Y/Math.sqrt(X*X + Y*Y);
+
+                if ( Math.sqrt(X*X + Y*Y) < closest && cos <= -0.1){
+                    
+                    closest = Math.sqrt(X*X + Y*Y);
+                    this.target = this.canvas.children[i];
+                    console.log(this.target.name);
+                }
             }
         }
     }
     
     firegun(){
-        if (this.target == null) return
-        console.log(this.target,this.node.position);
+        if (this.target == null) { 
+            this.node.destroy();
+            return
+        }
+        this.node.opacity = 255;
+        console.log(this.target.name,this.node.position);
         let X = -this.node.position.x + this.target.position.x;
         let Y = -this.node.position.y + this.target.position.y;
     

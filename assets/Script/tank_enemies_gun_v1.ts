@@ -55,7 +55,7 @@ export class tank_enemies_gun extends cc.Component {
         //this.node.angle = -(degree + 160);
         //this.node.angle = 0; 
         this.node.eulerAngles.z = degree;
-        console.log('degree: ',degree);
-        console.log('z : ',this.node.eulerAngles.z);
+        //console.log('degree: ',degree);
+        //console.log('z : ',this.node.eulerAngles.z);
     }
 }
