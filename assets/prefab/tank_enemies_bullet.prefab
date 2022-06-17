@@ -127,7 +127,9 @@
       "__id__": 1
     },
     "_enabled": true,
-    "player": null,
+    "tank_shooting_audio": {
+      "__uuid__": "aa91acb6-937f-4582-b084-c3b9037973e7"
+    },
     "_id": ""
   },
   {

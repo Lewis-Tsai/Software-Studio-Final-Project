@@ -3,8 +3,8 @@ const {ccclass, property} = cc._decorator;
 @ccclass
 export default class tank_enemies_bullet extends cc.Component {
 
-    @property(cc.Node)
-    player:cc.Node = null; // can't use in a prefab?
+    @property({ type: cc.AudioClip })
+    tank_shooting_audio: cc.AudioClip = null;
 
     private anim = null;
 
@@ -15,6 +15,7 @@ export default class tank_enemies_bullet extends cc.Component {
         this.node.y = y;
         this.anim.play('tank_enemy_bullet');
         const body = this.getComponent(cc.RigidBody);
+        cc.audioEngine.play(this.tank_shooting_audio, false, 1);
         body.linearVelocity = cc.v2(angle_x,angle_y);
     }
 
