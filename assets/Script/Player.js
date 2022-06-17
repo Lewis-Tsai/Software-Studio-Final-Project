@@ -17,6 +17,9 @@ cc.Class({
         score: 0,
         bombs: 10,
         missiles: 10,
+        enable_bomb: true,
+        enable_gun: true,
+        enable_missile: true,
         successaudio:{
             type : cc.AudioClip,
             default : null
@@ -42,12 +45,36 @@ cc.Class({
             type: cc.Node,
             default: null
         },
-        bomb_num:{
+        bomb_btn:{
             type: cc.Node,
             default: null
         },
-        missle_num:{
+        missle_btn:{
             type: cc.Node,
+            default: null
+        },
+        bomb_num:{
+            type: cc.Label,
+            default: null
+        },
+        missile_num:{
+            type: cc.Label,
+            default: null
+        },
+        bullet_bomb: {
+            type: cc.Prefab,
+            default: null
+        },
+        bullet_missile: {
+            type: cc.Prefab,
+            default: null
+        },
+        bullet_gun: {
+            type: cc.Prefab,
+            default: null
+        },
+        boom_effect: {
+            type: cc.Prefab,
             default: null
         }
     },
@@ -131,19 +158,17 @@ cc.Class({
                 
                 case macro.KEY.space:
                     // throw bomb
-                    for(const i in this.node.children) {
-                        if(this.node.children[i].name == "bomb" && this.node.children[i].active == false && this.bombs > 0) {
-                            this.bombs--;
-                            this.node.children[i].active = true;
-                            this.node.children[i].getComponent(cc.RigidBody).linearVelocity = cc.v2(0, -200);
-                            this.node.children[i].angle = -this.node.angle;
-                            this.scheduleOnce(function() {
-                                this.node.children[i].active = false;
-                                this.node.children[i].position = cc.v3(0, -50);
-                                this.node.children[i].angle = 0;
-                            }, 2.5);
-                            break;
-                        }
+                    if(this.bombs > 0 && this.enable_bomb && !this.isDead) {
+                        this.enable_bomb = false;
+                        this.bombs--;
+                        var new_bomb = cc.instantiate(this.bullet_bomb);
+                        new_bomb.setPosition(0, -50);
+                        cc.find("Canvas/Player").addChild(new_bomb);
+                        new_bomb.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, -200);
+                        if(this.node.scaleX > 0)
+                            new_bomb.angle = -this.node.angle;
+                        else
+                            new_bomb.angle = this.node.angle;
                     }
                     break;
                 case macro.KEY.q:
@@ -171,6 +196,10 @@ cc.Class({
             case macro.KEY.down:
                 this.speedY = 0;
                 break;
+
+            case macro.KEY.space:
+                this.enable_bomb = true;
+                break;
         }
     },
 
@@ -179,40 +208,29 @@ cc.Class({
         switch(event.getButton()) {
             case cc.Event.EventMouse.BUTTON_LEFT:
                 // fire machine gun
-                for(const i in this.node.children) {
-                    if(this.node.children[i].name == "bullet_1" && this.node.children[i].active == false) {
-                        this.node.children[i].active = true;
-                        if(this.node.scaleX > 0)
-                            this.node.children[i].getComponent(cc.RigidBody).linearVelocity = cc.v2(this.bullet_speed * Math.cos(Math.PI * this.node.angle/180), this.bullet_speed * Math.sin(Math.PI * this.node.angle/180));
-                        else
-                            this.node.children[i].getComponent(cc.RigidBody).linearVelocity = cc.v2(-this.bullet_speed * Math.cos(Math.PI * this.node.angle/180), -this.bullet_speed * Math.sin(Math.PI * this.node.angle/180));
-                        this.scheduleOnce(function() {
-                            this.node.children[i].active = false;
-                            this.node.children[i].position = cc.v3(40, -40);
-                            this.node.children[i].angle = 0;
-                        }, 2.5);
-                        break;
-                    }
+                if(this.enable_gun && !this.isDead) {
+                    this.enable_gun = false;
+                    var new_bullet = cc.instantiate(this.bullet_gun);
+                    new_bullet.setPosition(40, -40);
+                    cc.find("Canvas/Player").addChild(new_bullet);
+                    if(this.node.scaleX > 0)
+                        new_bullet.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.bullet_speed * Math.cos(Math.PI * this.node.angle/180), this.bullet_speed * Math.sin(Math.PI * this.node.angle/180));
+                    else
+                        new_bullet.getComponent(cc.RigidBody).linearVelocity = cc.v2(-this.bullet_speed * Math.cos(Math.PI * this.node.angle/180), -this.bullet_speed * Math.sin(Math.PI * this.node.angle/180));
                 }
                 break;
             case cc.Event.EventMouse.BUTTON_RIGHT:
                 //fire the missile
-                for(const i in this.node.children) {
-                    if(this.node.children[i].name == "missile" && this.node.children[i].active == false && this.missiles > 0) {
-                        this.missiles--;
-                        this.node.children[i].active = true;
-                        console.log(this.node.children[i].angle);
-                        if(this.node.scaleX > 0)
-                            this.node.children[i].getComponent(cc.RigidBody).linearVelocity = cc.v2(this.missile_speed * Math.cos(Math.PI * this.node.angle/180), this.missile_speed * Math.sin(Math.PI * this.node.angle/180));
-                        else
-                            this.node.children[i].getComponent(cc.RigidBody).linearVelocity = cc.v2(-this.missile_speed * Math.cos(Math.PI * this.node.angle/180), -this.missile_speed * Math.sin(Math.PI * this.node.angle/180));
-                        this.scheduleOnce(function() {
-                            this.node.children[i].active = false;
-                            this.node.children[i].position = cc.v3(80, -32);
-                            this.node.children[i].angle = -90;
-                        }, 2.5);
-                        break;
-                    }
+                if(this.missiles > 0 && this.enable_missile && !this.isDead) {
+                    this.enable_missile = false;
+                    this.missiles--;
+                    var new_missile = cc.instantiate(this.bullet_missile);
+                    new_missile.setPosition(80, -32);
+                    cc.find("Canvas/Player").addChild(new_missile);
+                    if(this.node.scaleX > 0)
+                        new_missile.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.missile_speed * Math.cos(Math.PI * this.node.angle/180), this.missile_speed * Math.sin(Math.PI * this.node.angle/180));
+                    else
+                        new_missile.getComponent(cc.RigidBody).linearVelocity = cc.v2(-this.missile_speed * Math.cos(Math.PI * this.node.angle/180), -this.missile_speed * Math.sin(Math.PI * this.node.angle/180));
                 }
                 break; 
         }
@@ -222,9 +240,11 @@ cc.Class({
         switch(event.getButton()) {
             case cc.Event.EventMouse.BUTTON_LEFT:
                 // stop firing machine gun
+                this.enable_gun = true;
                 break;
             case cc.Event.EventMouse.BUTTON_RIGHT:
                 // stop firing the missile
+                this.enable_missile = true;
                 break;
         }
     },
@@ -237,17 +257,17 @@ cc.Class({
         let delta_y = event.getLocationY() - helicopter_y - 320;
         if(this.node.scaleX > 0 && delta_x > 0) {
             this.node.angle = Math.atan(delta_y/delta_x) * 180 / Math.PI;
-            if(this.node.angle > 30)
-                this.node.angle = 30;
-            else if(this.node.angle < -30)
-                this.node.angle = -30;
+            if(this.node.angle > 36)
+                this.node.angle = 36;
+            else if(this.node.angle < -36)
+                this.node.angle = -36;
         }
         else if(this.node.scaleX < 0 && delta_x < 0) {
             this.node.angle = Math.atan(delta_y/delta_x) * 180 / Math.PI;
-            if(this.node.angle > 30)
-                this.node.angle = 30;
-            else if(this.node.angle < -30)
-                this.node.angle = -30;
+            if(this.node.angle > 36)
+                this.node.angle = 36;
+            else if(this.node.angle < -36)
+                this.node.angle = -36;
         }
     },
 
@@ -305,8 +325,8 @@ cc.Class({
             }
             // console.log(this.camera.position.x, this.camera.position.y);
             this.hp_bar.node.position = cc.v3(this.camera.position.x, this.camera.position.y + 288, 0);
-            this.missle_num.position = cc.v3(this.camera.position.x - 400, this.camera.position.y + 64, 0);
-            this.bomb_num.position = cc.v3(this.camera.position.x - 400, this.camera.position.y - 128, 0);
+            this.missle_btn.position = cc.v3(this.camera.position.x - 400, this.camera.position.y + 80, 0);
+            this.bomb_btn.position = cc.v3(this.camera.position.x - 400, this.camera.position.y - 112, 0);
         }
         else if(scene.name == "Stage 2"){
             if(this.node.x < -580)
@@ -334,13 +354,26 @@ cc.Class({
         if(scene.name != "Game_Complete") {
             // Renew HP, score
             if(this.HP <= 0) {
-                this.isDead = true;
+                if(!this.isDead) {
+                    this.isDead = true;
+                    var explode = cc.instantiate(this.boom_effect);
+                    explode.setPosition(this.node.position.x, this.node.position.y);
+                    cc.find("Canvas").addChild(explode);
+                    this.scheduleOnce(function() {
+                        this.node.active = false;
+                    }, 1);
+                }
+                this.hp_bar.getComponent(cc.ProgressBar).progress = 0;
+                this.hp_icon.x = -150;
+                
             }
             else {
                 this.hp_bar.getComponent(cc.ProgressBar).progress = this.HP / this.maxHP;
                 this.hp_icon.x = 300 * (this.HP - this.maxHP/2) / this.maxHP;
-                this.missle_num.getComponent(cc.Sprite).fillRange = this.missiles / 10;
-                this.bomb_num.getComponent(cc.Sprite).fillRange = this.bombs / 10;
+                this.missle_btn.getComponent(cc.Sprite).fillRange = this.missiles / 10;
+                this.bomb_btn.getComponent(cc.Sprite).fillRange = this.bombs / 10;
+                this.missile_num.getComponent(cc.Label).string = this.missiles.toString();
+                this.bomb_num.getComponent(cc.Label).string = this.bombs.toString();
             }
         }
     },
@@ -362,6 +395,7 @@ cc.Class({
         else if(otherCollider.node.name == "tank_enemies_bullet" || otherCollider.node.name == "bullet_enemy") {
             // hit by bullet from enemies
             this.HP -= 5;
+            otherCollider.node.active = false;
         }
     },   
 });
