@@ -16,22 +16,6 @@ export default class tank_enemies_bullet extends cc.Component {
         this.anim.play('tank_enemy_bullet');
         const body = this.getComponent(cc.RigidBody);
         body.linearVelocity = cc.v2(angle_x,angle_y);
-        /*let action = cc.moveBy(1, angle_x, angle_y);
-        let finished = cc.callFunc(() => {
-            this.node.destroy();
-        });
-
-        this.scheduleOnce(() => {
-            this.node.runAction(cc.sequence(action, finished));
-        }); */
-    }
-
-    private fire_bullet(x: number, y:number){
-        var dx = this.player.x - x;
-        var dy = this.player.y - y;
-        let action = cc.moveBy(1,dx,dy);
-        this.node.runAction(action);
-        console.log('gigigigiigigigigig');
     }
 
     onBeginContact(contact, selfCollider, otherCollider)

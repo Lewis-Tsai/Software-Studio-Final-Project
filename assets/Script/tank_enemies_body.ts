@@ -26,8 +26,15 @@ export default class tank_enemies_body extends cc.Component {
                     this.node.destroy();
                 }
             }
-            console.log('here');
         }
-        
+        else if(otherCollider.tag == 100){
+            if(this.blood.width > 0){
+                this.blood.width -= 5;
+                otherCollider.node.destroy();
+                if(this.blood.width<=0){   
+                    this.node.destroy();
+                }
+            }
+        }
     }
 }
