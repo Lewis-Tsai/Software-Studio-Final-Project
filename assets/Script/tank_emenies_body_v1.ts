@@ -10,17 +10,20 @@ const {ccclass, property} = cc._decorator;
 @ccclass
 export default class NewClass extends cc.Component {
 
-    @property(cc.Node)
-    bar: cc.Node = null;
+    //@property(cc.Node)
+    //bar: cc.Node = null;
 
     @property(cc.Node)
     gun: cc.Node = null;
 
     @property(cc.Node)
-    circle: cc.Node = null;
+    tank: cc.Node = null;
 
-    @property(cc.Node)
-    middle: cc.Node = null;
+    //@property(cc.Node)
+    //circle: cc.Node = null;
+
+    //@property(cc.Node)
+   // middle: cc.Node = null;
 
     onLoad () {
         cc.director.getPhysicsManager().enabled = true;
@@ -29,13 +32,9 @@ export default class NewClass extends cc.Component {
     onBeginContact(contact, selfCollider, otherCollider)
     {
         if(otherCollider.tag == 0){
-            this.bar.width -= 10;
-            if(this.bar.width <= 0){
-                this.node.destroy();
-                this.gun.destroy();
-                this.circle.destroy();
-                this.middle.destroy();
-            }
+            this.node.destroy();
+            this.gun.destroy();
+            this.tank.destroy();
         }
     }
 }
