@@ -9,21 +9,14 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        // foo: {
-        //     // ATTRIBUTES:
-        //     default: null,        // The default value will be used only when the component attaching
-        //                           // to a node for the first time
-        //     type: cc.SpriteFrame, // optional, default is typeof default
-        //     serializable: true,   // optional, default is true
-        // },
-        // bar: {
-        //     get () {
-        //         return this._bar;
-        //     },
-        //     set (value) {
-        //         this._bar = value;
-        //     }
-        // },
+        username_text:{
+            type: cc.Node,
+            default: null
+        },
+        xpvalue_text:{
+            type: cc.Node,
+            default: null
+        },
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -42,7 +35,7 @@ cc.Class({
                 
                 //profile_path = profile_path.replace('.', '_');
                 console.log(curr_user_email)
-            //--------------------
+                //--------------------
                 var ProfileRef = firebase.database().ref('profile/' + profile_path);
                 ProfileRef.once('value', function(snapshot) {
                     if(snapshot.val() == null){
@@ -54,8 +47,13 @@ cc.Class({
                         Global.score = snapshot.val().score;
                         Global.total_battle = snapshot.val().total_battle;
                         Global.total_win = snapshot.val().total_win;
+
+                        
                     }
                 });
+
+                
+                
             } else {
                 // No user is signed in.
                 //user = null;
@@ -63,7 +61,14 @@ cc.Class({
                 alert("login failed");
                 cc.director.loadScene("loading");
             }
+            
         });
+
+        this.schedule(function() {
+            console.log('here');
+            this.username_text.getComponent(cc.Label).string = Global.user_name;
+            this.xpvalue_text.getComponent(cc.Label).string = Global.score;
+        }, 0.8, 0);
     },
 
     // update (dt) {},
@@ -96,5 +101,9 @@ cc.Class({
                 alert("User log out failed!", error);
             })
         }
-    }
+    },
+
+    ToStore: function(){
+        cc.director.loadScene("Store");
+    },
 });
