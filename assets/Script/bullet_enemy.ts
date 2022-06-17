@@ -37,7 +37,7 @@ export default class bullet_emeny extends cc.Component {
         //this.anim = this.getComponent(cc.Animation);
         this.canvas = cc.find("Canvas");
         //this.node.scaleX = -1;
-        console.log(this.canvas.position);
+        //console.log(this.canvas.position);
     }
 
     start () {
@@ -51,10 +51,11 @@ export default class bullet_emeny extends cc.Component {
         if (this.node.parent.name == "Canvas" ){
             //this.tag = false;
             this.findtarget();
-            this.scheduleOnce(this.firegun,0.1);
+            //this.scheduleOnce(this.firegun,0.1);
+            this.firegun();
             //this.schedule(this.findtarget,1);
             //this.schedule(this.firegun,1.01);
-            console.log("target");
+            //console.log("target");
         }
     }
 
@@ -107,7 +108,7 @@ export default class bullet_emeny extends cc.Component {
             return
         }
         this.node.opacity = 255;
-        console.log(this.target.name,this.node.position);
+        console.log(this.target.name/*,this.node.position*/);
         let X = -this.node.position.x + this.target.position.x;
         let Y = -this.node.position.y + this.target.position.y;
     

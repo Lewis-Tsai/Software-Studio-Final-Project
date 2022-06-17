@@ -49,7 +49,7 @@ export default class enemies_soldier extends cc.Component {
  
     start () {
         //this.loadgun();
-        this.schedule(this.firegun,0.2);
+        this.schedule(this.firegun,1);
     }
     loadgun(){
         let node_b = cc.instantiate(this.bullet_enemy);

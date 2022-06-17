@@ -65,8 +65,8 @@ export default class friendly_soldier extends cc.Component {
         this.Living = false;
         console.log(this.Living, "fs");
         //this.node.children[0].destroy();
-        //this.node.destroy();
-        this.node.active = false;
+        this.node.destroy();
+        //this.node.active = false;
     }
 
     firegun() {
