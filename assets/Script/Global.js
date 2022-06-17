@@ -5,4 +5,5 @@ window.Global = {
     user_name: '',
     user_email: '',
     profile_path: '',
+    time_left: 0,
 }
