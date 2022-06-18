@@ -16,7 +16,7 @@ export class tank_enemies_gun extends cc.Component {
     {
         this.playerMovement(dt);
     }
-    start() 
+    /*start() 
     {
         // add key down and key up event
         this.schedule(function(){
@@ -34,11 +34,30 @@ export class tank_enemies_gun extends cc.Component {
                 cc.find("Canvas").addChild(bullet);
             }
         },2);
+    }*/
+    start() 
+    {
+        // add key down and key up event
+        this.schedule(function(){
+            if(Math.abs(this.node.position.x - this.player.x) < 500 ){
+                var dx = this.player.x - this.node.position.x;
+                var dy = this.player.y - this.node.position.y;
+                var dir = cc.v2(dx,dy);
+                var angle = dir.signAngle(cc.v2(1,0)); //in radiant
+                var degree = angle / Math.PI * 180;
+                this.node.angle = -(degree + 160);
+                var bullet = cc.instantiate(this.tank_enemy_bullet_Prefab);
+                bullet.getComponent('tank_enemies_bullet').init(
+                    this.node.position.x+105*Math.cos(angle), this.node.position.y-105*Math.sin(angle)-50, 
+                    this.player.x - (this.node.position.x-105*Math.cos(angle)), this.player.y-(this.node.position.y+105*Math.sin(angle)));
+                cc.find("Canvas").addChild(bullet);
+            }
+        },2);
     }
     private playerMovement(dt)
     {
-        var dx = this.player.x - this.tank.x;
-        var dy = this.player.y - this.tank.y;
+        var dx = this.player.x - this.node.position.x;
+        var dy = this.player.y - this.node.position.y;
         var dir = cc.v2(dx,dy);
         var angle = dir.signAngle(cc.v2(1,0)); //in radiant
         console.log(angle);
