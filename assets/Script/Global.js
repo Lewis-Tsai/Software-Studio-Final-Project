@@ -6,4 +6,8 @@ window.Global = {
     user_email: '',
     profile_path: '',
     time_left: 0,
+    engine_level: 0,
+    armor_level: 0,
+    machinegun_level: 0,
+    missile_level: 0,
 }

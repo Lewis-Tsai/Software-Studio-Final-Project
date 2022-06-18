@@ -38,5 +38,17 @@ cc.Class({
 
     desert_btn_handler: function (event) {
         cc.director.loadScene("Stage 1");
-    }
+    },
+
+    grassland_btn_handler: function (event) {
+        cc.director.loadScene("Stage 2");
+    },
+
+    snowfield_btn_handler: function (event) {
+        cc.director.loadScene("Stage 3");
+    },
+
+    ToMenu : function(){
+        cc.director.loadScene("Menu");
+    },
 });

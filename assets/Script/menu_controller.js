@@ -47,13 +47,12 @@ cc.Class({
                         Global.score = snapshot.val().score;
                         Global.total_battle = snapshot.val().total_battle;
                         Global.total_win = snapshot.val().total_win;
-
-                        
+                        Global.engine_level = snapshot.val().engine_level;
+                        Global.armor_level = snapshot.val().armor_level;
+                        Global.machinegun_level = snapshot.val().machinegun_level;
+                        Global.missile_level = snapshot.val().missile_level;
                     }
                 });
-
-                
-                
             } else {
                 // No user is signed in.
                 //user = null;
@@ -63,15 +62,16 @@ cc.Class({
             }
             
         });
-
-        this.schedule(function() {
-            console.log('here');
-            this.username_text.getComponent(cc.Label).string = Global.user_name;
-            this.xpvalue_text.getComponent(cc.Label).string = Global.score;
-        }, 0.8, 0);
     },
 
-    // update (dt) {},
+    update (dt) {
+        this.UpdateUI();
+    },
+
+    UpdateUI: function(){
+        this.username_text.getComponent(cc.Label).string = Global.user_name;
+        this.xpvalue_text.getComponent(cc.Label).string = Global.score;
+    },
 
     play_btn_handler: function (event) {
         cc.director.loadScene("Map select");
@@ -82,7 +82,7 @@ cc.Class({
     },
 
     leader_board_btn_handler: function (event) {
-        alert("not available");
+        cc.director.loadScene("Leaderboard");
     },
 
     credit_btn_handler: function (event) {

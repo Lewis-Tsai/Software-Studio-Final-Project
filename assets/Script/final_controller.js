@@ -42,24 +42,33 @@ cc.Class({
         }
 
         Global.score = total_points;
-        var ProfileRef = firebase.database().ref(Global.profile_path);
-        ProfileRef.update({
-            score: total_points,
-        })
-        .then(function () {
-            console.log("profile data upload success");
-        }).catch(function (error) {
-            alert(error);
-        });
     },
 
     // update (dt) {},
 
     Tomenu: function(){
-        cc.director.loadScene("Menu");
+        this.UpdateBeforeExit(menu);
     },
 
     ToLeaderboard: function(){
-        cc.director.loadScene("Leaderboard");
+        this.UpdateBeforeExit(leaderboard);
     },
+
+    UpdateBeforeExit: function(opr){
+        var ProfileRef = firebase.database().ref(Global.profile_path);
+        ProfileRef.update({
+            score: Global.score,
+            total_battle: Global.total_battle,
+            total_win: Global.total_win,
+        })
+        .then(function () {
+            console.log("profile data upload success");
+            if(opr == "menu")
+                cc.director.loadScene("Menu");
+            else if(opr == "leaderboard")
+                cc.director.loadScene("Leaderboard");
+        }).catch(function (error) {
+            alert(error);
+        });
+    }
 });
