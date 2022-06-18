@@ -10,4 +10,5 @@ window.Global = {
     armor_level: 0,
     machinegun_level: 0,
     missile_level: 0,
+    hostage_mode: false,
 }

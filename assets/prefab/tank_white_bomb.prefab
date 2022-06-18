@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "tank_enemies_bullet",
+    "_name": "tank_white_bomb",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
@@ -53,15 +53,15 @@
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
-      "x": 0.5,
-      "y": 0.5
+      "x": 0.95,
+      "y": 0.3
     },
     "_trs": {
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -144.408,
-        -122.191,
+        0,
+        0,
         0,
         0,
         0,
@@ -118,7 +118,7 @@
     "_id": ""
   },
   {
-    "__type__": "eff08j71hhJVZ+K1nqYahWX",
+    "__type__": "5d274T++UROHKDPKgTJuWKW",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -157,7 +157,7 @@
     "_enabled": true,
     "_type": 1,
     "_allowSleep": true,
-    "_gravityScale": 0,
+    "_gravityScale": 1,
     "_linearDamping": 0,
     "_angularDamping": 0,
     "_linearVelocity": {
@@ -189,12 +189,12 @@
     "_offset": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": 0
+      "y": 0.7
     },
     "_size": {
       "__type__": "cc.Size",
-      "width": 37,
-      "height": 16
+      "width": 113,
+      "height": 17.3
     },
     "_id": ""
   },
