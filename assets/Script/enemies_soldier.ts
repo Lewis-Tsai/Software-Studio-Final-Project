@@ -19,6 +19,8 @@ export default class enemies_soldier extends cc.Component {
 
     @property(cc.Prefab)
     private bullet_enemy: cc.Prefab = null;
+    @property(cc.Node)
+    bloodbar: cc.Node = null;
 
     private player: cc.Node = null
  
@@ -107,8 +109,13 @@ export default class enemies_soldier extends cc.Component {
     }
     
      onBeginContact(contact,self,other){
-        if (other.node.name == "bullet_1" || other.node.name == "bullet_fs" ){ // bullet
+        if (other.node.name == "player_bullet" || other.node.name == "bullet_fs" ){ // bullet
+            this.bloodbar.width -= 25;
+            if (this.bloodbar.width <= 0) this.Waskill();
+        }else if (other.node.name == "missile"){
             this.Waskill()
+        }else if (other.node.name == "tank_friendlies_bullet"){
+            this.Waskill();
         }
      }
 }

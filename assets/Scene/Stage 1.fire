@@ -2278,6 +2278,9 @@
     "bullet_enemy": {
       "__uuid__": "ffaa42fa-cba0-4a46-9080-d250402da58b"
     },
+    "bloodbar": {
+      "__id__": 43
+    },
     "_id": "6a5D/k5cJLNp6iOW9pvUzX"
   },
   {
