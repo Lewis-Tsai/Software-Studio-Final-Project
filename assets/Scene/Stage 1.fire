@@ -9461,6 +9461,9 @@
     "tank_enemy_bullet_Prefab": {
       "__uuid__": "3030a4c4-e587-4536-8620-c0f37f90de06"
     },
+    "smoke_Prefab": {
+      "__uuid__": "c0f59b4d-c860-426d-a5f6-6217879d373a"
+    },
     "player": {
       "__id__": 11
     },

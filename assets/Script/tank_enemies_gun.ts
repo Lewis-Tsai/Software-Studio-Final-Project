@@ -6,6 +6,10 @@ export class tank_enemies_gun extends cc.Component {
     private animateState = null; //this will use to record animationState
     @property(cc.Prefab)
     tank_enemy_bullet_Prefab: cc.Prefab = null;
+
+    @property(cc.Prefab)
+    smoke_Prefab: cc.Prefab = null;
+
     @property(cc.Node)
     player:cc.Node = null;
 
@@ -51,6 +55,12 @@ export class tank_enemies_gun extends cc.Component {
                     this.node.position.x+105*Math.cos(angle), this.node.position.y-105*Math.sin(angle)-50, 
                     this.player.x - (this.node.position.x-105*Math.cos(angle)), this.player.y-(this.node.position.y+105*Math.sin(angle)));
                 cc.find("Canvas").addChild(bullet);
+
+                var smoke = cc.instantiate(this.smoke_Prefab);
+                smoke.getComponent('smoke').init(
+                    this.node.position.x+105*Math.cos(angle), this.node.position.y-105*Math.sin(angle)-50);
+                cc.find("Canvas").addChild(smoke);
+                
             }
         },2);
     }
