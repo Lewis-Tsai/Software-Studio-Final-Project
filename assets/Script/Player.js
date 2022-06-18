@@ -20,6 +20,9 @@ cc.Class({
         enable_bomb: true,
         enable_gun: true,
         enable_missile: true,
+        time: 180,
+        counter: 0,
+        clear_enemies: false,
         successaudio:{
             type : cc.AudioClip,
             default : null
@@ -45,11 +48,11 @@ cc.Class({
             type: cc.Node,
             default: null
         },
-        bomb_btn:{
+        bomb_bar:{
             type: cc.Node,
             default: null
         },
-        missle_btn:{
+        missle_bar:{
             type: cc.Node,
             default: null
         },
@@ -58,6 +61,10 @@ cc.Class({
             default: null
         },
         missile_num:{
+            type: cc.Label,
+            default: null
+        },
+        time_label:{
             type: cc.Label,
             default: null
         },
@@ -75,6 +82,10 @@ cc.Class({
         },
         boom_effect: {
             type: cc.Prefab,
+            default: null
+        },
+        canvas:{
+            type: cc.Node,
             default: null
         }
     },
@@ -130,7 +141,7 @@ cc.Class({
         // Animation Update
         this.PlayerAnimation();
         // UI Update
-        this.UpdateUI();
+        this.UpdateUI(dt);
     },
 
     onKeyDown: function (event) {
@@ -309,28 +320,29 @@ cc.Class({
         var scene = cc.director.getScene();
         
         if(scene.name == "Stage 1"){
-            if(this.node.x < -580)
+            if(this.node.x < 0)
             {
-                this.camera.x = -580;
-                this.background.x = 478;
+                this.camera.x = 0;
+                //this.background.x = 478;
             }
-            else if(this.node.x > 1580)
+            else if(this.node.x > 17360)
             {
-                this.camera.x = 1580;
+                this.camera.x = 17360;
             }
             else
             {
                 this.camera.x = this.node.x;
-                this.background.x = (this.node.x + 490) * 500 / 2410 + 478;
+                //this.background.x = (this.node.x + 490) * 500 / 2410 + 478;
             }
             // console.log(this.camera.position.x, this.camera.position.y);
             this.hp_bar.node.position = cc.v3(this.camera.position.x, this.camera.position.y + 288, 0);
-            this.missle_btn.position = cc.v3(this.camera.position.x - 400, this.camera.position.y + 80, 0);
-            this.bomb_btn.position = cc.v3(this.camera.position.x - 400, this.camera.position.y - 112, 0);
+            this.missle_bar.position = cc.v3(this.camera.position.x - 360, this.camera.position.y + 292, 0);
+            this.bomb_bar.position = cc.v3(this.camera.position.x - 360, this.camera.position.y + 248, 0);
+            this.time_label.node.position = cc.v3(this.camera.position.x + 428, this.camera.position.y + 288, 0);
         }
         else if(scene.name == "Stage 2"){
-            if(this.node.x < -580)
-                this.camera.x = -580;
+            if(this.node.x < 0)
+                this.camera.x = 0;
             else if(this.node.x > 645)
                 this.camera.x = 645;
             else {
@@ -348,32 +360,55 @@ cc.Class({
         }
     },
 
-    UpdateUI: function(){
+    UpdateUI: function(dt) {
         var scene = cc.director.getScene();
         
         if(scene.name != "Game_Complete") {
             // Renew HP, score
-            if(this.HP <= 0) {
+            if(this.HP <= 0 || this.time <= 0) {
                 if(!this.isDead) {
                     this.isDead = true;
+                    Global.time_left = this.time;
                     var explode = cc.instantiate(this.boom_effect);
                     explode.setPosition(this.node.position.x, this.node.position.y);
                     cc.find("Canvas").addChild(explode);
                     this.scheduleOnce(function() {
                         this.node.active = false;
-                    }, 1);
+                        cc.director.loadScene("Game Failed");
+                    }, 1.5);
                 }
                 this.hp_bar.getComponent(cc.ProgressBar).progress = 0;
                 this.hp_icon.x = -150;
-                
             }
             else {
+                this.counter += dt;
+                if(this.counter >= 1) {
+                    this.counter -= 1;
+                    if(this.time > 0)
+                        this.time--;
+                }
+
                 this.hp_bar.getComponent(cc.ProgressBar).progress = this.HP / this.maxHP;
                 this.hp_icon.x = 300 * (this.HP - this.maxHP/2) / this.maxHP;
-                this.missle_btn.getComponent(cc.Sprite).fillRange = this.missiles / 10;
-                this.bomb_btn.getComponent(cc.Sprite).fillRange = this.bombs / 10;
+                this.missle_bar.getComponent(cc.Sprite).fillRange = this.missiles / 10;
+                this.bomb_bar.getComponent(cc.Sprite).fillRange = this.bombs / 10;
                 this.missile_num.getComponent(cc.Label).string = this.missiles.toString();
                 this.bomb_num.getComponent(cc.Label).string = this.bombs.toString();
+                if(this.time % 60 < 10)
+                    this.time_label.getComponent(cc.Label).string = Math.floor(this.time/60).toString() + ":0" + (this.time%60);
+                else
+                    this.time_label.getComponent(cc.Label).string = Math.floor(this.time/60).toString() + ":" + (this.time%60);
+
+                if(!this.clear_enemies) {
+                    var finish = true;
+                    for(let i in this.canvas.children) {
+                        if(this.canvas.children[i].name == "enemies_soldier" || this.canvas.children[i].name == "enemy_tank") {
+                            if(this.canvas.children[i].active == true)
+                                finish = false;
+                        }
+                    }
+                    this.clear_enemies = finish;
+                }
             }
         }
     },
@@ -387,15 +422,16 @@ cc.Class({
     onBeginContact: function (contact, selfCollider, otherCollider) {
         // console.log(otherCollider.node.name);
         // "otherCollider.node" can get collider's node 
-        if(otherCollider.node.name == "bird") {
-            // hit by bird
-            this.HP -= 5;
-            otherCollider.node.active = false;
-        }
-        else if(otherCollider.node.name == "tank_enemies_bullet" || otherCollider.node.name == "bullet_enemy") {
+        if(otherCollider.node.name == "tank_enemies_bullet" || otherCollider.node.name == "bullet_enemy") {
             // hit by bullet from enemies
-            this.HP -= 5;
+            this.HP -= 10;
             otherCollider.node.active = false;
         }
+        else if(otherCollider.node.name == "helipad_finish" && this.clear_enemies) {
+            Global.time_left = this.time;
+            cc.director.loadScene("Game Completed");
+        }
+        else if(otherCollider.node.name == "helipad")
+            console.log("helipad");
     },   
 });
