@@ -89,6 +89,10 @@ cc.Class({
                         score: 0,
                         total_win: 0,
                         total_battle: 0,
+                        engine_level: 1,
+                        armor_level: 1,
+                        machinegun_level: 1,
+                        missile_level: 1,
                     })
                     .then(function () {
                         console.log("profile data upload success");
