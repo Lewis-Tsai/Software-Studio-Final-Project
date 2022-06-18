@@ -67,15 +67,15 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -184.752,
-        6.481,
+        301.86,
+        17.06,
         0,
         0,
         0,
         0,
         1,
-        1,
-        1,
+        0.5,
+        0.5,
         1
       ]
     },
@@ -196,7 +196,7 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "3eVI/JNqJJVZYmLExwa91O",
+    "fileId": "ack+OiorVFcp0MDH4tF3GY",
     "sync": false
   },
   {
@@ -303,7 +303,7 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "77j64RwJNM2YnT0H4h3ANh",
+    "fileId": "69T5f3TAlDEK8kh53Y0jo4",
     "sync": false
   },
   {
@@ -420,6 +420,9 @@
     "text": "hello",
     "bullet_enemy": {
       "__uuid__": "ffaa42fa-cba0-4a46-9080-d250402da58b"
+    },
+    "bloodbar": {
+      "__id__": 5
     },
     "_id": ""
   },

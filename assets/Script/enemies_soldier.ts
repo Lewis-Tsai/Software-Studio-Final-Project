@@ -43,7 +43,7 @@ export default class enemies_soldier extends cc.Component {
         this.physicManager.gravity = cc.v2 (0, 0);
         this.anim = this.getComponent(cc.Animation);
         this.player = cc.find("Canvas/Player");
-        this.node.scaleX = -1;
+        this.node.scaleX *= -1;
         console.log(this.player.position);
         //console.log(this.player.getComponent("Player").isDead)
         //this.loadgun();
@@ -88,7 +88,7 @@ export default class enemies_soldier extends cc.Component {
     }
     
     firegun(){
-        this.loadgun();
+        if (this.node.x - cc.find("Canvas/Main Camera").x < 960) this.loadgun();
         
         //
         for (var i = 0 ;i<this.node.childrenCount ;i++){
@@ -109,7 +109,7 @@ export default class enemies_soldier extends cc.Component {
     }
     
      onBeginContact(contact,self,other){
-        if (other.node.name == "player_bullet" || other.node.name == "bullet_fs" ){ // bullet
+        if (other.node.name == "player_bullet" || other.node.name == "bullet_friend" ){ // bullet
             this.bloodbar.width -= 25;
             if (this.bloodbar.width <= 0) this.Waskill();
         }else if (other.node.name == "missile"){
