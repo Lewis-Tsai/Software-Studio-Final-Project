@@ -10,12 +10,15 @@ export class tank_enemies_gun extends cc.Component {
     @property(cc.Prefab)
     smoke_Prefab: cc.Prefab = null;
 
-    @property(cc.Node)
-    player:cc.Node = null;
+    //@property(cc.Node)
+    //player:cc.Node = null;
+    private player: cc.Node = null;
 
     @property(cc.Node)
     tank:cc.Node = null;
-
+    onLoad(){
+        this.player = cc.find("Canvas/Player");
+    }
     update(dt)
     {
         this.playerMovement(dt);
@@ -81,12 +84,15 @@ export class tank_enemies_gun extends cc.Component {
     }
     private playerMovement(dt)
     {
-        var dx = this.player.x - this.node.position.x;
-        var dy = this.player.y - this.node.position.y;
+        //var dx = this.player.position.x - this.node.position.x;
+        //var dy = this.player.position.y - this.node.position.y;
+        var dx = this.player.position.x - this.node.position.x;
+        var dy = this.player.position.y - this.node.position.y;
         var dir = cc.v2(dx,dy);
         var angle = dir.signAngle(cc.v2(1,0)); //in radiant
         console.log(angle);
         var degree = angle / Math.PI * 180;
         this.node.angle = -(degree + 160);
+        console.log(this.player.position);
     }
 }

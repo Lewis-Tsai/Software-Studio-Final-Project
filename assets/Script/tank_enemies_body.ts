@@ -9,6 +9,8 @@ export default class tank_enemies_body extends cc.Component {
     @property(cc.Node)
     gun: cc.Node = null;
 
+    private player: cc.Node = null;
+
     @property(cc.Node)
     explode: cc.Node = null;
 
@@ -17,27 +19,25 @@ export default class tank_enemies_body extends cc.Component {
 
     onLoad () {
         cc.director.getPhysicsManager().enabled = true;
-        
+        this.player = cc.find("Canvas/Player");
     }
 
     onBeginContact(contact, selfCollider, otherCollider)
     {
         //var to_explode = this.explode.getComponent(cc.Animation);
-        if(otherCollider.tag == 0){
+        if(otherCollider.node.name == "player_bullet"){
             if(this.blood.width > 0){
                 this.blood.width -= 3;
                 if(this.blood.width<=0){
                     var explode = cc.instantiate(this.explode_prefab);
                     explode.getComponent('ground_explode').init(this.gun.x, this.gun.y+130);
                     cc.find("Canvas").addChild(explode);
-                    console.log('gun.x: ',this.gun.x);
-                    console.log('gun.y: ',this.gun.y);
-                    console.log('node.x: ',this.node.x);
-                    console.log('node.x: ',this.node.x);
                     this.gun.destroy();
+                    this.player.getComponent("Player").score += 100;
                 }
             }
         }
+        // friendly tank bullet
         else if(otherCollider.tag == 100){
             if(this.blood.width > 0){
                 this.blood.width -= 3;
@@ -47,10 +47,11 @@ export default class tank_enemies_body extends cc.Component {
                     explode.getComponent('ground_explode').init(this.gun.x, this.gun.y+130);
                     cc.find("Canvas").addChild(explode);
                     this.gun.destroy();
+                    this.player.getComponent("Player").score += 100;
                 }
             }
         }
-        else if(otherCollider.tag == 1){
+        else if(otherCollider.node.name == "bullet_friend"){
             if(this.blood.width > 0){
                 this.blood.width -= 10;
                 otherCollider.node.destroy();
@@ -59,10 +60,11 @@ export default class tank_enemies_body extends cc.Component {
                     explode.getComponent('ground_explode').init(this.gun.x, this.gun.y+130);
                     cc.find("Canvas").addChild(explode);
                     this.gun.destroy();
+                    this.player.getComponent("Player").score += 100;
                 }
             }
         }
-        else if(otherCollider.tag == 2){
+        else if(otherCollider.node.name == "missile"){
             if(this.blood.width > 0){
                 this.blood.width -= 200;
                 otherCollider.node.destroy();
@@ -71,6 +73,7 @@ export default class tank_enemies_body extends cc.Component {
                     explode.getComponent('ground_explode').init(this.gun.x, this.gun.y+130);
                     cc.find("Canvas").addChild(explode);
                     this.gun.destroy();
+                    this.player.getComponent("Player").score += 100;
                 }
             }
         }
