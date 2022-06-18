@@ -61,6 +61,22 @@ cc.Class({
             type: cc.Node,
             default: null
         },
+        engine_bar: {
+            type: cc.ProgressBar,
+            default: null
+        },
+        armor_bar: {
+            type: cc.ProgressBar,
+            default: null
+        },
+        machinegun_bar: {
+            type: cc.ProgressBar,
+            default: null
+        },
+        missile_bar: {
+            type: cc.ProgressBar,
+            default: null
+        },
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -106,6 +122,11 @@ cc.Class({
         }
         
         this.XP_text.getComponent(cc.Label).string = Global.score;
+
+        this.engine_bar.getComponent(cc.ProgressBar).progress = Global.engine_level / 4;
+        this.armor_bar.getComponent(cc.ProgressBar).progress = Global.armor_level / 4;
+        this.machinegun_bar.getComponent(cc.ProgressBar).progress = Global.machinegun_level / 4;
+        this.missile_bar.getComponent(cc.ProgressBar).progress = Global.missile_level / 4;
     },
 
     engine_button_handler(){

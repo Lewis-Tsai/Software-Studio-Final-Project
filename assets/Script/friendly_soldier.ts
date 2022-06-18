@@ -56,10 +56,10 @@ export default class friendly_soldier extends cc.Component {
     loadgun(){
         let node_b = cc.instantiate(this.bullet_friend);
         let canvas = cc.find("Canvas");
-        this.node.addChild(node_b);
+        node_b.setPosition(0,0);
         //canvas.addChild(node_b);
         //node.parent = cc.director.getScene();
-        node_b.setPosition(0,0);
+        this.node.addChild(node_b);
         //node_b.setPosition(this.node.position.x,this.node.position.y);
         //console.log(this.node.name);
         //this.schedule(this.firegun,1);

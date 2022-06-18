@@ -8,6 +8,7 @@ cc.Class({
         moveDuration: 0,
         speedX: 0,
         speedY: 0,
+        speed: 200,
         bullet_speed: 1000,
         missile_speed: 300,
         onGround: true,
@@ -24,6 +25,26 @@ cc.Class({
         counter: 0,
         clear_enemies: false,
         successaudio:{
+            type : cc.AudioClip,
+            default : null
+        },
+        flyAudio:{
+            type : cc.AudioClip,
+            default : null
+        },
+        flyAudio:{
+            type : cc.AudioClip,
+            default : null
+        },
+        gunEffect:{
+            type : cc.AudioClip,
+            default : null
+        },
+        missileEffect:{
+            type : cc.AudioClip,
+            default : null
+        },
+        bombEffect:{
             type : cc.AudioClip,
             default : null
         },
@@ -105,6 +126,10 @@ cc.Class({
         cc.director.getPhysicsManager().enabled = true;
         // Get player animator component
         this.animator = this.getComponent(cc.Animation);
+
+        this.maxHP = Global.armor_level * 50 + 200;
+        this.HP = this.maxHP;
+        this.speed = Global.engine_level * 25 + 200;
     },
 
     onDestroy () {
@@ -131,6 +156,7 @@ cc.Class({
             // audio
             cc.audioEngine.play(this.successaudio, false, 1);
         }
+        cc.audioEngine.playEffect(this.flyAudio, true);
     },
 
     update (dt) {
@@ -172,6 +198,7 @@ cc.Class({
                     if(this.bombs > 0 && this.enable_bomb && !this.isDead) {
                         this.enable_bomb = false;
                         this.bombs--;
+                        cc.audioEngine.playEffect(this.bombEffect, false);
                         var new_bomb = cc.instantiate(this.bullet_bomb);
                         new_bomb.setPosition(0, -50);
                         cc.find("Canvas/Player").addChild(new_bomb);
@@ -221,6 +248,7 @@ cc.Class({
                 // fire machine gun
                 if(this.enable_gun && !this.isDead) {
                     this.enable_gun = false;
+                    cc.audioEngine.playEffect(this.gunEffect, false);
                     var new_bullet = cc.instantiate(this.bullet_gun);
                     new_bullet.setPosition(40, -40);
                     cc.find("Canvas/Player").addChild(new_bullet);
@@ -235,6 +263,7 @@ cc.Class({
                 if(this.missiles > 0 && this.enable_missile && !this.isDead) {
                     this.enable_missile = false;
                     this.missiles--;
+                    cc.audioEngine.playEffect(this.missileEffect, false);
                     var new_missile = cc.instantiate(this.bullet_missile);
                     new_missile.setPosition(80, -32);
                     cc.find("Canvas/Player").addChild(new_missile);
@@ -286,7 +315,7 @@ cc.Class({
         var scene = cc.director.getScene();
         
         if(scene.name != "Game_Complete"){
-            this.speedX = -200;
+            this.speedX = -this.speed;
             this.node.scaleX = -1;
         }
     },
@@ -295,7 +324,7 @@ cc.Class({
         var scene = cc.director.getScene();
         
         if(scene.name != "Game_Complete"){
-            this.speedX = 200;
+            this.speedX = this.speed;
             this.node.scaleX = 1;
         }
     },
@@ -369,6 +398,7 @@ cc.Class({
                 if(!this.isDead) {
                     this.isDead = true;
                     Global.time_left = this.time;
+                    Global.total_battle++;
                     var explode = cc.instantiate(this.boom_effect);
                     explode.setPosition(this.node.position.x, this.node.position.y);
                     cc.find("Canvas").addChild(explode);
@@ -429,6 +459,8 @@ cc.Class({
         }
         else if(otherCollider.node.name == "helipad_finish" && this.clear_enemies) {
             Global.time_left = this.time;
+            Global.total_battle++;
+            Global.total_win++;
             cc.director.loadScene("Game Completed");
         }
         else if(otherCollider.node.name == "helipad")
