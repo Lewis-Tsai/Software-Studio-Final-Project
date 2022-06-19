@@ -79,7 +79,7 @@ export default class bullet_emeny extends cc.Component {
                 let cos = X/Math.sqrt(X*X + Y*Y);
                 let sin = Y/Math.sqrt(X*X + Y*Y);
 
-                if ( Math.sqrt(X*X + Y*Y) < closest && sin <= 0.5 && sin>= -0.5 && cos <= 0){
+                if ( Math.abs(X)<=960 && Math.sqrt(X*X + Y*Y) < closest && sin <= 0.5 && sin>= -0.5 && cos <= 0){
                     
                     closest = Math.sqrt(X*X + Y*Y);
                     this.target = this.canvas.children[i];

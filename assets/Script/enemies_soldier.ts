@@ -91,6 +91,7 @@ export default class enemies_soldier extends cc.Component {
     }
     
     firegun(){
+        //in view then can fire
         if (this.node.x - cc.find("Canvas/Main Camera").x < 960) this.loadgun();
         
         //

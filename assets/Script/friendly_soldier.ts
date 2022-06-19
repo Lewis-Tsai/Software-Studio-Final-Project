@@ -35,6 +35,8 @@ export default class friendly_soldier extends cc.Component {
     //private Live = 5;
  
     private Speed = 50;
+
+    private move:boolean = false;
     // LIFE-CYCLE CALLBACKS:
  
     onLoad () {
@@ -66,9 +68,12 @@ export default class friendly_soldier extends cc.Component {
     }
      update (dt) {
         //console.log(this.Living);
+        if(this.node.x - cc.find("Canvas/Main Camera").x < 960 && !this.move) this.move = true;
         if (this.Living && !this.player.getComponent("Player").isDead){ // all live =>move
             //this.firegun();
-            if(this.node.x - cc.find("Canvas/Main Camera").x < 960) this.node.x += this.Speed * dt;//can view=> moving
+            if(this.node.x - cc.find("Canvas/Main Camera").x < 960) {
+                this.node.x += this.Speed * dt;//can view=> moving
+            }
         }
  
      }
@@ -88,7 +93,7 @@ export default class friendly_soldier extends cc.Component {
     }
     
     firegun(){
-        this.loadgun();
+        if (this.move) this.loadgun();
         
         //
         for (var i = 0 ;i<this.node.childrenCount ;i++){
