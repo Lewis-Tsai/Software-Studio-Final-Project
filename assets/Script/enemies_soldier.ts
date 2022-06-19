@@ -138,7 +138,7 @@ export default class enemies_soldier extends cc.Component {
         }
         else if (other.node.name == "missile"){
             this.Waskill()
-        }else if (other.node.name == "tank_friendlies_bullet"){
+        }else if (other.node.name == "friendly_tank_missile"){
             this.Waskill();
         }
      }
