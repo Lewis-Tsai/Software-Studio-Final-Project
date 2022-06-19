@@ -2714,6 +2714,7 @@
     "clear_enemies": false,
     "hostage_save": 0,
     "regain": false,
+    "regain_timer": 0,
     "successaudio": null,
     "flyAudio": {
       "__uuid__": "c523e899-bfff-4363-aa57-db1f595d6463"
@@ -2836,8 +2837,8 @@
     "_skewX": 0,
     "_skewY": 0,
     "_is3DNode": false,
-    "_groupIndex": 0,
-    "groupIndex": 0,
+    "_groupIndex": 2,
+    "groupIndex": 2,
     "_id": "f9b9WiNChPtKF1VBBMygvp"
   },
   {
