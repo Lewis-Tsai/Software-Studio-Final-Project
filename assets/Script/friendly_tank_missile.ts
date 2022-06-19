@@ -15,18 +15,20 @@ export default class friendly_tank_missile extends cc.Component {
         this.node.y = y;
         //this.anim.play('tank_enemy_bullet');
         if(flag==1){ // rotate the bomb
-            this.node.angle = -(degree + 160);
+            this.node.angle = -(degree + 30);
         } 
+        else if(flag == 3) this.node.angle = -(degree - 75);
         const body = this.getComponent(cc.RigidBody);
         //cc.audioEngine.play(this.tank_shooting_audio, false, 1);
-        body.linearVelocity = cc.v2(angle_x,angle_y);
+        body.linearVelocity = cc.v2(angle_x*4,angle_y*4);
     }
 
     onBeginContact(contact, selfCollider, otherCollider)
     {
-        if(otherCollider.tag == 1 || otherCollider.tag == 2){
+        if(otherCollider.node.name == "enemies_soldier"){
             console.log('here');
-            this.node.destroy();
+            //otherCollider.node.getComponent("enemies_soldier").blood_bar.width -= 30
+            this.node.destroy();;
         }
     }
 

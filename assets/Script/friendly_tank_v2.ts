@@ -14,6 +14,9 @@ export class friendly_tank_v2 extends cc.Component {
     friendly_tank_missile_Prefab: cc.Prefab = null;
 
     @property(cc.Prefab)
+    smoke_Prefab: cc.Prefab = null;
+
+    @property(cc.Prefab)
     bomb_prefab: cc.Prefab = null;
 
     onLoad(){
@@ -114,16 +117,37 @@ export class friendly_tank_v2 extends cc.Component {
         var dir = cc.v2(dx,dy);
         var angle = dir.signAngle(cc.v2(1,0)); //in radiant
         var degree = angle / Math.PI * 180;
-        this.gun.angle = -(degree + 160);
+        //this.gun.angle = -(degree + 160);
+        
         this.schedule(function(){
-            var bullet = cc.instantiate(this.friendly_tank_missile_Prefab);
-            bullet.getComponent('friendly_tank_missile').init(
-                this.node.position.x-84*Math.cos(angle), this.node.position.y+84*Math.sin(angle), 
-                (this.target.x - (this.node.position.x-84*Math.cos(angle)))/2, 
-                Math.abs(this.target.y-(this.node.position.y+84*Math.sin(angle)))/2,
-                1,degree);
-            cc.find("Canvas").addChild(bullet);
-        },5);
+            if(this.target.x < this.node.x){
+                var bullet = cc.instantiate(this.friendly_tank_missile_Prefab);
+                bullet.getComponent('friendly_tank_missile').init(
+                    this.node.position.x, this.node.position.y,
+                    //(this.target.x - (this.node.position.x-84*Math.cos(angle)))/2, 
+                    //Math.abs(this.target.y-(this.node.position.y+84*Math.sin(angle)))/2,
+                    (this.target.x - this.node.position.x)/2,
+                    Math.abs(this.target.y-this.node.position.y)/2, 
+                    1,degree);
+                cc.find("Canvas").addChild(bullet);
+            }
+            else{
+                var bullet = cc.instantiate(this.friendly_tank_missile_Prefab);
+                bullet.getComponent('friendly_tank_missile').init(
+                    this.node.position.x, this.node.position.y, 
+                    //(this.target.x - (this.node.position.x-84*Math.cos(angle)))/2, 
+                    //Math.abs(this.target.y-(this.node.position.y+84*Math.sin(angle)))/2,
+                    (this.target.x - this.node.position.x)/2,
+                    Math.abs(this.target.y-this.node.position.y)/2, 
+                    0,degree);
+                cc.find("Canvas").addChild(bullet);
+            }
+            
+            var smoke = cc.instantiate(this.smoke_Prefab);
+                smoke.getComponent('smoke').init(
+                    this.node.position.x, this.node.position.y);
+                cc.find("Canvas").addChild(smoke);
+        },2);
     }
 
     private playerMovement(dt)

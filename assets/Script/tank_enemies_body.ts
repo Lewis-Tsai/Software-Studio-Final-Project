@@ -6,6 +6,8 @@ export default class tank_enemies_body extends cc.Component {
     @property(cc.Node)
     blood: cc.Node = null;
 
+    private global = null;
+
     @property(cc.Node)
     gun: cc.Node = null;
 
@@ -20,6 +22,7 @@ export default class tank_enemies_body extends cc.Component {
     onLoad () {
         cc.director.getPhysicsManager().enabled = true;
         this.player = cc.find("Canvas/Player");
+        this.global = Global;
     }
 
     onBeginContact(contact, selfCollider, otherCollider)
@@ -27,7 +30,10 @@ export default class tank_enemies_body extends cc.Component {
         //var to_explode = this.explode.getComponent(cc.Animation);
         if(otherCollider.node.name == "player_bullet"){
             if(this.blood.width > 0){
-                this.blood.width -= 3;
+                if (this.global.machinegun_level == 0) this.blood.width -= 3;
+                else if (this.global.machinegun_level == 0) this.blood.width -= 8;
+                else if (this.global.machinegun_level == 0) this.blood.width -= 15;
+                else if (this.global.machinegun_level == 0) this.blood.width -= 20;
                 otherCollider.node.destroy();
                 if(this.blood.width<=0){
                     var explode = cc.instantiate(this.explode_prefab);

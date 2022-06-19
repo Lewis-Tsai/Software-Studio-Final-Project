@@ -67,8 +67,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -106.688,
-        -211.51,
+        -79.473,
+        -243.055,
         0,
         0,
         0,
@@ -124,15 +124,15 @@
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
-      "x": 0.5,
-      "y": 0.5
+      "x": 0.95,
+      "y": 0.3
     },
     "_trs": {
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        0,
-        0,
+        -4.09,
+        -4.948,
         0,
         0,
         0,
@@ -196,7 +196,7 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "92kpQ8bFdIBbZDlTULwwaV",
+    "fileId": "95YZsrj4xKdoHw4Pz3o1SQ",
     "sync": false
   },
   {
@@ -303,7 +303,7 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "91CZg99iNOwr0+KQs7etTz",
+    "fileId": "54WU5Pst9AxJlfWcfXtfYB",
     "sync": false
   },
   {
@@ -410,7 +410,7 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "30/a5SLPtIZazzUIxCbzur",
+    "fileId": "59EhUMTYFAyLICLlfEwSsB",
     "sync": false
   },
   {
@@ -517,7 +517,7 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "8641alOtVNNYddaDJJEd0t",
+    "fileId": "6cURo5c4tNzLOHBFoBzgQC",
     "sync": false
   },
   {
@@ -530,6 +530,9 @@
     "_enabled": true,
     "friendly_tank_missile_Prefab": {
       "__uuid__": "ef4552ce-b975-4943-a3e0-cff5fa942b85"
+    },
+    "smoke_Prefab": {
+      "__uuid__": "c0f59b4d-c860-426d-a5f6-6217879d373a"
     },
     "bomb_prefab": null,
     "_id": ""
