@@ -47,6 +47,7 @@ export default class friendly_soldier extends cc.Component {
         this.player = cc.find("Canvas/Player");
         //this.node.scaleX = 1;
         console.log(this.player.position);
+        if (this.node.scaleX < 0) this.Speed *= -1;
         //console.log(this.player.getComponent("Player").isDead)
         //this.loadgun();
     }
@@ -58,13 +59,10 @@ export default class friendly_soldier extends cc.Component {
     loadgun(){
         let node_b = cc.instantiate(this.bullet_friend);
         let canvas = cc.find("Canvas");
-        node_b.setPosition(0,0);
-        //canvas.addChild(node_b);
-        //node.parent = cc.director.getScene();
+        if (this.node.scaleX > 0) node_b.setPosition(1,0);
+        else node_b.setPosition(-1,0);
+
         this.node.addChild(node_b);
-        //node_b.setPosition(this.node.position.x,this.node.position.y);
-        //console.log(this.node.name);
-        //this.schedule(this.firegun,1);
     }
      update (dt) {
         //console.log(this.Living);

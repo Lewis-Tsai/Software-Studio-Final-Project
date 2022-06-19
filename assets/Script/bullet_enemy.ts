@@ -30,6 +30,8 @@ export default class bullet_emeny extends cc.Component {
 
     private master_Speed = -100;
 
+    soldier_dir = -1;
+
     // LIFE-CYCLE CALLBACKS:
     private tag = true;
     onLoad () {
@@ -37,7 +39,8 @@ export default class bullet_emeny extends cc.Component {
         //this.anim = this.getComponent(cc.Animation);
         this.canvas = cc.find("Canvas");
         this.node.scaleX *= 0.3;
-        //console.log(this.canvas.position);
+        this.soldier_dir = this.node.position.x;
+        console.log(this.soldier_dir);
     }
 
     start () {
@@ -72,17 +75,22 @@ export default class bullet_emeny extends cc.Component {
     findtarget(){  //target closest friend
         let closest = 100000000.0;
         for (var i = 0;i < this.canvas.childrenCount; i++){
-            if ( this.canvas.children[i].name == "friendly_soldier" /*|| this.canvas.children[i].name == */){
+            if ( this.canvas.children[i].name == "friendly_soldier" /*|| this.canvas.children[i].name == "friendly_tank_v2"*/ || this.canvas.children[i].name == "friendly_tank"){
                 //console.log(this.canvas.children[i].name);
                 let X = -this.node.position.x + this.canvas.children[i].position.x; // cos
                 let Y = -this.node.position.y + this.canvas.children[i].position.y;        // sin
                 let cos = X/Math.sqrt(X*X + Y*Y);
                 let sin = Y/Math.sqrt(X*X + Y*Y);
 
-                if ( Math.abs(X)<=960 && Math.sqrt(X*X + Y*Y) < closest && sin <= 0.5 && sin>= -0.5 && cos <= 0){
-                    
-                    closest = Math.sqrt(X*X + Y*Y);
-                    this.target = this.canvas.children[i];
+                if ( Math.abs(X)<=960 && Math.sqrt(X*X + Y*Y) < closest && sin <= 0.5 && sin>= -0.5){
+                    if (this.soldier_dir == 1 && cos > 0){
+                        closest = Math.sqrt(X*X + Y*Y);
+                        this.target = this.canvas.children[i];
+                    }
+                    else if (this.soldier_dir == -1 && cos < 0){
+                        closest = Math.sqrt(X*X + Y*Y);
+                        this.target = this.canvas.children[i];
+                    }
                    //console.log(this.target.name);
                 }
                 //this.canvas.children[i]
@@ -92,10 +100,16 @@ export default class bullet_emeny extends cc.Component {
                 let cos = X/Math.sqrt(X*X + Y*Y);
                 //let sin = Y/Math.sqrt(X*X + Y*Y);
 
-                if ( Math.sqrt(X*X + Y*Y) < closest && cos <= -0.1){
-                    
+                if ( Math.sqrt(X*X + Y*Y) < closest ){
+                    if (this.soldier_dir == 1 && cos > 0.5){
                     closest = Math.sqrt(X*X + Y*Y);
                     this.target = this.canvas.children[i];
+                    }
+                    else if (this.soldier_dir == -1 && cos < -0.5){
+                        closest = Math.sqrt(X*X + Y*Y);
+                        this.target = this.canvas.children[i];
+                    }
+
                     //console.log(this.target.name);
                 }
             }
@@ -119,11 +133,15 @@ export default class bullet_emeny extends cc.Component {
         this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.bullet_speed * cos, this.bullet_speed * sin);
         let temp_angle = Math.asin(sin) * 180 / Math.PI;
         //console.log(temp_angle);
-        if (temp_angle >= 0) this.node.angle = 180-temp_angle;
-        else this.node.angle = 180 - temp_angle;
+        if (temp_angle >= 0 && this.soldier_dir == -1) {
+            this.node.angle = 180-temp_angle;
+        }else if (temp_angle >= 0 && this.soldier_dir == 1) {
+            this.node.angle = temp_angle;
+        }
+        //else this.node.angle = 180 - temp_angle;
     }
     onBeginContact(contact,self,other){
-        if (other.node.name == "friendly_soldier" || other.node.name == "Player" ){ // bullet
+        if (other.node.name == "friendly_soldier" || other.node.name == "Player" /*|| other.node.name == "friendly_tank_v2"*/ || other.node.name == "friendly_tank"){ // bullet
             //this.node
             this.node.destroy()
         }

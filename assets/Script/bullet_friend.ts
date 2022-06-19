@@ -30,12 +30,15 @@ export default class bullet_friend extends cc.Component {
     private master_Speed = -100;
 
     // LIFE-CYCLE CALLBACKS:
+    private soldier_dir = 1;
+
     private tag = true;
     onLoad () {
 
         //this.anim = this.getComponent(cc.Animation);
         this.canvas = cc.find("Canvas");
         this.node.scaleX *= 0.3;
+        this.soldier_dir = this.node.position.x;
         //console.log(this.canvas.position);
     }
 
@@ -79,26 +82,18 @@ export default class bullet_friend extends cc.Component {
                 let cos = X/Math.sqrt(X*X + Y*Y);
                 let sin = Y/Math.sqrt(X*X + Y*Y);
 
-                if ( Math.abs(X)<=960  && Math.sqrt(X*X + Y*Y) < closest && sin <= 0.5 && sin>= -0.5 && cos >= 0){
-                    
-                    closest = Math.sqrt(X*X + Y*Y);
-                    this.target = this.canvas.children[i];
-                    console.log(this.target.name);
+                if ( Math.abs(X)<=960  && Math.sqrt(X*X + Y*Y) < closest && sin <= 0.5 && sin>= -0.5 ){
+                    if (this.soldier_dir == 1 && cos > 0){
+                        closest = Math.sqrt(X*X + Y*Y);
+                        this.target = this.canvas.children[i];
+                    }
+                    else if (this.soldier_dir == -1 && cos < 0){
+                        closest = Math.sqrt(X*X + Y*Y);
+                        this.target = this.canvas.children[i];
+                    }
                 }
                 //this.canvas.children[i]
-            }/*else if (this.canvas.children[i].name == "enemy_tank"){
-                let X = -this.node.position.x + this.canvas.children[i].position.x; // cos
-                let Y = -this.node.position.y + this.canvas.children[i].position.y;        // sin
-                let cos = X/Math.sqrt(X*X + Y*Y);
-                //let sin = Y/Math.sqrt(X*X + Y*Y);
-
-                if ( Math.sqrt(X*X + Y*Y) < closest && cos <= -0.1){
-                    
-                    closest = Math.sqrt(X*X + Y*Y);
-                    this.target = this.canvas.children[i];
-                    //console.log(this.target.name);
-                }
-            }*/
+            }
         }
     }
     
@@ -108,7 +103,7 @@ export default class bullet_friend extends cc.Component {
             return
         }
         this.node.opacity = 255;
-        console.log(this.target.name/*,this.node.position*/);
+        //console.log(this.target.name/*,this.node.position*/);
         let X = -this.node.position.x + this.target.position.x;
         let Y = -this.node.position.y + this.target.position.y;
     
@@ -119,8 +114,11 @@ export default class bullet_friend extends cc.Component {
         this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.bullet_speed * cos, this.bullet_speed * sin);
         let temp_angle = Math.asin(sin) * 180 / Math.PI;
         //console.log(temp_angle);
-        if (temp_angle >= 0) this.node.angle = temp_angle;
-        else this.node.angle =  temp_angle;
+        if (temp_angle >= 0 && this.soldier_dir == -1) {
+            this.node.angle = 180-temp_angle;
+        }else if (temp_angle >= 0 && this.soldier_dir == 1) {
+            this.node.angle = temp_angle;
+        }
     }
     onBeginContact(contact,self,other){
         if (other.node.name == "enemies_soldier" || other.node.name == "enemy_tank" ){ // bullet

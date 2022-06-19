@@ -47,6 +47,7 @@ export default class enemies_soldier extends cc.Component {
         this.player = cc.find("Canvas/Player");
         this.node.scaleX *= -1;
         this.global = Global;
+        if (this.node.scaleX > 0) this.Speed *= -1;
         //console.log(this.player.position);
         //console.log(this.player.getComponent("Player").isDead)
         //this.loadgun();
@@ -59,10 +60,15 @@ export default class enemies_soldier extends cc.Component {
     loadgun(){
         let node_b = cc.instantiate(this.bullet_enemy);
         let canvas = cc.find("Canvas");
-        this.node.addChild(node_b);
+        
         //canvas.addChild(node_b);
         //node.parent = cc.director.getScene();
-        node_b.setPosition(0,0);
+        //node_b.setPosition(0,0);
+        //console.log(node_b.getComponent("bullet_emeny"));
+        if (this.node.scaleX > 0) node_b.setPosition(1,0);
+        else node_b.setPosition(-1,0);
+
+        this.node.addChild(node_b);
         //node_b.setPosition(this.node.position.x,this.node.position.y);
         //console.log(this.node.name);
         //this.schedule(this.firegun,1);
@@ -86,8 +92,8 @@ export default class enemies_soldier extends cc.Component {
         this.Living = false;
         console.log(this.Living);
         //this.node.children[0].destroy();
-        //this.node.destroy();
-        this.node.active = false;
+        this.node.destroy();
+        //this.node.active = false;
     }
     
     firegun(){
