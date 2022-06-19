@@ -26,6 +26,8 @@ cc.Class({
         counter: 0,
         clear_enemies: false,
         hostage_save: 0,
+        regain: false,
+        regain_timer: 0,
         successaudio:{
             type : cc.AudioClip,
             default : null
@@ -161,7 +163,7 @@ cc.Class({
             // audio
             cc.audioEngine.play(this.successaudio, false, 1);
         }
-        cc.audioEngine.playEffect(this.flyAudio, true);
+        //cc.audioEngine.playEffect(this.flyAudio, true);
     },
 
     update (dt) {
@@ -432,6 +434,21 @@ cc.Class({
                         this.time--;
                 }
 
+                if(this.regain) {
+                    this.regain_timer += dt;
+                    if(this.regain_timer >= 1) {
+                        this.regain_timer -= 1;
+                        if(this.HP <= this.maxHP - 10)
+                            this.HP += 10;
+                        else
+                            this.HP = this.maxHP;
+                        if(this.missiles < 10)
+                            this.missiles++;
+                        if(this.bombs < 10)
+                            this.bombs++;
+                    }
+                }
+
                 this.hp_bar.getComponent(cc.ProgressBar).progress = this.HP / this.maxHP;
                 this.hp_icon.x = 300 * (this.HP - this.maxHP/2) / this.maxHP;
                 this.missle_bar.getComponent(cc.Sprite).fillRange = this.missiles / 10;
@@ -504,6 +521,7 @@ cc.Class({
             if(Global.hostage_mode && this.hostage_save == this.total_hostages) {
                 cc.director.loadScene("Game Completed");
             }
+            this.regain = true;
         }
         else if(otherCollider.node.name == "friendly_soldier_hostage") {
             this.hostage_save++;
@@ -511,8 +529,11 @@ cc.Class({
     },
 
     onEndContact: function(contact, selfCollider, otherCollider) {
-        if(otherCollider.node.name == "helipad_sensor" && Global.hostage_mode) {
-            Global.on_helipad = false;
+        if(otherCollider.node.name == "helipad_sensor") {
+            if(Global.hostage_mode)
+                Global.on_helipad = false;
+            this.regain = false;
+            this.regain_timer = 0;
         }
     }
 });
