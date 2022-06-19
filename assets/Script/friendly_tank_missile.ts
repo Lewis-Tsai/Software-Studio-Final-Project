@@ -3,8 +3,8 @@ const {ccclass, property} = cc._decorator;
 @ccclass
 export default class friendly_tank_missile extends cc.Component {
 
-    //@property({ type: cc.AudioClip })
-    //tank_shooting_audio: cc.AudioClip = null;
+    @property({ type: cc.AudioClip })
+    tank_shooting_audio: cc.AudioClip = null;
 
     private anim = null;
 
@@ -14,13 +14,13 @@ export default class friendly_tank_missile extends cc.Component {
         this.node.x = x;
         this.node.y = y;
         //this.anim.play('tank_enemy_bullet');
-        if(flag==1){ // rotate the bomb
-            this.node.angle = -(degree + 30);
-        } 
-        else if(flag == 3) this.node.angle = -(degree - 75);
+        //if(flag==1) this.node.angle = -(degree + 30);
+        //else if(flag == 2) this.node.angle = -(degree - 75);
+        console.log('degree: ',degree);
+        this.node.angle = -(degree+175);
         const body = this.getComponent(cc.RigidBody);
-        //cc.audioEngine.play(this.tank_shooting_audio, false, 1);
-        body.linearVelocity = cc.v2(angle_x*4,angle_y*4);
+        cc.audioEngine.play(this.tank_shooting_audio, false, 1);
+        body.linearVelocity = cc.v2(angle_x*2,angle_y*2);
     }
 
     onBeginContact(contact, selfCollider, otherCollider)

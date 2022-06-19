@@ -31,9 +31,9 @@ export default class tank_enemies_body extends cc.Component {
         if(otherCollider.node.name == "player_bullet"){
             if(this.blood.width > 0){
                 if (this.global.machinegun_level == 0) this.blood.width -= 3;
-                else if (this.global.machinegun_level == 0) this.blood.width -= 8;
-                else if (this.global.machinegun_level == 0) this.blood.width -= 15;
-                else if (this.global.machinegun_level == 0) this.blood.width -= 20;
+                else if (this.global.machinegun_level == 1) this.blood.width -= 8;
+                else if (this.global.machinegun_level == 2) this.blood.width -= 15;
+                else if (this.global.machinegun_level == 3) this.blood.width -= 20;
                 otherCollider.node.destroy();
                 if(this.blood.width<=0){
                     var explode = cc.instantiate(this.explode_prefab);

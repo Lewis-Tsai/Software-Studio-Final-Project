@@ -34,7 +34,7 @@ export class friendly_tank_v2 extends cc.Component {
             this.node.parent = cc.find("Canvas");
             this.node.setPosition(X,Y);
             this.tag = false;
-            }
+        }
         if (this.node.parent.name == "Canvas" ){
             this.findtarget();
             this.firegun();
@@ -50,7 +50,7 @@ export class friendly_tank_v2 extends cc.Component {
     findtarget(){  //target closest friend
         let closest = 100000000.0;
         for (var i = 0;i < this.canvas.childrenCount; i++){
-            if (this.canvas.children[i].name == "enemy_tank_gun"){
+            if (this.canvas.children[i].name == "enemy_tank_gun" || this.canvas.children[i].name == "enemies_soldier"){
                 let X = -this.node.position.x + this.canvas.children[i].position.x; // cos
                 let Y = -this.node.position.y + this.canvas.children[i].position.y;        // sin
                 let cos = X/Math.sqrt(X*X + Y*Y);
@@ -61,29 +61,11 @@ export class friendly_tank_v2 extends cc.Component {
                     this.target = this.canvas.children[i];
                 }
             }
-            else if (this.canvas.children[i].name == "enemies_soldier"){
-                let X = -this.node.position.x + this.canvas.children[i].position.x; // cos
-                let Y = -this.node.position.y + this.canvas.children[i].position.y;        // sin
-                let cos = X/Math.sqrt(X*X + Y*Y);
-                let sin = Y/Math.sqrt(X*X + Y*Y);
-
-                if ( Math.abs(X)<=300  && Math.sqrt(X*X + Y*Y) < closest /*&& sin <= 0.5 && sin>= -0.5 && cos >= 0*/){
-                    closest = Math.sqrt(X*X + Y*Y);
-                    this.target = this.canvas.children[i];
-                    console.log('find soldier!!!!!!!!!');
-                }
-                /*else{
-                    this.target = null;
-                    console.log('whatggggggggggggggggggggggg');
-                }*/
-            }
         }
     }
 
-    rotate(){
+    /*rotate(){
         if (this.target == null) { 
-            //this.node.destroy();
-            console.log('isNulllllllllll');
             return;
         }
         if(this.target.name == "enemy_tank_gun"){
@@ -105,49 +87,45 @@ export class friendly_tank_v2 extends cc.Component {
             this.gun.angle = -(degree + 175);
             console.log('comecomdeasdfesgaeg')
         }
-    }
+    }*/
 
     firegun(){
         if (this.target == null) { 
             //this.node.destroy();
             return;
         }
-        var dx = this.target.x - this.node.position.x;
-        var dy = this.target.y - this.node.position.y;
-        var dir = cc.v2(dx,dy);
-        var angle = dir.signAngle(cc.v2(1,0)); //in radiant
-        var degree = angle / Math.PI * 180;
-        //this.gun.angle = -(degree + 160);
         
         this.schedule(function(){
-            if(this.target.x < this.node.x){
-                var bullet = cc.instantiate(this.friendly_tank_missile_Prefab);
-                bullet.getComponent('friendly_tank_missile').init(
-                    this.node.position.x, this.node.position.y,
-                    //(this.target.x - (this.node.position.x-84*Math.cos(angle)))/2, 
-                    //Math.abs(this.target.y-(this.node.position.y+84*Math.sin(angle)))/2,
-                    (this.target.x - this.node.position.x)/2,
-                    Math.abs(this.target.y-this.node.position.y)/2, 
-                    1,degree);
-                cc.find("Canvas").addChild(bullet);
+            var dx = this.target.x - this.node.position.x;
+            var dy = this.target.y - this.node.position.y;
+            var dir = cc.v2(dx,dy);
+            var angle = dir.signAngle(cc.v2(1,0)); //in radiant
+            var degree = angle / Math.PI * 180;
+            var bullet = cc.instantiate(this.friendly_tank_missile_Prefab);
+            bullet.getComponent('friendly_tank_missile').init(
+                //this.node.position.x, this.node.position.y,
+                this.node.x - (this.node.position.x-84*Math.cos(angle)) - 85, 
+                this.node.y + Math.abs(84*Math.sin(angle))-10,
+                (this.target.x - this.node.position.x)/2,
+                Math.abs(this.target.y-this.node.position.y)/2, 
+                1,degree);
+            cc.find("Canvas").addChild(bullet);
+            
+            if(this.target.x > this.node.x){
+                let action = cc.sequence(cc.moveBy(0.1,-10*Math.cos(degree),0), cc.moveBy(0.1,10*Math.cos(degree),0));
+                this.gun.runAction(action);
             }
-            else{
-                var bullet = cc.instantiate(this.friendly_tank_missile_Prefab);
-                bullet.getComponent('friendly_tank_missile').init(
-                    this.node.position.x, this.node.position.y, 
-                    //(this.target.x - (this.node.position.x-84*Math.cos(angle)))/2, 
-                    //Math.abs(this.target.y-(this.node.position.y+84*Math.sin(angle)))/2,
-                    (this.target.x - this.node.position.x)/2,
-                    Math.abs(this.target.y-this.node.position.y)/2, 
-                    0,degree);
-                cc.find("Canvas").addChild(bullet);
+            else if(this.target.x <= this.node.x){
+                let action = cc.sequence(cc.moveBy(0.1,10*Math.cos(degree),0), cc.moveBy(0.1,-10*Math.cos(degree),0));
+                this.gun.runAction(action);
             }
             
             var smoke = cc.instantiate(this.smoke_Prefab);
                 smoke.getComponent('smoke').init(
-                    this.node.position.x, this.node.position.y);
+                    this.node.x - (this.node.position.x-84*Math.cos(angle)) - 85, 
+                    this.node.y + Math.abs(84*Math.sin(angle))-10,);
                 cc.find("Canvas").addChild(smoke);
-        },2);
+        },4);
     }
 
     private playerMovement(dt)
@@ -163,29 +141,10 @@ export class friendly_tank_v2 extends cc.Component {
             //console.log(angle);
             var degree = angle / Math.PI * 180;
             this.gun.angle = -(degree + 175);
-            console.log('need to spin now because of tank!!!');
+            console.log('need to spin now!!!');
         }
-        /*else if(this.target.name == "enemy_tank_gun"){
-            var dx = this.target.position.x - this.node.position.x;
-            var dy = this.target.position.y - this.node.position.y;
-            var dir = cc.v2(dx,dy);
-            var angle = dir.signAngle(cc.v2(1,0)); //in radiant
-            //console.log(angle);
-            var degree = angle / Math.PI * 180;
-            this.gun.angle = -(degree + 175);
-            console.log('need to spin now because of tank!!!');
-        }
-        else if(this.target.name == "enemies_soldier"){
-            var dx = this.target.position.x - this.node.position.x;
-            var dy = this.target.position.y - this.node.position.y;
-            var dir = cc.v2(dx,dy);
-            var angle = dir.signAngle(cc.v2(1,0)); //in radiant
-            //console.log(angle);
-            var degree = angle / Math.PI * 180;
-            this.gun.angle = -(degree + 175);
-            console.log('need to spin now because of soldier');
-        }*/
     }
+
     onBeginContact(contact, selfCollider, otherCollider)
     {
         //var to_explode = this.explode.getComponent(cc.Animation);

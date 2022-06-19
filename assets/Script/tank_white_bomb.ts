@@ -15,7 +15,7 @@ export default class tank_white_bomb extends cc.Component {
         this.node.y = y;
         //this.anim.play('tank_enemy_bullet');
         if(flag==1){ // rotate the bomb
-            this.node.angle = -(degree + 160);
+            this.node.angle = -(degree + 165);
         } 
         const body = this.getComponent(cc.RigidBody);
         cc.audioEngine.play(this.tank_shooting_audio, false, 1);
@@ -24,7 +24,7 @@ export default class tank_white_bomb extends cc.Component {
 
     onBeginContact(contact, selfCollider, otherCollider)
     {
-        if(otherCollider.tag == 1 || otherCollider.tag == 2){
+        if(otherCollider.node.name == "Player" || otherCollider.node.name == "enemies_soldier"){
             console.log('here');
             this.node.destroy();
         }
