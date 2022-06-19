@@ -5,7 +5,7 @@
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
  
-
+//const Global;
 const {ccclass, property} = cc._decorator;
  
 @ccclass
@@ -33,8 +33,10 @@ export default class enemies_soldier extends cc.Component {
     private bullet_speed = 300;
 
     //private Live = 5;
+
+    private global = null;
  
-    private Speed = -100;
+    private Speed = -50;
     // LIFE-CYCLE CALLBACKS:
  
     onLoad () {
@@ -44,7 +46,8 @@ export default class enemies_soldier extends cc.Component {
         this.anim = this.getComponent(cc.Animation);
         this.player = cc.find("Canvas/Player");
         this.node.scaleX *= -1;
-        console.log(this.player.position);
+        this.global = Global;
+        //console.log(this.player.position);
         //console.log(this.player.getComponent("Player").isDead)
         //this.loadgun();
     }
@@ -109,10 +112,24 @@ export default class enemies_soldier extends cc.Component {
     }
     
      onBeginContact(contact,self,other){
-        if (other.node.name == "player_bullet" || other.node.name == "bullet_friend" ){ // bullet
-            this.bloodbar.width -= 25;
+        if (other.node.name == "player_bullet"  ){ // bullet
+            //console.log( "global:",this.global.machinegun_level)
+
+            if (this.global.machinegun_level == 0) this.bloodbar.width -= 10;
+            else if (this.global.machinegun_level == 1) this.bloodbar.width -= 12.5;
+            else if (this.global.machinegun_level == 2) {
+                if (this.bloodbar.width == 5) this.bloodbar.width -= 5;
+                this.bloodbar.width -= 15;
+            }
+            else if (this.global.machinegun_level == 3) this.bloodbar.width -= 25;
+            else if (this.global.machinegun_level == 4) this.bloodbar.width -= 50;
+
             if (this.bloodbar.width <= 0) this.Waskill();
-        }else if (other.node.name == "missile"){
+        }else if (other.node.name == "bullet_friend" ){
+            this.bloodbar.width -= 10;
+            if (this.bloodbar.width <= 0) this.Waskill();
+        }
+        else if (other.node.name == "missile"){
             this.Waskill()
         }else if (other.node.name == "tank_friendlies_bullet"){
             this.Waskill();

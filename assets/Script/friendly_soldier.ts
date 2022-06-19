@@ -34,7 +34,7 @@ export default class friendly_soldier extends cc.Component {
 
     //private Live = 5;
  
-    private Speed = 100;
+    private Speed = 50;
     // LIFE-CYCLE CALLBACKS:
  
     onLoad () {
@@ -110,7 +110,7 @@ export default class friendly_soldier extends cc.Component {
     
      onBeginContact(contact,self,other){
         if (other.node.name == "bullet_enemy" /*|| other.node.name == ""*/ ){ // bullet
-            this.bloodbar.width -= 25;
+            this.bloodbar.width -= 10;
             if (this.bloodbar.width <= 0) this.Waskill();
         }else if (other.node.name == "missile"){
             //this.Waskill()

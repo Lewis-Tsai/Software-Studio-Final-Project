@@ -90,9 +90,9 @@ export class tank_enemies_gun extends cc.Component {
         var dy = this.player.position.y - this.node.position.y;
         var dir = cc.v2(dx,dy);
         var angle = dir.signAngle(cc.v2(1,0)); //in radiant
-        console.log(angle);
+        //console.log(angle);
         var degree = angle / Math.PI * 180;
         this.node.angle = -(degree + 160);
-        console.log(this.player.position);
+        //console.log(this.player.position);
     }
 }
