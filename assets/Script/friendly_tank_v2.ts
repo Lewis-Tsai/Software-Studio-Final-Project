@@ -62,6 +62,7 @@ export class friendly_tank_v2 extends cc.Component {
         //if (temptarget) this.target =temptarget;
     }
     public setTarget(TTarget : cc.Node){
+        console.log("this is setting target for tv2 : " , TTarget.name);
         this.target = TTarget;
     }
     /*
