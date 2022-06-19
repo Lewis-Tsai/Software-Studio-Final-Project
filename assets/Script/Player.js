@@ -9,6 +9,7 @@ cc.Class({
         speedX: 0,
         speedY: 0,
         speed: 200,
+        speed2: 75,
         bullet_speed: 1000,
         missile_speed: 300,
         onGround: true,
@@ -130,6 +131,7 @@ cc.Class({
         this.maxHP = Global.armor_level * 50 + 200;
         this.HP = this.maxHP;
         this.speed = Global.engine_level * 25 + 200;
+        this.speed2 = Global.engine_level * 5 + 70;
     },
 
     onDestroy () {
@@ -332,8 +334,8 @@ cc.Class({
     fly (direction) {
         var scene = cc.director.getScene();
         
-        if(scene.name != "Game_Complete"){
-            this.speedY = 75 * direction;
+        if(scene.name != "Game_Complete") {
+            this.speedY = this.speed2 * direction;
         }
     },
 
@@ -363,21 +365,30 @@ cc.Class({
                 this.camera.x = this.node.x;
                 //this.background.x = (this.node.x + 490) * 500 / 2410 + 478;
             }
-            // console.log(this.camera.position.x, this.camera.position.y);
-            this.hp_bar.node.position = cc.v3(this.camera.position.x, this.camera.position.y + 288, 0);
-            this.missle_bar.position = cc.v3(this.camera.position.x - 360, this.camera.position.y + 292, 0);
-            this.bomb_bar.position = cc.v3(this.camera.position.x - 360, this.camera.position.y + 248, 0);
-            this.time_label.node.position = cc.v3(this.camera.position.x + 428, this.camera.position.y + 288, 0);
         }
         else if(scene.name == "Stage 2"){
             if(this.node.x < 0)
                 this.camera.x = 0;
-            else if(this.node.x > 645)
-                this.camera.x = 645;
+            else if(this.node.x > 13520)
+                this.camera.x = 13520;
             else {
                 this.camera.x = this.node.x;
             }
         }
+        else if(scene.name == "Stage 3"){
+            if(this.node.x < 0)
+                this.camera.x = 0;
+            else if(this.node.x > 13612)
+                this.camera.x = 13612;
+            else {
+                this.camera.x = this.node.x;
+            }
+        }
+
+        this.hp_bar.node.position = cc.v3(this.camera.position.x, this.camera.position.y + 288, 0);
+        this.missle_bar.position = cc.v3(this.camera.position.x - 360, this.camera.position.y + 292, 0);
+        this.bomb_bar.position = cc.v3(this.camera.position.x - 360, this.camera.position.y + 248, 0);
+        this.time_label.node.position = cc.v3(this.camera.position.x + 428, this.camera.position.y + 288, 0);
     },
 
     PlayerAnimation: function(){
@@ -452,16 +463,22 @@ cc.Class({
     onBeginContact: function (contact, selfCollider, otherCollider) {
         // console.log(otherCollider.node.name);
         // "otherCollider.node" can get collider's node 
-        if(otherCollider.node.name == "tank_enemies_bullet" || otherCollider.node.name == "bullet_enemy") {
+        if(otherCollider.node.name == "tank_white_bomb") {
             // hit by bullet from enemies
             this.HP -= 10;
             otherCollider.node.active = false;
         }
-        else if(otherCollider.node.name == "helipad_finish" && this.clear_enemies) {
-            Global.time_left = this.time;
-            Global.total_battle++;
-            Global.total_win++;
-            cc.director.loadScene("Game Completed");
+        else if(otherCollider.node.name == "bullet_enemy") {
+            this.HP -= 5;
+            otherCollider.node.active = false;
+        }
+        else if(otherCollider.node.name == "helipad_finish") {
+            if(this.clear_enemies && !Global.hostage_mode) {
+                Global.time_left = this.time;
+                Global.total_battle++;
+                Global.total_win++;
+                cc.director.loadScene("Game Completed");
+            }
         }
         else if(otherCollider.node.name == "helipad")
             console.log("helipad");
