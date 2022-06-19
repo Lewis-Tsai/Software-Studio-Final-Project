@@ -28,6 +28,7 @@ export default class tank_enemies_body extends cc.Component {
         if(otherCollider.node.name == "player_bullet"){
             if(this.blood.width > 0){
                 this.blood.width -= 3;
+                otherCollider.node.destroy();
                 if(this.blood.width<=0){
                     var explode = cc.instantiate(this.explode_prefab);
                     explode.getComponent('ground_explode').init(this.gun.x, this.gun.y+130);
@@ -64,9 +65,22 @@ export default class tank_enemies_body extends cc.Component {
                 }
             }
         }
-        else if(otherCollider.node.name == "missile"){
+        else if(otherCollider.node.name == "bomb"){
             if(this.blood.width > 0){
                 this.blood.width -= 200;
+                otherCollider.node.destroy();
+                if(this.blood.width<=0){   
+                    var explode = cc.instantiate(this.explode_prefab);
+                    explode.getComponent('ground_explode').init(this.gun.x, this.gun.y+130);
+                    cc.find("Canvas").addChild(explode);
+                    this.gun.destroy();
+                    this.player.getComponent("Player").score += 100;
+                }
+            }
+        }
+        else if(otherCollider.node.name == "missile"){
+            if(this.blood.width > 0){
+                this.blood.width -= 30;
                 otherCollider.node.destroy();
                 if(this.blood.width<=0){   
                     var explode = cc.instantiate(this.explode_prefab);
