@@ -21,13 +21,16 @@ cc.Class({
         missiles: 10,
         enable_bomb: true,
         enable_gun: true,
+        shoot_span: 0,
         enable_missile: true,
+        shooting: false,
         time: 180,
         counter: 0,
         clear_enemies: false,
         hostage_save: 0,
         regain: false,
         regain_timer: 0,
+        id: 0,
         successaudio:{
             type : cc.AudioClip,
             default : null
@@ -205,7 +208,7 @@ cc.Class({
                     if(this.bombs > 0 && this.enable_bomb && !this.isDead) {
                         this.enable_bomb = false;
                         this.bombs--;
-                        cc.audioEngine.playEffect(this.bombEffect, false);
+                        var audio_id = cc.audioEngine.playEffect(this.bombEffect, false);
                         var new_bomb = cc.instantiate(this.bullet_bomb);
                         new_bomb.setPosition(0, -50);
                         cc.find("Canvas/Player").addChild(new_bomb);
@@ -214,6 +217,7 @@ cc.Class({
                             new_bomb.angle = -this.node.angle;
                         else
                             new_bomb.angle = this.node.angle;
+                        cc.audioEngine.stop(audio_id);
                     }
                     break;
                 case macro.KEY.q:
@@ -253,24 +257,16 @@ cc.Class({
         switch(event.getButton()) {
             case cc.Event.EventMouse.BUTTON_LEFT:
                 // fire machine gun
-                if(this.enable_gun && !this.isDead) {
-                    this.enable_gun = false;
-                    cc.audioEngine.playEffect(this.gunEffect, false);
-                    var new_bullet = cc.instantiate(this.bullet_gun);
-                    new_bullet.setPosition(40, -40);
-                    cc.find("Canvas/Player").addChild(new_bullet);
-                    if(this.node.scaleX > 0)
-                        new_bullet.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.bullet_speed * Math.cos(Math.PI * this.node.angle/180), this.bullet_speed * Math.sin(Math.PI * this.node.angle/180));
-                    else
-                        new_bullet.getComponent(cc.RigidBody).linearVelocity = cc.v2(-this.bullet_speed * Math.cos(Math.PI * this.node.angle/180), -this.bullet_speed * Math.sin(Math.PI * this.node.angle/180));
-                }
+                this.shooting = true;
+                this.id = cc.audioEngine.playEffect(this.gunEffect, false);
+                this.shoot_span = 0.25;
                 break;
             case cc.Event.EventMouse.BUTTON_RIGHT:
                 //fire the missile
                 if(this.missiles > 0 && this.enable_missile && !this.isDead) {
                     this.enable_missile = false;
                     this.missiles--;
-                    cc.audioEngine.playEffect(this.missileEffect, false);
+                    var audio_id = cc.audioEngine.playEffect(this.missileEffect, false);
                     var new_missile = cc.instantiate(this.bullet_missile);
                     new_missile.setPosition(80, -32);
                     cc.find("Canvas/Player").addChild(new_missile);
@@ -278,6 +274,9 @@ cc.Class({
                         new_missile.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.missile_speed * Math.cos(Math.PI * this.node.angle/180), this.missile_speed * Math.sin(Math.PI * this.node.angle/180));
                     else
                         new_missile.getComponent(cc.RigidBody).linearVelocity = cc.v2(-this.missile_speed * Math.cos(Math.PI * this.node.angle/180), -this.missile_speed * Math.sin(Math.PI * this.node.angle/180));
+                    this.scheduleOnce(function() {
+                        cc.audioEngine.stop(audio_id);
+                    }, 3.5);
                 }
                 break; 
         }
@@ -287,7 +286,8 @@ cc.Class({
         switch(event.getButton()) {
             case cc.Event.EventMouse.BUTTON_LEFT:
                 // stop firing machine gun
-                this.enable_gun = true;
+                this.shooting = false;
+                cc.audioEngine.stop(this.id);
                 break;
             case cc.Event.EventMouse.BUTTON_RIGHT:
                 // stop firing the missile
@@ -446,6 +446,35 @@ cc.Class({
                             this.missiles++;
                         if(this.bombs < 10)
                             this.bombs++;
+                    }
+                }
+
+                if(this.shooting) {
+                    this.shoot_span += dt;
+                    if(this.shoot_span > 0.25) {
+                        /*var found = false
+                        for(let i in this.node.children) {
+                            if(this.node.children[i].name == "player_bullet" && !this.node.children.active) {
+                                this.node.children[i].active = true;
+                                this.node.children[i].position = cc.v3(40, -40);
+                                found = true;
+                                if(this.node.scaleX > 0)
+                                    this.node.children[i].getComponent(cc.RigidBody).linearVelocity = cc.v2(this.bullet_speed * Math.cos(Math.PI * this.node.angle/180), this.bullet_speed * Math.sin(Math.PI * this.node.angle/180));
+                                else
+                                    this.node.children[i].getComponent(cc.RigidBody).linearVelocity = cc.v2(-this.bullet_speed * Math.cos(Math.PI * this.node.angle/180), -this.bullet_speed * Math.sin(Math.PI * this.node.angle/180));
+                                break;
+                            }
+                        }
+                        if(!found) {*/
+                            var new_bullet = cc.instantiate(this.bullet_gun);
+                            new_bullet.setPosition(40, -40);
+                            cc.find("Canvas/Player").addChild(new_bullet);
+                            if(this.node.scaleX > 0)
+                                new_bullet.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.bullet_speed * Math.cos(Math.PI * this.node.angle/180), this.bullet_speed * Math.sin(Math.PI * this.node.angle/180));
+                            else
+                                new_bullet.getComponent(cc.RigidBody).linearVelocity = cc.v2(-this.bullet_speed * Math.cos(Math.PI * this.node.angle/180), -this.bullet_speed * Math.sin(Math.PI * this.node.angle/180));
+                        //}
+                        this.shoot_span -= 0.25;
                     }
                 }
 

@@ -28,7 +28,22 @@ export default class player_bullet extends cc.Component {
     onBeginContact(contact, self, other) {
         if(other.node.name == "background_size") {
             var explode = cc.instantiate(this.explode_prefab);
-            explode.setPosition(this.node.position.x + this.node.parent.position.x, -200);
+            var newX;
+            if(this.node.parent.scaleX > 0) {
+                var len = Math.sqrt(this.node.position.x * this.node.position.x + this.node.position.y * this.node.position.y)
+                var cos = this.node.position.x / len;
+                var arccos = Math.acos(cos) * 180 / Math.PI;
+                arccos -= this.node.parent.angle;
+                newX = len * Math.cos(arccos * Math.PI / 180);
+            }
+            else {
+                var len = Math.sqrt(this.node.position.x * this.node.position.x + this.node.position.y * this.node.position.y)
+                var cos = this.node.position.x / len;
+                var arccos = Math.acos(cos) * 180 / Math.PI;
+                arccos += this.node.parent.angle;
+                newX = -len * Math.cos(arccos * Math.PI / 180);
+            }
+            explode.setPosition(newX + this.node.parent.position.x, -200);
             cc.find("Canvas").addChild(explode);
             self.node.destroy();
             /*this.scheduleOnce( function() {
