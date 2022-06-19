@@ -9,7 +9,7 @@ cc.Class({
         speedX: 0,
         speedY: 0,
         speed: 200,
-        speed2: 75,
+        speed2: 90,
         bullet_speed: 1000,
         missile_speed: 300,
         onGround: true,
@@ -25,6 +25,7 @@ cc.Class({
         time: 180,
         counter: 0,
         clear_enemies: false,
+        hostage_save: 0,
         successaudio:{
             type : cc.AudioClip,
             default : null
@@ -131,7 +132,9 @@ cc.Class({
         this.maxHP = Global.armor_level * 50 + 200;
         this.HP = this.maxHP;
         this.speed = Global.engine_level * 25 + 200;
-        this.speed2 = Global.engine_level * 5 + 70;
+        this.speed2 = Global.engine_level * 5 + 85;
+        if(Global.hostage_mode)
+            this.time = 360;
     },
 
     onDestroy () {
@@ -350,15 +353,15 @@ cc.Class({
     camerafollow: function() {
         var scene = cc.director.getScene();
         
-        if(scene.name == "Stage 1"){
+        if(scene.name == "Stage 1" || scene.name == "Stage 4"){
             if(this.node.x < 0)
             {
                 this.camera.x = 0;
                 //this.background.x = 478;
             }
-            else if(this.node.x > 17360)
+            else if(this.node.x > 16880)
             {
-                this.camera.x = 17360;
+                this.camera.x = 16880;
             }
             else
             {
@@ -366,7 +369,7 @@ cc.Class({
                 //this.background.x = (this.node.x + 490) * 500 / 2410 + 478;
             }
         }
-        else if(scene.name == "Stage 2"){
+        else if(scene.name == "Stage 2" || scene.name == "Stage 5"){
             if(this.node.x < 0)
                 this.camera.x = 0;
             else if(this.node.x > 13520)
@@ -375,7 +378,7 @@ cc.Class({
                 this.camera.x = this.node.x;
             }
         }
-        else if(scene.name == "Stage 3"){
+        else if(scene.name == "Stage 3" || scene.name == "Stage 6"){
             if(this.node.x < 0)
                 this.camera.x = 0;
             else if(this.node.x > 13612)
@@ -442,14 +445,28 @@ cc.Class({
 
                 if(!this.clear_enemies) {
                     var finish = true;
+                    var hostages = 0;
+                    var hostages_disappear = 0;
                     for(let i in this.canvas.children) {
                         if(this.canvas.children[i].name == "enemies_soldier" || this.canvas.children[i].name == "enemy_tank") {
-                            if(this.canvas.children[i].active == true)
+                            if(this.canvas.children[i].active)
                                 finish = false;
+                            else if(this.canvas.children[i].name == "friendly_soldier_hostage") {
+                                hostages++;
+                                if(!this.canvas.children[i].active)
+                                    hostages_disappear++;
+                            }
                         }
                     }
                     this.clear_enemies = finish;
+                    this.total_hostages = hostages;
+
+                    if(Global.hostage_mode && hostages_disappear != this.hostage_save) {
+                        //cc.director.loadScene("Game Failed");
+                    }
                 }
+
+                this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, 0);
             }
         }
     },
@@ -479,8 +496,23 @@ cc.Class({
                 Global.total_win++;
                 cc.director.loadScene("Game Completed");
             }
+            if(Global.hostage_mode) {
+                Global.on_helipad = true;
+            }
         }
-        else if(otherCollider.node.name == "helipad")
-            console.log("helipad");
-    },   
+        else if(otherCollider.node.name == "helipad") {
+            if(Global.hostage_mode && this.hostage_save == this.total_hostages) {
+                cc.director.loadScene("Game Completed");
+            }
+        }
+        else if(otherCollider.node.name == "friendly_soldier_hostage") {
+            this.hostage_save++;
+        }
+    },
+
+    onEndContact: function(contact, selfCollider, otherCollider) {
+        if(otherCollider.node.name == "helipad_sensor" && Global.hostage_mode) {
+            Global.on_helipad = false;
+        }
+    }
 });
