@@ -173,8 +173,12 @@
       "__id__": 1
     },
     "_enabled": true,
-    "label": null,
-    "text": "hello",
+    "tank_shooting_audio": {
+      "__uuid__": "aa91acb6-937f-4582-b084-c3b9037973e7"
+    },
+    "smoke_Prefab": {
+      "__uuid__": "c0f59b4d-c860-426d-a5f6-6217879d373a"
+    },
     "_id": ""
   },
   {

@@ -3,25 +3,18 @@ const {ccclass, property} = cc._decorator;
 @ccclass
 export default class friendly_tank_missile extends cc.Component {
 
-    @property(cc.Label)
-    label: cc.Label = null;
-
-    @property
-    text: string = 'hello';
+    @property({ type: cc.AudioClip })
+    tank_shooting_audio: cc.AudioClip = null;
 
     private canvas: cc.Node = null
- 
-    //private anim = null;
- 
+
+    @property(cc.Prefab)
+    smoke_Prefab: cc.Prefab = null;
     //private Living:boolean = true;
     private target: cc.Node = null
-
     private bullet_speed = 300;
-
     private timer = 0.0;
-
     private master_Speed = -100;
-
     // LIFE-CYCLE CALLBACKS:
     private soldier_dir = 1;
 
@@ -77,16 +70,9 @@ export default class friendly_tank_missile extends cc.Component {
                 let sin = Y/Math.sqrt(X*X + Y*Y);
 
                 if ( Math.abs(X)<=960  && Math.sqrt(X*X + Y*Y) < closest && sin >=0 ){
-                    /*if (this.soldier_dir == 1 && cos > 0){
-                        closest = Math.sqrt(X*X + Y*Y);
-                        this.target = this.canvas.children[i];
-                    }*/
-                    //else if (this.soldier_dir == -1 && cos < 0){
-                        closest = Math.sqrt(X*X + Y*Y);
-                        this.target = this.canvas.children[i];
-                    //}
+                    closest = Math.sqrt(X*X + Y*Y);
+                    this.target = this.canvas.children[i];
                 }
-                //this.canvas.children[i]
             }
         }
         //if (this.target == null) this.node.destroy();
@@ -110,7 +96,13 @@ export default class friendly_tank_missile extends cc.Component {
 
         this.node.active = true;
         this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.bullet_speed * cos, this.bullet_speed * sin);
+
+        var smoke = cc.instantiate(this.smoke_Prefab);
+        smoke.getComponent('smoke').init(
+            this.node.position.x, this.node.position.y);
+        cc.find("Canvas").addChild(smoke);
         let temp_angle = Math.asin(sin) * 180 / Math.PI;
+        cc.audioEngine.play(this.tank_shooting_audio, false, 1);
         //console.log(temp_angle);
         if (temp_angle >= 0 && this.soldier_dir == -1) {
             this.node.angle = 180-temp_angle;
