@@ -47,11 +47,11 @@ cc.Class({
     // update (dt) {},
 
     Tomenu: function(){
-        this.UpdateBeforeExit(menu);
+        this.UpdateBeforeExit('menu');
     },
 
     ToLeaderboard: function(){
-        this.UpdateBeforeExit(leaderboard);
+        this.UpdateBeforeExit('leaderboard');
     },
 
     UpdateBeforeExit: function(opr){

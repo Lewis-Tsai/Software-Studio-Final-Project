@@ -51,4 +51,10 @@ cc.Class({
     ToMenu : function(){
         cc.director.loadScene("Menu");
     },
+
+    ToggleControl: function(){
+        Global.hostage_mode = !Global.hostage_mode;
+        console.log(Global.hostage_mode);
+    }
+
 });
