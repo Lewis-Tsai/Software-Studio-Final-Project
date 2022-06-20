@@ -82,7 +82,7 @@ export default class bullet_friend extends cc.Component {
                 let cos = X/Math.sqrt(X*X + Y*Y);
                 let sin = Y/Math.sqrt(X*X + Y*Y);
 
-                if ( Math.abs(X)<=960  && Math.sqrt(X*X + Y*Y) < closest && sin <= 0.5 && sin>= -0.5 ){
+                if ( Math.abs(X)<=640  && Math.sqrt(X*X + Y*Y) < closest && sin <= 0.5 && sin>= -0.5 ){
                     if (this.soldier_dir == 1 && cos > 0){
                         closest = Math.sqrt(X*X + Y*Y);
                         this.target = this.canvas.children[i];

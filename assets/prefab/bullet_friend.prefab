@@ -78,8 +78,8 @@
     "_skewX": 0,
     "_skewY": 0,
     "_is3DNode": false,
-    "_groupIndex": 0,
-    "groupIndex": 0,
+    "_groupIndex": 7,
+    "groupIndex": 7,
     "_id": ""
   },
   {
@@ -98,7 +98,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "6ac6e561-1ffd-4f22-bda4-febf4e1241a2"
+      "__uuid__": "df9c80aa-252c-43ef-abb3-be524233644d"
     },
     "_type": 0,
     "_sizeMode": 0,
