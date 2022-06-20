@@ -23,6 +23,7 @@ export class friendly_tank_v2 extends cc.Component {
     bomb_prefab: cc.Prefab = null;
 
     onLoad(){
+        cc.director.getPhysicsManager().enabled = true;
         this.canvas = cc.find("Canvas");
         this.gun = cc.find("Canvas/friendly_tank_v2/gun");
         this.blood = cc.find("Canvas/friendly_tank_v2/blood");
@@ -61,9 +62,11 @@ export class friendly_tank_v2 extends cc.Component {
     {
         //var to_explode = this.explode.getComponent(cc.Animation);
         if(otherCollider.node.name == "bullet_enemy"){
-            if(this.blood.width > 0){
-                this.blood.width -= 10;
-                if(this.blood.width<=0){
+            var blood_bar = this.node.getChildByName("blood");
+            if(blood_bar.width > 0){  
+                blood_bar.width -= 10;
+                console.log('blood_bar bar length: ',blood_bar.width);
+                if(blood_bar.width<=0){
                     var explode = cc.instantiate(this.bomb_prefab);
                     explode.getComponent('ground_explode').init(this.node.x ,this.node.y+120);
                     cc.find("Canvas").addChild(explode);

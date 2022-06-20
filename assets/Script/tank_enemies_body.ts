@@ -32,9 +32,9 @@ export default class tank_enemies_body extends cc.Component {
             otherCollider.node.destroy();
             if(this.blood.width > 0){
                 if (this.global.machinegun_level == 0) this.blood.width -= 3;
-                else if (this.global.machinegun_level == 1) this.blood.width -= 8;
-                else if (this.global.machinegun_level == 2) this.blood.width -= 15;
-                else if (this.global.machinegun_level == 3) this.blood.width -= 20;
+                else if (this.global.machinegun_level == 1) this.blood.width -= 6;
+                else if (this.global.machinegun_level == 2) this.blood.width -= 9;
+                else if (this.global.machinegun_level == 3) this.blood.width -= 12;
                 //otherCollider.node.destroy();
                 if(this.blood.width<=0){
                     var explode = cc.instantiate(this.explode_prefab);
@@ -88,7 +88,10 @@ export default class tank_enemies_body extends cc.Component {
         }
         else if(otherCollider.node.name == "missile"){
             if(this.blood.width > 0){
-                this.blood.width -= 30;
+                if (this.global.missile_level == 0) this.blood.width -= 10;
+                else if (this.global.missile_level == 1) this.blood.width -= 15;
+                else if (this.global.missile_level == 2) this.blood.width -= 20;
+                else if (this.global.missile_level == 3) this.blood.width -= 25;
                 otherCollider.node.destroy();
                 if(this.blood.width<=0){   
                     var explode = cc.instantiate(this.explode_prefab);
