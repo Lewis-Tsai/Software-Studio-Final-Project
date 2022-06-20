@@ -59,7 +59,8 @@ export default class friendly_tank_missile extends cc.Component {
             this.tag = false;
             }
         if (this.node.parent.name == "Canvas" ){
-            this.firegun();
+            if(this.player.x - this.node.x < 600)
+                this.firegun();
         }
     }
     findtarget(){  //target closest friend
@@ -111,30 +112,10 @@ export default class friendly_tank_missile extends cc.Component {
         cc.find("Canvas").addChild(smoke);
         let temp_angle = Math.asin(sin) * 180 / Math.PI;
 
-        //******************************* *********************************************88*/
-        /*if(this.target.x > this.node.x){
-            //this.gun.angle = temp_angle - 180;
-            this.gun.getComponent("friendly_tank_gun").rotate(temp_angle - 180);
-        }
-        else if(this.target.x <= this.node.x){
-            //this.gun.angle = -temp_angle;
-            this.gun.getComponent("friendly_tank_gun").rotate(-temp_angle);
-        }*/
-
         if(Math.abs(this.player.x - this.node.x)<500){
             cc.audioEngine.play(this.tank_shooting_audio, false, 1);
             console.log('less than 500!!!!!!!!!!!!!!');
         }
-        
-        //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-        /*if(this.target.x > this.node.x){
-            let action = cc.sequence(cc.moveBy(0.1,-10*Math.cos(temp_angle),0), cc.moveBy(0.1,10*Math.cos(temp_angle),0));
-            this.gun.runAction(action);
-        }
-        else if(this.target.x <= this.node.x){
-            let action = cc.sequence(cc.moveBy(0.1,10*Math.cos(temp_angle),0), cc.moveBy(0.1,-10*Math.cos(temp_angle),0));
-            this.gun.runAction(action);
-        }*/
 
         if (temp_angle >= 0 && this.soldier_dir == -1) {
             this.node.angle = 180-temp_angle;

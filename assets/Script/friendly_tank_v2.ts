@@ -37,10 +37,6 @@ export class friendly_tank_v2 extends cc.Component {
 
     update(dt)
     {
-        //this.playerMovement(dt);
-        //if(this.node.x - cc.find("Canvas/Main Camera").x < 960) {
-           // this.node.x += 20 * dt;//can view=> moving
-        //}
         if(cc.director.getScene().name == "Stage 1" && this.player.x > this.node.x) this.node.x += 20*dt;
         else if(cc.director.getScene().name == "Stage 2" && this.player.x > this.node.x) this.node.x += 20*dt;
         else if(cc.director.getScene().name == "Stage 3" && this.player.x > this.node.x) this.node.x += 20*dt;
@@ -60,21 +56,6 @@ export class friendly_tank_v2 extends cc.Component {
         console.log("this is setting target for tv2 : " , TTarget.name);
         this.target = TTarget;
     }
-
-    /*private playerMovement(dt)
-    {
-        if(this.target == null){
-            console.log('isnullllllll');
-        }
-        else{
-            var dx = this.target.position.x - this.node.position.x;
-            var dy = this.target.position.y - this.node.position.y;
-            var dir = cc.v2(dx,dy);
-            var angle = dir.signAngle(cc.v2(1,0)); //in radiant
-            var degree = angle / Math.PI * 180;
-            this.gun.angle = -(degree + 175);
-        }
-    }*/
     
     onBeginContact(contact, selfCollider, otherCollider)
     {
