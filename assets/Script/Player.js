@@ -326,7 +326,10 @@ cc.Class({
         
         if(scene.name != "Game_Complete"){
             this.speedX = -this.speed;
-            this.node.scaleX = -1;
+            if(this.node.scaleX == 1) {
+                this.node.scaleX = -1;
+                this.node.angle = -this.node.angle;
+            }
         }
     },
 
@@ -335,7 +338,10 @@ cc.Class({
         
         if(scene.name != "Game_Complete"){
             this.speedX = this.speed;
-            this.node.scaleX = 1;
+            if(this.node.scaleX == -1) {
+                this.node.scaleX = 1;
+                this.node.angle = -this.node.angle;
+            }
         }
     },
 
