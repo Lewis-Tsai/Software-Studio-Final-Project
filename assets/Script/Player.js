@@ -26,6 +26,7 @@ cc.Class({
         shooting: false,
         time: 180,
         counter: 0,
+        anim_counter: 0,
         clear_enemies: false,
         hostage_save: 0,
         regain: false,
@@ -55,11 +56,11 @@ cc.Class({
             type : cc.AudioClip,
             default : null
         },
-        animator:{
+        /*animator:{
             type: cc.Animation,
             default: null
         },
-        animateState: null,
+        animateState: null,*/
         camera:{
             type: cc.Node,
             default: null
@@ -115,7 +116,23 @@ cc.Class({
         canvas:{
             type: cc.Node,
             default: null
-        }
+        },
+        pic_1: {
+            type: cc.SpriteFrame,
+            default: null
+        },
+        pic_2: {
+            type: cc.SpriteFrame,
+            default: null
+        },
+        pic_3: {
+            type: cc.SpriteFrame,
+            default: null
+        },
+        pic_4: {
+            type: cc.SpriteFrame,
+            default: null
+        },
     },
 
     onLoad () {
@@ -132,7 +149,7 @@ cc.Class({
         // enable physical system
         cc.director.getPhysicsManager().enabled = true;
         // Get player animator component
-        this.animator = this.getComponent(cc.Animation);
+        //this.animator = this.getComponent(cc.Animation);
 
         this.maxHP = Global.armor_level * 50 + 200;
         this.HP = this.maxHP;
@@ -158,15 +175,14 @@ cc.Class({
         // Record initial reborn position
         this.rebornPos = this.node.position;
         // Play player default animation
-        this.animator.pause();
-        this.animateState = this.animator.play();
+        //this.animator.pause();
+        //this.animateState = this.animator.play();
         //Get player health
         this.score = Global.score;
         if(cc.director.getScene().name == "Game_Complete"){
             // audio
             cc.audioEngine.play(this.successaudio, false, 1);
         }
-        //cc.audioEngine.playEffect(this.flyAudio, true);
     },
 
     update (dt) {
@@ -175,7 +191,7 @@ cc.Class({
         // Camera follow
         this.camerafollow();
         // Animation Update
-        this.PlayerAnimation();
+        //this.PlayerAnimation();
         // UI Update
         this.UpdateUI(dt);
     },
@@ -409,9 +425,9 @@ cc.Class({
         if(this.isDead){
             // this.animator.play("helicopter_destroy");
         }
-        else if(!this.animator.getAnimationState("helicopter_fly").isPlaying){
+        /*else if(!this.animator.getAnimationState("helicopter_fly").isPlaying){
             this.animator.play("helicopter_fly");
-        }
+        }*/
     },
 
     UpdateUI: function(dt) {
@@ -459,6 +475,31 @@ cc.Class({
                         if(this.bombs < 10)
                             this.bombs++;
                     }
+                }
+
+                this.anim_counter += dt;
+                if(this.anim_counter >= 5) {
+                    if(this.node.getComponent(cc.Sprite).SpriteFrame == this.pic_1) {
+                        this.node.getComponent(cc.Sprite).SpriteFrame = this.pic_2;
+                        this.node.getComponent(cc.Sprite).enabled = false;
+                        this.node.getComponent(cc.Sprite).enabled = true;
+                    }
+                    else if(this.node.getComponent(cc.Sprite).SpriteFrame == this.pic_2) {
+                        this.node.getComponent(cc.Sprite).SpriteFrame = this.pic_3;
+                        this.node.getComponent(cc.Sprite).enabled = false;
+                        this.node.getComponent(cc.Sprite).enabled = true;
+                    }
+                    else if(this.node.getComponent(cc.Sprite).SpriteFrame == this.pic_3) {
+                        this.node.getComponent(cc.Sprite).SpriteFrame = this.pic_4;
+                        this.node.getComponent(cc.Sprite).enabled = false;
+                        this.node.getComponent(cc.Sprite).enabled = true;
+                    }
+                    else {
+                        this.node.getComponent(cc.Sprite).SpriteFrame = this.pic_1;
+                        this.node.getComponent(cc.Sprite).enabled = false;
+                        this.node.getComponent(cc.Sprite).enabled = true;
+                    }
+                    this.anim_counter -= 5;
                 }
 
                 if(this.shooting) {
