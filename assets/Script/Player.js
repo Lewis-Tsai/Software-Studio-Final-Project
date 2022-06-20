@@ -210,13 +210,9 @@ cc.Class({
                         this.bombs--;
                         var audio_id = cc.audioEngine.playEffect(this.bombEffect, false);
                         var new_bomb = cc.instantiate(this.bullet_bomb);
-                        new_bomb.setPosition(0, -50);
-                        cc.find("Canvas/Player").addChild(new_bomb);
+                        new_bomb.setPosition(this.node.position.x, this.node.position.y - 50);
+                        cc.find("Canvas").addChild(new_bomb);
                         new_bomb.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, -200);
-                        if(this.node.scaleX > 0)
-                            new_bomb.angle = -this.node.angle;
-                        else
-                            new_bomb.angle = this.node.angle;
                         cc.audioEngine.stop(audio_id);
                     }
                     break;
@@ -268,8 +264,15 @@ cc.Class({
                     this.missiles--;
                     var audio_id = cc.audioEngine.playEffect(this.missileEffect, false);
                     var new_missile = cc.instantiate(this.bullet_missile);
-                    new_missile.setPosition(80, -32);
-                    cc.find("Canvas/Player").addChild(new_missile);
+                    new_missile.angle = this.node.angle - 90;
+                    if(this.node.scaleX > 0)
+                        new_missile.setPosition(this.node.position.x + 86 * Math.cos(Math.PI * this.node.angle/180 - 0.38), this.node.position.y + 86 * Math.sin(Math.PI * this.node.angle/180 - 0.38));
+                    else
+                        new_missile.setPosition(this.node.position.x - 86 * Math.cos(Math.PI * this.node.angle/180 + 0.38), this.node.position.y - 86 * Math.sin(Math.PI * this.node.angle/180 + 0.38));
+                    new_missile.scaleX = this.node.scaleX * 3000;
+                    new_missile.scaleY = this.node.scaleX * 3000;
+                    new_missile.scaleZ = this.node.scaleX * 3000;
+                    cc.find("Canvas").addChild(new_missile);
                     if(this.node.scaleX > 0)
                         new_missile.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.missile_speed * Math.cos(Math.PI * this.node.angle/180), this.missile_speed * Math.sin(Math.PI * this.node.angle/180));
                     else
@@ -413,7 +416,10 @@ cc.Class({
             if(this.HP <= 0 || this.time <= 0) {
                 if(!this.isDead) {
                     this.isDead = true;
-                    Global.time_left = this.time;
+                    if(this.time <= 0)
+                        Global.time_left = 0;
+                    else
+                        Global.time_left = this.time;
                     Global.total_battle++;
                     var explode = cc.instantiate(this.boom_effect);
                     explode.setPosition(this.node.position.x, this.node.position.y);

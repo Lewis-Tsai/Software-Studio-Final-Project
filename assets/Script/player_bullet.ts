@@ -13,37 +13,24 @@ export default class player_bullet extends cc.Component {
     @property(cc.Prefab)
     explode_prefab: cc.Node = null;
 
-    // LIFE-CYCLE CALLBACKS:
+    private player_angle = 0;
+    private player_scale = 1;
 
     // onLoad () {}
 
     start () {
-
+        this.player_angle = this.node.parent.angle;
+        this.player_scale = this.node.parent.scaleX;
     }
 
     update (dt) {
-
+        
     }
 
     onBeginContact(contact, self, other) {
         if(other.node.name == "background_size") {
             var explode = cc.instantiate(this.explode_prefab);
-            var newX;
-            if(this.node.parent.scaleX > 0) {
-                var len = Math.sqrt(this.node.position.x * this.node.position.x + this.node.position.y * this.node.position.y)
-                var cos = this.node.position.x / len;
-                var arccos = Math.acos(cos) * 180 / Math.PI;
-                arccos -= this.node.parent.angle;
-                newX = len * Math.cos(arccos * Math.PI / 180);
-            }
-            else {
-                var len = Math.sqrt(this.node.position.x * this.node.position.x + this.node.position.y * this.node.position.y)
-                var cos = this.node.position.x / len;
-                var arccos = Math.acos(cos) * 180 / Math.PI;
-                arccos += this.node.parent.angle;
-                newX = -len * Math.cos(arccos * Math.PI / 180);
-            }
-            explode.setPosition(newX + this.node.parent.position.x, -200);
+            explode.setPosition(this.node.position.x , -200);
             cc.find("Canvas").addChild(explode);
             self.node.destroy();
             /*this.scheduleOnce( function() {
