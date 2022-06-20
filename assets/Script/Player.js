@@ -211,7 +211,7 @@ cc.Class({
                         var audio_id = cc.audioEngine.playEffect(this.bombEffect, false);
                         var new_bomb = cc.instantiate(this.bullet_bomb);
                         new_bomb.setPosition(this.node.position.x, this.node.position.y - 50);
-                        cc.find("Canvas").addChild(new_bomb);
+                        cc.find("Canvas/player_bullets").addChild(new_bomb);
                         new_bomb.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, -200);
                         cc.audioEngine.stop(audio_id);
                     }
@@ -272,7 +272,7 @@ cc.Class({
                     new_missile.scaleX = this.node.scaleX * 3000;
                     new_missile.scaleY = this.node.scaleX * 3000;
                     new_missile.scaleZ = this.node.scaleX * 3000;
-                    cc.find("Canvas").addChild(new_missile);
+                    cc.find("Canvas/player_bullets").addChild(new_missile);
                     if(this.node.scaleX > 0)
                         new_missile.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.missile_speed * Math.cos(Math.PI * this.node.angle/180), this.missile_speed * Math.sin(Math.PI * this.node.angle/180));
                     else
