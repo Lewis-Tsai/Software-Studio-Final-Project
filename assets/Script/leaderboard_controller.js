@@ -36,7 +36,7 @@ cc.Class({
             });
             console.log(info_array);
             for(var i = 0; i < info_array.length; i++)
-                show_string += '🧑🏿 ' + info_array[i][1]  + "    " + info_array[i][0] + '\n' + '\n';
+                show_string += info_array[i][1]  + "    " + info_array[i][0] + '\n' + '\n';
         }).catch(function (error) {
             alert(error);
         });

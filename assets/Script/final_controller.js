@@ -26,10 +26,10 @@ cc.Class({
     start () {
         var scene = cc.director.getScene();
         var total_points;
-        this.user_name_text.getComponent(cc.Label).string=  '🧑🏿 ' + Global.user_name;
+        this.user_name_text.getComponent(cc.Label).string=   Global.user_name;
 
         if(scene.name == "Game Failed"){
-            total_points = Global.score - Global.time_left * 30 - 100;
+            total_points = Global.score - Global.time_left * 10 - 100;
 
             this.user_data_text.getComponent(cc.Label).string= '\n' + '\n' + "  " + Global.score 
             + " - " + (Global.time_left * 30 + 100) + " = " + total_points;

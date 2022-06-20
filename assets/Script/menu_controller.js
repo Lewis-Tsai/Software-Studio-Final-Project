@@ -78,7 +78,7 @@ cc.Class({
     },
 
     profile_btn_handler: function (event) {
-        alert("not available");
+        cc.director.loadScene("Profile");
     },
 
     leader_board_btn_handler: function (event) {

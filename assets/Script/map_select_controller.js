@@ -37,11 +37,17 @@ cc.Class({
     // update (dt) {},
 
     desert_btn_handler: function (event) {
-        cc.director.loadScene("Stage 1");
+        if(Global.hostage_mode)
+            cc.director.loadScene("Stage 4");
+        else
+            cc.director.loadScene("Stage 1");
     },
 
     grassland_btn_handler: function (event) {
-        cc.director.loadScene("Stage 2");
+        if(Global.hostage_mode)
+            cc.director.loadScene("Stage 5");
+        else
+            cc.director.loadScene("Stage 2");
     },
 
     snowfield_btn_handler: function (event) {
