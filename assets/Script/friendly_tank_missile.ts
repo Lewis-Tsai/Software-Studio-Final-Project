@@ -38,11 +38,8 @@ export default class friendly_tank_missile extends cc.Component {
     }
 
     update (dt) {
-        //this.timer += dt;
-        //console.log("bu_e");
-
-
-        //if (timer >=) this.findtarget();
+        //if(this.target.name == "enemy_tank_gun") this.node.x += 0;
+        //else this.node.x += 20 * dt;
     }
     afterfindtarget(){
         if (this.tag){
@@ -103,7 +100,7 @@ export default class friendly_tank_missile extends cc.Component {
         cc.find("Canvas").addChild(smoke);
         let temp_angle = Math.asin(sin) * 180 / Math.PI;
         cc.audioEngine.play(this.tank_shooting_audio, false, 1);
-        //console.log(temp_angle);
+
         if (temp_angle >= 0 && this.soldier_dir == -1) {
             this.node.angle = 180-temp_angle;
         }else if (temp_angle >= 0 && this.soldier_dir == 1) {

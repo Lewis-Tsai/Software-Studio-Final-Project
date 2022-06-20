@@ -35,6 +35,10 @@ export class friendly_tank_v2 extends cc.Component {
     update(dt)
     {
         this.playerMovement(dt);
+        //if(this.node.x - cc.find("Canvas/Main Camera").x < 960) {
+           // this.node.x += 20 * dt;//can view=> moving
+        //}
+        if(this.player.x > this.node.x) this.node.x += 20*dt;
     }
     preparegun(){
         //in view then can fire
@@ -49,33 +53,6 @@ export class friendly_tank_v2 extends cc.Component {
     public setTarget(TTarget : cc.Node){
         console.log("this is setting target for tv2 : " , TTarget.name);
         this.target = TTarget;
-    }
-    
-    rotate(){
-        if (this.target == null) { 
-            //this.node.destroy();
-            console.log('isNulllllllllll');
-            return;
-        }
-        if(this.target.name == "enemy_tank_gun"){
-            var dx = this.target.position.x - this.node.position.x;
-            var dy = this.target.position.y - this.node.position.y;
-            var dir = cc.v2(dx,dy);
-            var angle = dir.signAngle(cc.v2(1,0)); //in radiant
-            //console.log(angle);
-            var degree = angle / Math.PI * 180;
-            this.gun.angle = -(degree + 175);
-        }
-        else if(this.target.name == "enemies_soldier"){
-            var dx = this.target.position.x - this.node.position.x;
-            var dy = this.target.position.y - this.node.position.y;
-            var dir = cc.v2(dx,dy);
-            var angle = dir.signAngle(cc.v2(1,0)); //in radiant
-            //console.log(angle);
-            var degree = angle / Math.PI * 180;
-            this.gun.angle = -(degree + 175);
-            console.log('comecomdeasdfesgaeg')
-        }
     }
 
     private playerMovement(dt)
