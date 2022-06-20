@@ -430,6 +430,7 @@ cc.Class({
     UpdateUI: function(dt) {
         var scene = cc.director.getScene();
         
+        console.log(this.canvas.position.y);
         if(scene.name != "Game_Complete") {
             // Renew HP, score
             if(this.HP <= 0 || this.time <= 0) {
@@ -517,8 +518,13 @@ cc.Class({
                         }
                         if(!found) {*/
                             var new_bullet = cc.instantiate(this.bullet_gun);
-                            new_bullet.setPosition(40, -40);
-                            cc.find("Canvas/Player").addChild(new_bullet);
+                            new_bullet.angle = this.node.angle;
+                            new_bullet.scaleX = this.node.scaleX;
+                            if(this.node.scaleX > 0)
+                                new_bullet.setPosition(this.node.position.x + 56.7 * Math.cos(Math.PI * this.node.angle/180 - 0.75), this.node.position.y + 56.7 * Math.sin(Math.PI * this.node.angle/180 - 0.75));
+                            else
+                                new_bullet.setPosition(this.node.position.x - 56.7 * Math.cos(Math.PI * this.node.angle/180 + 0.75), this.node.position.y - 56.7 * Math.sin(Math.PI * this.node.angle/180 + 0.75));
+                            cc.find("Canvas/player_bullets").addChild(new_bullet);
                             if(this.node.scaleX > 0)
                                 new_bullet.getComponent(cc.RigidBody).linearVelocity = cc.v2(this.bullet_speed * Math.cos(Math.PI * this.node.angle/180), this.bullet_speed * Math.sin(Math.PI * this.node.angle/180));
                             else
@@ -562,8 +568,9 @@ cc.Class({
                     }
                 }
 
-                this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, 0);
             }
+            
+            this.node.getComponent(cc.RigidBody).linearVelocity = cc.v2(0, 0);
         }
     },
 

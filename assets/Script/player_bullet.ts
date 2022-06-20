@@ -30,7 +30,7 @@ export default class player_bullet extends cc.Component {
     onBeginContact(contact, self, other) {
         if(other.node.name == "ground") {
             var explode = cc.instantiate(this.explode_prefab);
-            explode.setPosition(this.node.position.x , -200);
+            explode.setPosition(this.node.position.x , this.node.position.y + 80);
             cc.find("Canvas").addChild(explode);
             self.node.destroy();
             /*this.scheduleOnce( function() {
