@@ -29,9 +29,11 @@ cc.Class({
         anim_counter: 0,
         clear_enemies: false,
         hostage_save: 0,
+        total_hostages: 0,
         regain: false,
         regain_timer: 0,
         id: 0,
+        enable_rotate: true,
         successaudio:{
             type : cc.AudioClip,
             default : null
@@ -56,11 +58,11 @@ cc.Class({
             type : cc.AudioClip,
             default : null
         },
-        /*animator:{
+        animator:{
             type: cc.Animation,
             default: null
         },
-        animateState: null,*/
+        animateState: null,
         camera:{
             type: cc.Node,
             default: null
@@ -117,22 +119,6 @@ cc.Class({
             type: cc.Node,
             default: null
         },
-        pic_1: {
-            type: cc.SpriteFrame,
-            default: null
-        },
-        pic_2: {
-            type: cc.SpriteFrame,
-            default: null
-        },
-        pic_3: {
-            type: cc.SpriteFrame,
-            default: null
-        },
-        pic_4: {
-            type: cc.SpriteFrame,
-            default: null
-        },
     },
 
     onLoad () {
@@ -149,7 +135,7 @@ cc.Class({
         // enable physical system
         cc.director.getPhysicsManager().enabled = true;
         // Get player animator component
-        //this.animator = this.getComponent(cc.Animation);
+        this.animator = this.getComponent(cc.Animation);
 
         this.maxHP = Global.armor_level * 50 + 200;
         this.HP = this.maxHP;
@@ -157,6 +143,12 @@ cc.Class({
         this.speed2 = Global.engine_level * 5 + 85;
         if(Global.hostage_mode)
             this.time = 360;
+
+        for(let i in this.canvas.children) {
+            if(this.canvas.children[i].name == "friendly_soldier_hostage") {
+                this.total_hostages++;
+            }
+        }
     },
 
     onDestroy () {
@@ -175,8 +167,8 @@ cc.Class({
         // Record initial reborn position
         this.rebornPos = this.node.position;
         // Play player default animation
-        //this.animator.pause();
-        //this.animateState = this.animator.play();
+        this.animator.pause();
+        this.animateState = this.animator.play();
         //Get player health
         this.score = Global.score;
         if(cc.director.getScene().name == "Game_Complete"){
@@ -191,7 +183,7 @@ cc.Class({
         // Camera follow
         this.camerafollow();
         // Animation Update
-        //this.PlayerAnimation();
+        this.PlayerAnimation();
         // UI Update
         this.UpdateUI(dt);
     },
@@ -317,23 +309,28 @@ cc.Class({
 
     onMouseMove: function (event) {
         // rotate the helicopter according to the mouse position
-        let helicopter_x = this.node.position.x - this.camera.position.x;
-        let helicopter_y = this.node.position.y - this.camera.position.y;
-        let delta_x = event.getLocationX() - helicopter_x - 480;
-        let delta_y = event.getLocationY() - helicopter_y - 320;
-        if(this.node.scaleX > 0 && delta_x > 0) {
-            this.node.angle = Math.atan(delta_y/delta_x) * 180 / Math.PI;
-            if(this.node.angle > 36)
-                this.node.angle = 36;
-            else if(this.node.angle < -36)
-                this.node.angle = -36;
+        if(this.enable_rotate) {
+            let helicopter_x = this.node.position.x - this.camera.position.x;
+            let helicopter_y = this.node.position.y - this.camera.position.y;
+            let delta_x = event.getLocationX() - helicopter_x - 480;
+            let delta_y = event.getLocationY() - helicopter_y - 320;
+            if(this.node.scaleX > 0 && delta_x > 0) {
+                this.node.angle = Math.atan(delta_y/delta_x) * 180 / Math.PI;
+                if(this.node.angle > 36)
+                    this.node.angle = 36;
+                else if(this.node.angle < -36)
+                    this.node.angle = -36;
+            }
+            else if(this.node.scaleX < 0 && delta_x < 0) {
+                this.node.angle = Math.atan(delta_y/delta_x) * 180 / Math.PI;
+                if(this.node.angle > 36)
+                    this.node.angle = 36;
+                else if(this.node.angle < -36)
+                    this.node.angle = -36;
+            }
         }
-        else if(this.node.scaleX < 0 && delta_x < 0) {
-            this.node.angle = Math.atan(delta_y/delta_x) * 180 / Math.PI;
-            if(this.node.angle > 36)
-                this.node.angle = 36;
-            else if(this.node.angle < -36)
-                this.node.angle = -36;
+        else {
+            this.node.angle = 0;
         }
     },
 
@@ -550,18 +547,18 @@ cc.Class({
                         if(this.canvas.children[i].name == "enemies_soldier" || this.canvas.children[i].name == "enemy_tank") {
                             if(this.canvas.children[i].active)
                                 finish = false;
-                            else if(this.canvas.children[i].name == "friendly_soldier_hostage") {
-                                hostages++;
-                                if(!this.canvas.children[i].active)
-                                    hostages_disappear++;
-                            }
+                        }
+                        else if(this.canvas.children[i].name == "friendly_soldier_hostage") {
+                            hostages++;
+                            if(!this.canvas.children[i].active)
+                                hostages_disappear++;
                         }
                     }
                     this.clear_enemies = finish;
-                    this.total_hostages = hostages;
+                    this.hostage_save = hostages_disappear;
 
-                    if(Global.hostage_mode && hostages_disappear != this.hostage_save) {
-                        //cc.director.loadScene("Game Failed");
+                    if(Global.hostage_mode && hostages != this.total_hostages) {
+                        cc.director.loadScene("Game Failed");
                     }
                 }
 
@@ -598,12 +595,14 @@ cc.Class({
             if(Global.hostage_mode) {
                 Global.on_helipad = true;
             }
+            this.enable_rotate = false;
         }
         else if(otherCollider.node.name == "helipad") {
             if(Global.hostage_mode && this.hostage_save == this.total_hostages) {
                 cc.director.loadScene("Game Completed");
             }
             this.regain = true;
+            this.enable_rotate = false;
         }
         else if(otherCollider.node.name == "friendly_soldier_hostage") {
             this.hostage_save++;
@@ -616,6 +615,7 @@ cc.Class({
                 Global.on_helipad = false;
             this.regain = false;
             this.regain_timer = 0;
+            this.enable_rotate = true;
         }
     }
 });
