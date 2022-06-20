@@ -12,7 +12,9 @@ export default class friendly_tank_missile extends cc.Component {
     smoke_Prefab: cc.Prefab = null;
     //private Living:boolean = true;
     private target: cc.Node = null
+    private player: cc.Node = null
     private bullet_speed = 300;
+    private gun: cc.Node = null
     private timer = 0.0;
     private master_Speed = -100;
     // LIFE-CYCLE CALLBACKS:
@@ -23,8 +25,10 @@ export default class friendly_tank_missile extends cc.Component {
 
         //this.anim = this.getComponent(cc.Animation);
         this.canvas = cc.find("Canvas");
+        this.player = cc.find("Canvas/Player");
         this.node.scaleX *= 0.3;
         this.soldier_dir = this.node.position.x;
+        this.gun = cc.find("Canvas/friendly_tank_v2/gun");
         //console.log(this.canvas.position);
     }
 
@@ -99,7 +103,19 @@ export default class friendly_tank_missile extends cc.Component {
             this.node.position.x, this.node.position.y);
         cc.find("Canvas").addChild(smoke);
         let temp_angle = Math.asin(sin) * 180 / Math.PI;
-        cc.audioEngine.play(this.tank_shooting_audio, false, 1);
+        if(Math.abs(this.player.x - this.node.x)<500){
+            cc.audioEngine.play(this.tank_shooting_audio, false, 1);
+            console.log('less than 500!!!!!!!!!!!!!!');
+        }
+        
+        if(this.target.x > this.node.x){
+            let action = cc.sequence(cc.moveBy(0.1,-10*Math.cos(temp_angle),0), cc.moveBy(0.1,10*Math.cos(temp_angle),0));
+            this.gun.runAction(action);
+        }
+        else if(this.target.x <= this.node.x){
+            let action = cc.sequence(cc.moveBy(0.1,10*Math.cos(temp_angle),0), cc.moveBy(0.1,-10*Math.cos(temp_angle),0));
+            this.gun.runAction(action);
+        }
 
         if (temp_angle >= 0 && this.soldier_dir == -1) {
             this.node.angle = 180-temp_angle;

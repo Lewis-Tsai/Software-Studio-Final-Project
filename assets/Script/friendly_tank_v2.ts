@@ -11,6 +11,8 @@ export class friendly_tank_v2 extends cc.Component {
     private blood: cc.Node = null;
     private player: cc.Node = null;
     private node_b: cc.Node = null;
+    private tank: cc.Node = null;
+
     @property(cc.Prefab)
     friendly_tank_missile_Prefab: cc.Prefab = null;
 
@@ -25,6 +27,7 @@ export class friendly_tank_v2 extends cc.Component {
         this.gun = cc.find("Canvas/friendly_tank_v2/gun");
         this.blood = cc.find("Canvas/friendly_tank_v2/blood");
         this.player = cc.find("Canvas/Player");
+        this.tank = cc.find("Canvas/friendly_tank_v2");
     }
 
     start() 
@@ -65,10 +68,8 @@ export class friendly_tank_v2 extends cc.Component {
             var dy = this.target.position.y - this.node.position.y;
             var dir = cc.v2(dx,dy);
             var angle = dir.signAngle(cc.v2(1,0)); //in radiant
-            //console.log(angle);
             var degree = angle / Math.PI * 180;
             this.gun.angle = -(degree + 175);
-            console.log('need to spin now because of tank!!!');
         }
     }
     onBeginContact(contact, selfCollider, otherCollider)

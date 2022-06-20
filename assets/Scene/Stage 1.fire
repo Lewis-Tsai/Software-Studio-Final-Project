@@ -2767,8 +2767,6 @@
     "bombEffect": {
       "__uuid__": "c2848f7c-1178-40de-8c45-026128a38549"
     },
-    "animator": null,
-    "animateState": null,
     "camera": {
       "__id__": 3
     },
@@ -19140,7 +19138,7 @@
         "__id__": 558
       }
     ],
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 560
@@ -19175,8 +19173,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -33.923,
-        -253.041,
+        -118.965,
+        -274.033,
         0,
         0,
         0,
@@ -19512,15 +19510,15 @@
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
-      "x": 0.5,
-      "y": 0.5
+      "x": 0,
+      "y": 0
     },
     "_trs": {
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -8.36,
-        50.158,
+        -49.038,
+        42.022,
         0,
         0,
         0,
