@@ -34,13 +34,16 @@ export default class bullet_emeny extends cc.Component {
 
     // LIFE-CYCLE CALLBACKS:
     private tag = true;
+
+    private global = null;
     onLoad () {
 
         //this.anim = this.getComponent(cc.Animation);
         this.canvas = cc.find("Canvas");
         this.node.scaleX *= 0.3;
         this.soldier_dir = this.node.position.x;
-        console.log(this.soldier_dir);
+        //console.log(this.soldier_dir);
+        this.global = Global;
     }
 
     start () {
@@ -75,42 +78,83 @@ export default class bullet_emeny extends cc.Component {
     findtarget(){  //target closest friend
         let closest = 100000000.0;
         for (var i = 0;i < this.canvas.childrenCount; i++){
-            if ( this.canvas.children[i].name == "friendly_soldier" /*|| this.canvas.children[i].name == "friendly_tank_v2"*/ || this.canvas.children[i].name == "friendly_tank"){
-                //console.log(this.canvas.children[i].name);
-                let X = -this.node.position.x + this.canvas.children[i].position.x; // cos
-                let Y = -this.node.position.y + this.canvas.children[i].position.y;        // sin
-                let cos = X/Math.sqrt(X*X + Y*Y);
-                let sin = Y/Math.sqrt(X*X + Y*Y);
+            if (this.global.hostage_mode){
+                if (this.global.on_helipad){ //is rescuing
+                    if ( (this.canvas.children[i].active && this.canvas.children[i].name == "friendly_soldier_hostage") ||this.canvas.children[i].name == "friendly_soldier" || this.canvas.children[i].name == "friendly_tank_v2" || this.canvas.children[i].name == "friendly_tank"){
+                        let X = -this.node.position.x + this.canvas.children[i].position.x; // cos
+                        let Y = -this.node.position.y + this.canvas.children[i].position.y;        // sin
+                        let cos = X/Math.sqrt(X*X + Y*Y);
+                        let sin = Y/Math.sqrt(X*X + Y*Y);
+    
+                        if ( Math.abs(X)<=640 && Math.sqrt(X*X + Y*Y) < closest && sin <= 0.5 && sin>= -0.5){
+                            if (this.soldier_dir == 1 && cos > 0){
+                                closest = Math.sqrt(X*X + Y*Y);
+                                this.target = this.canvas.children[i];
+                            }
+                            else if (this.soldier_dir == -1 && cos < 0){
+                                closest = Math.sqrt(X*X + Y*Y);
+                                this.target = this.canvas.children[i];
+                            }
+                        }
+                    }
 
-                if ( Math.abs(X)<=640 && Math.sqrt(X*X + Y*Y) < closest && sin <= 0.5 && sin>= -0.5){
-                    if (this.soldier_dir == 1 && cos > 0){
-                        closest = Math.sqrt(X*X + Y*Y);
-                        this.target = this.canvas.children[i];
+                }else {
+                    if (this.canvas.children[i].name == "Player"){
+                        let X = -this.node.position.x + this.canvas.children[i].position.x; // cos
+                        let Y = -this.node.position.y + this.canvas.children[i].position.y;        // sin
+                        let cos = X/Math.sqrt(X*X + Y*Y);
+                        //let sin = Y/Math.sqrt(X*X + Y*Y);
+                        if ( Math.abs(X)<=640 && Math.sqrt(X*X + Y*Y) < closest ){
+                            if (this.soldier_dir == 1 && cos > 0.5){
+                            closest = Math.sqrt(X*X + Y*Y);
+                            this.target = this.canvas.children[i];
+                            }
+                            else if (this.soldier_dir == -1 && cos < -0.5){
+                                closest = Math.sqrt(X*X + Y*Y);
+                                this.target = this.canvas.children[i];
+                            }
+                            //console.log(this.target.name);
+                        }
                     }
-                    else if (this.soldier_dir == -1 && cos < 0){
-                        closest = Math.sqrt(X*X + Y*Y);
-                        this.target = this.canvas.children[i];
-                    }
-                   //console.log(this.target.name);
                 }
-                //this.canvas.children[i]
-            }else if (this.canvas.children[i].name == "Player"){
-                let X = -this.node.position.x + this.canvas.children[i].position.x; // cos
-                let Y = -this.node.position.y + this.canvas.children[i].position.y;        // sin
-                let cos = X/Math.sqrt(X*X + Y*Y);
-                //let sin = Y/Math.sqrt(X*X + Y*Y);
+            }else {
+                if ( this.canvas.children[i].name == "friendly_soldier" || this.canvas.children[i].name == "friendly_tank_v2" || this.canvas.children[i].name == "friendly_tank"){
+                    //console.log(this.canvas.children[i].name);
+                    let X = -this.node.position.x + this.canvas.children[i].position.x; // cos
+                    let Y = -this.node.position.y + this.canvas.children[i].position.y;        // sin
+                    let cos = X/Math.sqrt(X*X + Y*Y);
+                    let sin = Y/Math.sqrt(X*X + Y*Y);
 
-                if ( Math.abs(X)<=640 && Math.sqrt(X*X + Y*Y) < closest ){
-                    if (this.soldier_dir == 1 && cos > 0.5){
-                    closest = Math.sqrt(X*X + Y*Y);
-                    this.target = this.canvas.children[i];
+                    if ( Math.abs(X)<=640 && Math.sqrt(X*X + Y*Y) < closest && sin <= 0.5 && sin>= -0.5){
+                        if (this.soldier_dir == 1 && cos > 0){
+                            closest = Math.sqrt(X*X + Y*Y);
+                            this.target = this.canvas.children[i];
+                        }
+                        else if (this.soldier_dir == -1 && cos < 0){
+                            closest = Math.sqrt(X*X + Y*Y);
+                            this.target = this.canvas.children[i];
+                        }
+                    //console.log(this.target.name);
                     }
-                    else if (this.soldier_dir == -1 && cos < -0.5){
+                    //this.canvas.children[i]
+                }else if (this.canvas.children[i].name == "Player"){
+                    let X = -this.node.position.x + this.canvas.children[i].position.x; // cos
+                    let Y = -this.node.position.y + this.canvas.children[i].position.y;        // sin
+                    let cos = X/Math.sqrt(X*X + Y*Y);
+                    //let sin = Y/Math.sqrt(X*X + Y*Y);
+
+                    if ( Math.abs(X)<=640 && Math.sqrt(X*X + Y*Y) < closest ){
+                        if (this.soldier_dir == 1 && cos > 0.5){
                         closest = Math.sqrt(X*X + Y*Y);
                         this.target = this.canvas.children[i];
-                    }
+                        }
+                        else if (this.soldier_dir == -1 && cos < -0.5){
+                            closest = Math.sqrt(X*X + Y*Y);
+                            this.target = this.canvas.children[i];
+                        }
 
-                    //console.log(this.target.name);
+                        //console.log(this.target.name);
+                    }
                 }
             }
         }
@@ -141,7 +185,7 @@ export default class bullet_emeny extends cc.Component {
         //else this.node.angle = 180 - temp_angle;
     }
     onBeginContact(contact,self,other){
-        if (other.node.name == "friendly_soldier" || other.node.name == "Player" /*|| other.node.name == "friendly_tank_v2"*/ || other.node.name == "friendly_tank"){ // bullet
+        if (other.node.name == "friendly_soldier_hostage" || other.node.name == "friendly_soldier" || other.node.name == "Player" || other.node.name == "friendly_tank_v2" || other.node.name == "friendly_tank"){ // bullet
             //this.node
             this.node.destroy()
         }

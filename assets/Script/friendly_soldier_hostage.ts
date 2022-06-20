@@ -39,6 +39,8 @@ export default class friendly_soldier_hostage extends cc.Component {
     private move:boolean = false;
 
     private rescue:boolean = false;
+
+    private global = null;
     // LIFE-CYCLE CALLBACKS:
  
     onLoad () {
@@ -49,8 +51,8 @@ export default class friendly_soldier_hostage extends cc.Component {
         this.player = cc.find("Canvas/Player");
         //this.node.scaleX = 1;
         console.log(this.player.position);
-
-        if (this.node.scale < 0) this.Speed *= -1;
+        this.global = Global;
+        //if (this.node.scale < 0) this.Speed *= -1;
         //console.log(this.player.getComponent("Player").isDead)
         //this.loadgun();
     }
@@ -70,19 +72,24 @@ export default class friendly_soldier_hostage extends cc.Component {
         if(!this.rescue) {
             //this.move = true;
             //need parameter
-            /*if (playerinpad) {this.rescue = true; this.anim.play("friendly_soldier_walk")}*/ 
+            if (this.global.on_helipad) {this.rescue = true; this.node.scaleX *= -1;this.anim.play("friendly_soldier_walk")}
         }
         else{
-            if(this.node.x - cc.find("Canvas/Main Camera").x < -960 && !this.move) this.move = true;
+            if(this.node.x - cc.find("Canvas/Main Camera").x < 960 && !this.move) this.move = true;
             if (this.Living && !this.player.getComponent("Player").isDead){ // all live =>move
                 //this.firegun();
-                if(this.node.x - cc.find("Canvas/Main Camera").x < -960) {
+                if(this.node.x - cc.find("Canvas/Main Camera").x < 960) {
                     this.node.x += this.Speed * dt;//can view=> moving
+                }
+                if (Math.abs(this.node.x - cc.find("Canvas/Main Camera").x) < 3){
+                    this.WasRescued();
                 }
             }
         }
      }
- 
+     WasRescued(){
+        this.node.active = false;
+     }
      Waskill() {
         this.Living = false;
         console.log(this.Living);

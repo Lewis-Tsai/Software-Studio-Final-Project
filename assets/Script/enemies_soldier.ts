@@ -99,23 +99,6 @@ export default class enemies_soldier extends cc.Component {
     firegun(){
         //in view then can fire
         if (this.node.x - cc.find("Canvas/Main Camera").x < 960) this.loadgun();
-        
-        //
-        for (var i = 0 ;i<this.node.childrenCount ;i++){
-            if (this.node.children[i].name == "bullet_enemy"){
-                
-                //this.node.children[i].active = true;
-                //this.node.children[i].parent = cc.find("Canvas");
-                break;
-            }
-        }
-        /*
-        var that = this;
-        this.scheduleOnce(function() {    
-            this.node.children[0].active = false;
-            this.node.children[0].position.x = that.node.position.x;
-            this.node.children[0].position.y = that.node.position.y;
-        }, 0.95);*/
     }
     
      onBeginContact(contact,self,other){
