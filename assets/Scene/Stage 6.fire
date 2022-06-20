@@ -2313,7 +2313,7 @@
     "regain": false,
     "regain_timer": 0,
     "id": 0,
-    "enable_rotate": true,
+    "enable_rotate": false,
     "successaudio": null,
     "flyAudio": {
       "__uuid__": "c523e899-bfff-4363-aa57-db1f595d6463"

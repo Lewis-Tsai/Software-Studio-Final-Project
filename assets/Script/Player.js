@@ -33,7 +33,7 @@ cc.Class({
         regain: false,
         regain_timer: 0,
         id: 0,
-        enable_rotate: true,
+        enable_rotate: false,
         successaudio:{
             type : cc.AudioClip,
             default : null
@@ -580,10 +580,22 @@ cc.Class({
             // hit by bullet from enemies
             this.HP -= 10;
             otherCollider.node.active = false;
+            if(this.node.color.r == 255 && this.node.color.g == 255 && this.node.color.b == 255) {
+                this.node.color = cc.color(255, 0, 0);
+                this.scheduleOnce(function() {
+                    this.node.color = cc.color(255, 255, 255);
+                }, 0.5);
+            }
         }
         else if(otherCollider.node.name == "bullet_enemy") {
             this.HP -= 5;
             otherCollider.node.active = false;
+            if(this.node.color.r == 255 && this.node.color.g == 255 && this.node.color.b == 255) {
+                this.node.color = cc.color(255, 0, 0);
+                this.scheduleOnce(function() {
+                    this.node.color = cc.color(255, 255, 255);
+                }, 0.5);
+            }
         }
         else if(otherCollider.node.name == "helipad_finish") {
             if(this.clear_enemies && !Global.hostage_mode) {
