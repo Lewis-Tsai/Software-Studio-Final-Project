@@ -175,6 +175,7 @@ cc.Class({
             // audio
             cc.audioEngine.play(this.successaudio, false, 1);
         }
+        cc.audioEngine.playEffect(this.flyAudio, true);
     },
 
     update (dt) {
@@ -564,6 +565,8 @@ cc.Class({
                     this.hostage_save = hostages_disappear;
 
                     if(Global.hostage_mode && hostages != this.total_hostages) {
+                        Gloabl.time_left = this.time;
+                        Global.total_battle++;
                         cc.director.loadScene("Game Failed");
                     }
                 }
@@ -618,13 +621,13 @@ cc.Class({
         }
         else if(otherCollider.node.name == "helipad") {
             if(Global.hostage_mode && this.hostage_save == this.total_hostages) {
+                Global.time_left = this.time;
+                Global.total_battle++;
+                Global.total_win++;
                 cc.director.loadScene("Game Completed");
             }
             this.regain = true;
             this.enable_rotate = false;
-        }
-        else if(otherCollider.node.name == "friendly_soldier_hostage") {
-            this.hostage_save++;
         }
     },
 
