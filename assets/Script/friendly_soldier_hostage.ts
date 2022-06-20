@@ -28,6 +28,8 @@ export default class friendly_soldier_hostage extends cc.Component {
  
     private anim = null;
  
+    private animState = null;
+
     private Living:boolean = true;
 
     private bullet_speed = 300;
@@ -72,16 +74,19 @@ export default class friendly_soldier_hostage extends cc.Component {
         if(!this.rescue) {
             //this.move = true;
             //need parameter
-            if (this.global.on_helipad) {this.rescue = true; this.node.scaleX *= -1;this.anim.play("friendly_soldier_walk")}
+            if (this.global.on_helipad) {this.rescue = true; this.node.scaleX *= -1;this.animState =  this.anim.play("friendly_soldier_walk")}
         }
         else{
             if(this.node.x - cc.find("Canvas/Main Camera").x < 960 && !this.move) this.move = true;
             if (this.Living && !this.player.getComponent("Player").isDead){ // all live =>move
                 //this.firegun();
-                if(this.node.x - cc.find("Canvas/Main Camera").x < 960) {
+                if(this.node.x - cc.find("Canvas/Main Camera").x < 960 && this.global.on_helipad) {
                     this.node.x += this.Speed * dt;//can view=> moving
+                    if (!this.animState.isPlaying) this.anim.play("friendly_soldier_walk");
+                }else if (this.node.x - cc.find("Canvas/Main Camera").x < 960 && !this.global.on_helipad){
+                    if (this.animState.isPlaying) this.anim.stop("friendly_soldier_walk");
                 }
-                if (Math.abs(this.node.x - cc.find("Canvas/Main Camera").x) < 3){
+                if (Math.abs(this.node.x - this.player.position.x) < 3 && this.global.on_helipad){
                     this.WasRescued();
                 }
             }
