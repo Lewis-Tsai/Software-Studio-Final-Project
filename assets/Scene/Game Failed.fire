@@ -1435,7 +1435,7 @@
     },
     "_volume": 1,
     "_mute": false,
-    "_loop": true,
+    "_loop": false,
     "_firstlyEnabled": true,
     "playOnLoad": true,
     "preload": false,
