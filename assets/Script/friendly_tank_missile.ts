@@ -41,9 +41,14 @@ export default class friendly_tank_missile extends cc.Component {
         return this.target;
     }
 
+    timeToLive = 2000;
+    timeAlive = 0;
     update (dt) {
         //if(this.target.name == "enemy_tank_gun") this.node.x += 0;
         //else this.node.x += 20 * dt;
+        if(!cc.isValid(this.node)) return;
+        this.timeAlive += dt*1000;
+        if(this.timeAlive >= this.timeToLive) this.node.destroy();
     }
     afterfindtarget(){
         if (this.tag){
@@ -78,6 +83,8 @@ export default class friendly_tank_missile extends cc.Component {
         }
         //if (this.target == null) this.node.destroy();
         console.log(this.target.name);
+        let pa = this.node.parent;
+        pa.getChildByName("gun").getComponent("friendly_tank_gun").setTarget(this.target);
         this.node.parent.getComponent('friendly_tank_v2').setTarget(this.target);
         this.afterfindtarget();
     }
@@ -85,7 +92,7 @@ export default class friendly_tank_missile extends cc.Component {
     firegun(){
         if (this.target == null) { 
             this.node.destroy();
-            return
+            return;
         }
         this.node.opacity = 255;
         //console.log(this.target.name/*,this.node.position*/);
@@ -103,19 +110,31 @@ export default class friendly_tank_missile extends cc.Component {
             this.node.position.x, this.node.position.y);
         cc.find("Canvas").addChild(smoke);
         let temp_angle = Math.asin(sin) * 180 / Math.PI;
+
+        //******************************* *********************************************88*/
+        /*if(this.target.x > this.node.x){
+            //this.gun.angle = temp_angle - 180;
+            this.gun.getComponent("friendly_tank_gun").rotate(temp_angle - 180);
+        }
+        else if(this.target.x <= this.node.x){
+            //this.gun.angle = -temp_angle;
+            this.gun.getComponent("friendly_tank_gun").rotate(-temp_angle);
+        }*/
+
         if(Math.abs(this.player.x - this.node.x)<500){
             cc.audioEngine.play(this.tank_shooting_audio, false, 1);
             console.log('less than 500!!!!!!!!!!!!!!');
         }
         
-        if(this.target.x > this.node.x){
+        //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+        /*if(this.target.x > this.node.x){
             let action = cc.sequence(cc.moveBy(0.1,-10*Math.cos(temp_angle),0), cc.moveBy(0.1,10*Math.cos(temp_angle),0));
             this.gun.runAction(action);
         }
         else if(this.target.x <= this.node.x){
             let action = cc.sequence(cc.moveBy(0.1,10*Math.cos(temp_angle),0), cc.moveBy(0.1,-10*Math.cos(temp_angle),0));
             this.gun.runAction(action);
-        }
+        }*/
 
         if (temp_angle >= 0 && this.soldier_dir == -1) {
             this.node.angle = 180-temp_angle;

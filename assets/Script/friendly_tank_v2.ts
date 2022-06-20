@@ -37,11 +37,14 @@ export class friendly_tank_v2 extends cc.Component {
 
     update(dt)
     {
-        this.playerMovement(dt);
+        //this.playerMovement(dt);
         //if(this.node.x - cc.find("Canvas/Main Camera").x < 960) {
            // this.node.x += 20 * dt;//can view=> moving
         //}
-        if(this.player.x > this.node.x) this.node.x += 20*dt;
+        if(cc.director.getScene().name == "Stage 1" && this.player.x > this.node.x) this.node.x += 20*dt;
+        else if(cc.director.getScene().name == "Stage 2" && this.player.x > this.node.x) this.node.x += 20*dt;
+        else if(cc.director.getScene().name == "Stage 3" && this.player.x > this.node.x) this.node.x += 20*dt;
+        //if(this.player.x > this.node.x) this.node.x += 20*dt;
     }
     preparegun(){
         //in view then can fire
@@ -58,7 +61,7 @@ export class friendly_tank_v2 extends cc.Component {
         this.target = TTarget;
     }
 
-    private playerMovement(dt)
+    /*private playerMovement(dt)
     {
         if(this.target == null){
             console.log('isnullllllll');
@@ -71,7 +74,8 @@ export class friendly_tank_v2 extends cc.Component {
             var degree = angle / Math.PI * 180;
             this.gun.angle = -(degree + 175);
         }
-    }
+    }*/
+    
     onBeginContact(contact, selfCollider, otherCollider)
     {
         //var to_explode = this.explode.getComponent(cc.Animation);
@@ -80,7 +84,7 @@ export class friendly_tank_v2 extends cc.Component {
                 this.blood.width -= 10;
                 if(this.blood.width<=0){
                     var explode = cc.instantiate(this.bomb_prefab);
-                    explode.getComponent('ground_explode').init(this.gun.x, this.gun.y+130);
+                    explode.getComponent('ground_explode').init(this.node.x ,this.node.y+120);
                     cc.find("Canvas").addChild(explode);
                     this.node.destroy();
                 }

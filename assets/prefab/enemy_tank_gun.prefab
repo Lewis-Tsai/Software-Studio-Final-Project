@@ -13,21 +13,12 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "friendly_tank_v2",
+    "_name": "enemy_tank_gun",
     "_objFlags": 0,
     "_parent": null,
     "_children": [
       {
         "__id__": 2
-      },
-      {
-        "__id__": 5
-      },
-      {
-        "__id__": 8
-      },
-      {
-        "__id__": 11
       }
     ],
     "_active": true,
@@ -37,13 +28,10 @@
       },
       {
         "__id__": 15
-      },
-      {
-        "__id__": 16
       }
     ],
     "_prefab": {
-      "__id__": 17
+      "__id__": 16
     },
     "_opacity": 255,
     "_color": {
@@ -55,72 +43,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 0,
-      "height": 0
-    },
-    "_anchorPoint": {
-      "__type__": "cc.Vec2",
-      "x": 0.5,
-      "y": 0.5
-    },
-    "_trs": {
-      "__type__": "TypedArray",
-      "ctor": "Float64Array",
-      "array": [
-        -79.473,
-        -243.055,
-        0,
-        0,
-        0,
-        0,
-        1,
-        1,
-        1,
-        1
-      ]
-    },
-    "_eulerAngles": {
-      "__type__": "cc.Vec3",
-      "x": 0,
-      "y": 0,
-      "z": 0
-    },
-    "_skewX": 0,
-    "_skewY": 0,
-    "_is3DNode": false,
-    "_groupIndex": 0,
-    "groupIndex": 0,
-    "_id": ""
-  },
-  {
-    "__type__": "cc.Node",
-    "_name": "gun",
-    "_objFlags": 0,
-    "_parent": {
-      "__id__": 1
-    },
-    "_children": [],
-    "_active": true,
-    "_components": [
-      {
-        "__id__": 3
-      }
-    ],
-    "_prefab": {
-      "__id__": 4
-    },
-    "_opacity": 255,
-    "_color": {
-      "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
-      "a": 255
-    },
-    "_contentSize": {
-      "__type__": "cc.Size",
-      "width": 85,
-      "height": 12
+      "width": 100,
+      "height": 30
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -131,16 +55,16 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -4.09,
-        -4.948,
+        386.242,
+        -223.961,
         0,
         0,
         0,
         0,
         1,
-        1,
-        1,
-        1
+        0.7,
+        0.7,
+        0.7
       ]
     },
     "_eulerAngles": {
@@ -157,64 +81,37 @@
     "_id": ""
   },
   {
-    "__type__": "cc.Sprite",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 2
-    },
-    "_enabled": true,
-    "_materials": [
-      {
-        "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
-      }
-    ],
-    "_srcBlendFactor": 770,
-    "_dstBlendFactor": 771,
-    "_spriteFrame": {
-      "__uuid__": "496653af-92f9-4fe2-8010-d79963360a9c"
-    },
-    "_type": 0,
-    "_sizeMode": 1,
-    "_fillType": 0,
-    "_fillCenter": {
-      "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
-    },
-    "_fillStart": 0,
-    "_fillRange": 0,
-    "_isTrimmedMode": true,
-    "_atlas": null,
-    "_id": ""
-  },
-  {
-    "__type__": "cc.PrefabInfo",
-    "root": {
-      "__id__": 1
-    },
-    "asset": {
-      "__id__": 0
-    },
-    "fileId": "caoI/2KHdCIrqOtWZaAfQ4",
-    "sync": false
-  },
-  {
     "__type__": "cc.Node",
-    "_name": "body",
+    "_name": "enemy_tank",
     "_objFlags": 0,
     "_parent": {
       "__id__": 1
     },
-    "_children": [],
-    "_active": true,
-    "_components": [
+    "_children": [
+      {
+        "__id__": 3
+      },
       {
         "__id__": 6
       }
     ],
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 9
+      },
+      {
+        "__id__": 10
+      },
+      {
+        "__id__": 11
+      },
+      {
+        "__id__": 12
+      }
+    ],
     "_prefab": {
-      "__id__": 7
+      "__id__": 13
     },
     "_opacity": 255,
     "_color": {
@@ -226,8 +123,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 146,
-      "height": 71
+      "width": 181,
+      "height": 90
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -238,8 +135,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        0,
-        0,
+        6.107,
+        12.903,
         0,
         0,
         0,
@@ -264,64 +161,21 @@
     "_id": ""
   },
   {
-    "__type__": "cc.Sprite",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 5
-    },
-    "_enabled": true,
-    "_materials": [
-      {
-        "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
-      }
-    ],
-    "_srcBlendFactor": 770,
-    "_dstBlendFactor": 771,
-    "_spriteFrame": {
-      "__uuid__": "a7001697-2f4c-4c39-84c2-0ea139f19b21"
-    },
-    "_type": 0,
-    "_sizeMode": 1,
-    "_fillType": 0,
-    "_fillCenter": {
-      "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
-    },
-    "_fillStart": 0,
-    "_fillRange": 0,
-    "_isTrimmedMode": true,
-    "_atlas": null,
-    "_id": ""
-  },
-  {
-    "__type__": "cc.PrefabInfo",
-    "root": {
-      "__id__": 1
-    },
-    "asset": {
-      "__id__": 0
-    },
-    "fileId": "c1aRGLeKxMuZvKVU8ctBJe",
-    "sync": false
-  },
-  {
     "__type__": "cc.Node",
-    "_name": "circle",
+    "_name": "red_circle",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 1
+      "__id__": 2
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 9
+        "__id__": 4
       }
     ],
     "_prefab": {
-      "__id__": 10
+      "__id__": 5
     },
     "_opacity": 255,
     "_color": {
@@ -333,8 +187,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 80,
-      "height": 80
+      "width": 100,
+      "height": 100
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -345,8 +199,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        0,
-        -8.36,
+        0.386,
+        -13.024,
         0,
         0,
         0,
@@ -375,7 +229,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 8
+      "__id__": 3
     },
     "_enabled": true,
     "_materials": [
@@ -386,7 +240,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "1a9101c4-ecca-4b76-8504-74d74d4b2924"
+      "__uuid__": "0e37e265-cc05-43c8-949e-5cf7995d31c9"
     },
     "_type": 0,
     "_sizeMode": 0,
@@ -410,7 +264,7 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "13C1BML0pJWrG4J6I1FFDg",
+    "fileId": "7f4QcVH2FOpJk+m75gFPi0",
     "sync": false
   },
   {
@@ -418,17 +272,17 @@
     "_name": "blood",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 1
+      "__id__": 2
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 12
+        "__id__": 7
       }
     ],
     "_prefab": {
-      "__id__": 13
+      "__id__": 8
     },
     "_opacity": 255,
     "_color": {
@@ -441,19 +295,19 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 100,
-      "height": 15
+      "height": 20
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
-      "x": 0.5,
-      "y": 0.5
+      "x": 0,
+      "y": 0
     },
     "_trs": {
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -8.36,
-        50.158,
+        -59.015,
+        50.329,
         0,
         0,
         0,
@@ -482,7 +336,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 11
+      "__id__": 6
     },
     "_enabled": true,
     "_materials": [
@@ -517,24 +371,39 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "b12xFMDcxCA5Scg0ZPwEDD",
+    "fileId": "09+9mQ9VhIlpom95ZHA5dx",
     "sync": false
   },
   {
-    "__type__": "277f5FWnTpCApPJNZAJDa46",
+    "__type__": "cc.Sprite",
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 1
+      "__id__": 2
     },
     "_enabled": true,
-    "friendly_tank_missile_Prefab": {
-      "__uuid__": "ef4552ce-b975-4943-a3e0-cff5fa942b85"
+    "_materials": [
+      {
+        "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
+      }
+    ],
+    "_srcBlendFactor": 770,
+    "_dstBlendFactor": 771,
+    "_spriteFrame": {
+      "__uuid__": "c392f2f3-c673-48f9-9208-4e91af93cef0"
     },
-    "smoke_Prefab": {
-      "__uuid__": "c0f59b4d-c860-426d-a5f6-6217879d373a"
+    "_type": 0,
+    "_sizeMode": 1,
+    "_fillType": 0,
+    "_fillCenter": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
     },
-    "bomb_prefab": null,
+    "_fillStart": 0,
+    "_fillRange": 0,
+    "_isTrimmedMode": true,
+    "_atlas": null,
     "_id": ""
   },
   {
@@ -542,7 +411,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 1
+      "__id__": 2
     },
     "_enabled": true,
     "_type": 0,
@@ -556,7 +425,7 @@
       "y": 0
     },
     "_angularVelocity": 0,
-    "_fixedRotation": false,
+    "_fixedRotation": true,
     "enabledContactListener": true,
     "bullet": false,
     "awakeOnLoad": true,
@@ -567,10 +436,10 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 1
+      "__id__": 2
     },
     "_enabled": true,
-    "tag": 0,
+    "tag": 10,
     "_density": 1,
     "_sensor": false,
     "_friction": 0.2,
@@ -578,13 +447,95 @@
     "body": null,
     "_offset": {
       "__type__": "cc.Vec2",
-      "x": -2,
-      "y": -17
+      "x": -1,
+      "y": -16
     },
     "_size": {
       "__type__": "cc.Size",
-      "width": 116,
-      "height": 30
+      "width": 179,
+      "height": 58
+    },
+    "_id": ""
+  },
+  {
+    "__type__": "dcd43gac01COrPCPPuvdIMk",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 2
+    },
+    "_enabled": true,
+    "blood": {
+      "__id__": 6
+    },
+    "gun": {
+      "__id__": 1
+    },
+    "explode": null,
+    "explode_prefab": {
+      "__uuid__": "1d532d1a-ccfd-48c3-a581-35f8feb59904"
+    },
+    "_id": ""
+  },
+  {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 1
+    },
+    "asset": {
+      "__id__": 0
+    },
+    "fileId": "7cZVNcsOdOJazKn0vHWLHr",
+    "sync": false
+  },
+  {
+    "__type__": "cc.Sprite",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "_materials": [
+      {
+        "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
+      }
+    ],
+    "_srcBlendFactor": 770,
+    "_dstBlendFactor": 771,
+    "_spriteFrame": {
+      "__uuid__": "7fcb43c5-2129-464a-8ced-65b12b1185b8"
+    },
+    "_type": 0,
+    "_sizeMode": 0,
+    "_fillType": 0,
+    "_fillCenter": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "_fillStart": 0,
+    "_fillRange": 0,
+    "_isTrimmedMode": true,
+    "_atlas": null,
+    "_id": ""
+  },
+  {
+    "__type__": "6277eLyroBBlKmSpXPJgcsr",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "tank_white_bomb_Prefab": {
+      "__uuid__": "20d1f411-fb2a-4435-9415-03510af0f898"
+    },
+    "smoke_Prefab": {
+      "__uuid__": "c0f59b4d-c860-426d-a5f6-6217879d373a"
+    },
+    "tank": {
+      "__id__": 2
     },
     "_id": ""
   },
