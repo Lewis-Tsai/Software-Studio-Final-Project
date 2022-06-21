@@ -149,6 +149,7 @@ cc.Class({
                 this.total_hostages++;
             }
         }
+        console.log(this.total_hostages);
     },
 
     onDestroy () {
@@ -431,7 +432,6 @@ cc.Class({
     UpdateUI: function(dt) {
         var scene = cc.director.getScene();
         
-        console.log(this.canvas.position.y);
         if(scene.name != "Game_Complete") {
             // Renew HP, score
             if(this.HP <= 0 || this.time <= 0) {
@@ -565,7 +565,7 @@ cc.Class({
                     this.hostage_save = hostages_disappear;
 
                     if(Global.hostage_mode && hostages != this.total_hostages) {
-                        Gloabl.time_left = this.time;
+                        Global.time_left = this.time;
                         Global.total_battle++;
                         cc.director.loadScene("Game Failed");
                     }
