@@ -20,7 +20,10 @@ export class friendly_tank_gun extends cc.Component {
         this.node.angle = angle;
     }*/
     update(dt){
+        //if (this.target == null ) return;
         let pa = this.node.parent;
+        //console.log("this is setting target : ",this.target.name);
+        //console.log("this is setting target : ",pa.position);
         let X = -pa.position.x + this.target.position.x;
         let Y = -pa.position.y + this.target.position.y;
     
