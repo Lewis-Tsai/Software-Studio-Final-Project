@@ -2104,7 +2104,7 @@
     "_dstBlendFactor": 771,
     "_string": "Login",
     "_N$string": "Login",
-    "_fontSize": 20,
+    "_fontSize": 15,
     "_lineHeight": 40,
     "_enableWrapText": false,
     "_N$file": {
@@ -2477,7 +2477,7 @@
     "_dstBlendFactor": 771,
     "_string": "Sign up",
     "_N$string": "Sign up",
-    "_fontSize": 20,
+    "_fontSize": 15,
     "_lineHeight": 40,
     "_enableWrapText": false,
     "_N$file": {

@@ -32,7 +32,7 @@ cc.Class({
                 
                 profile_path = curr_user_email.replace('.', '_');
                 Global.profile_path = 'profile/' + profile_path;
-                
+                console.log(Global.profile_path);
                 //profile_path = profile_path.replace('.', '_');
                 console.log(curr_user_email)
                 //--------------------
