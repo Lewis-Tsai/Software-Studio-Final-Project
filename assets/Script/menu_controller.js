@@ -88,7 +88,7 @@ cc.Class({
     },
 
     credit_btn_handler: function (event) {
-        alert("not available");
+        cc.director.loadScene("Credits");
     },
 
     logout_btn_handler: function (event) {
