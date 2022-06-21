@@ -29,7 +29,7 @@ cc.Class({
                 // User is signed in.
                 Global.user_email = user.email;
                 
-                profile_path = Global.user_email.replace('.', '_');
+                var profile_path = Global.user_email.replace('.', '_');
                 Global.profile_path = 'profile/' + profile_path;
                 console.log(Global.profile_path);
                 //profile_path = profile_path.replace('.', '_');

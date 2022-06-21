@@ -1,0 +1,10 @@
+{
+  "rules": {
+    "profile": {
+      ".read": "auth != null",
+      ".write": "auth != null"
+    },
+    ".write": false,
+    ".read": false
+  }
+}

@@ -54,7 +54,7 @@ cc.Class({
         firebase.auth().signInWithEmailAndPassword(this.curr_email, this.curr_password)
         .then(function(result) {
             //cc.director.loadScene("Menu");
-            profile_path = now_email.replace('.', '_');
+            var profile_path = now_email.replace('.', '_');
             var ProfileRef = firebase.database().ref('profile/' + profile_path);
             ProfileRef.update({
                 email: now_email,
@@ -83,7 +83,7 @@ cc.Class({
         firebase.auth().createUserWithEmailAndPassword(this.curr_email, this.curr_password)
         .then(function(result) {
             //cc.director.loadScene("Menu");
-            profile_path = now_email.replace('.', '_');
+            var profile_path = now_email.replace('.', '_');
             var ProfileRef = firebase.database().ref('profile/' + profile_path);
             ProfileRef.once('value', function(snapshot) {
                 if(snapshot.val() == null){
