@@ -59,7 +59,7 @@ cc.Class({
                 // No user is signed in.
                 //user = null;
                 //curr_user_email = '';
-                alert("login failed");
+                console.log("login failed");
                 cc.director.loadScene("loading");
             }
             
