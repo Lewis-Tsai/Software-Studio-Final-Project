@@ -33,6 +33,8 @@ cc.Class({
 
             this.user_data_text.getComponent(cc.Label).string= '\n' + '\n' + "  " + Global.score 
             + " - " + (Global.time_left * 30 + 100) + " = " + total_points;
+
+            Global.score = total_points;
         }
         else if (scene.name == "Game Completed"){
             total_points = Global.score + Global.time_left * 10;
@@ -47,9 +49,9 @@ cc.Class({
                 record_time = 360 - Global.time_left;
             if(record_time < Global.shortest_time)
                 Global.shortest_time = record_time;
-        }
 
-        Global.score = total_points;
+            Global.score = total_points;
+        }
     },
 
     // update (dt) {},

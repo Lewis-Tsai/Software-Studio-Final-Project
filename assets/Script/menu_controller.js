@@ -31,8 +31,7 @@ cc.Class({
                 
                 var profile_path = Global.user_email.replace('.', '_');
                 Global.profile_path = 'profile/' + profile_path;
-                console.log(Global.profile_path);
-                //profile_path = profile_path.replace('.', '_');
+                
                 console.log(Global.user_email)
                 //--------------------
                 var ProfileRef = firebase.database().ref(Global.profile_path);
@@ -41,7 +40,7 @@ cc.Class({
                         console.log('data is missing');
                     }  
                     else{
-                        console.log(snapshot.val());
+                        //console.log(snapshot.val());
                         Global.user_name = snapshot.val().user_name;
                         Global.score = snapshot.val().score;
                         Global.total_battle = snapshot.val().total_battle;

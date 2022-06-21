@@ -31,7 +31,7 @@ cc.Class({
     // onLoad () {},
 
     start () {
-
+        Global.hostage_mode = false;
     },
 
     // update (dt) {},
