@@ -28,21 +28,20 @@ cc.Class({
             if (user) {
                 // User is signed in.
                 Global.user_email = user.email;
-                curr_user_email = user.email;
                 
-                profile_path = curr_user_email.replace('.', '_');
+                profile_path = Global.user_email.replace('.', '_');
                 Global.profile_path = 'profile/' + profile_path;
                 console.log(Global.profile_path);
                 //profile_path = profile_path.replace('.', '_');
-                console.log(curr_user_email)
+                console.log(Global.user_email)
                 //--------------------
-                var ProfileRef = firebase.database().ref('profile/' + profile_path);
+                var ProfileRef = firebase.database().ref(Global.profile_path);
                 ProfileRef.once('value', function(snapshot) {
                     if(snapshot.val() == null){
                         console.log('data is missing');
                     }  
                     else{
-                        //console.log(snapshot.val());
+                        console.log(snapshot.val());
                         Global.user_name = snapshot.val().user_name;
                         Global.score = snapshot.val().score;
                         Global.total_battle = snapshot.val().total_battle;
@@ -92,7 +91,7 @@ cc.Class({
     },
 
     logout_btn_handler: function (event) {
-        if(curr_user_email == ''){
+        if(Global.user_email == ''){
             alert('How dare you log out when you are not logged in! DUMB ASS!');
             cc.director.loadScene("loading");
         }  

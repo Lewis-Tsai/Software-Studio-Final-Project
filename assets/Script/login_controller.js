@@ -116,5 +116,6 @@ cc.Class({
         }).catch(function(error) {
             alert(error);
         });
-    }
+    },
+
 });
