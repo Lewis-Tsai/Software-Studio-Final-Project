@@ -51,6 +51,8 @@ cc.Class({
                         Global.armor_level = snapshot.val().armor_level;
                         Global.machinegun_level = snapshot.val().machinegun_level;
                         Global.missile_level = snapshot.val().missile_level;
+                        Global.shortest_time = snapshot.val().shortest_time;
+                        Global.register_date = snapshot.val().register_date;
                     }
                 });
             } else {

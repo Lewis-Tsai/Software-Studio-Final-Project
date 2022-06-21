@@ -51,7 +51,10 @@ cc.Class({
     },
 
     snowfield_btn_handler: function (event) {
-        cc.director.loadScene("Stage 3");
+        if(Global.hostage_mode)
+            cc.director.loadScene("Stage 6");
+        else
+            cc.director.loadScene("Stage 3");
     },
 
     ToMenu : function(){

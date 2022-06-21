@@ -12,4 +12,6 @@ window.Global = {
     missile_level: 0,
     hostage_mode: false,
     on_helipad: false,
+    shortest_time: 500,
+    register_date: '',
 }

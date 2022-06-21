@@ -39,6 +39,14 @@ cc.Class({
 
             this.user_data_text.getComponent(cc.Label).string= '\n' + '\n' + "  " + Global.score 
             + " + " + Global.time_left + " X 50 = " + total_points;
+
+            var record_time;
+            if(180 - Global.time_left > 0)
+                record_time = 180 - Global.time_left;
+            else
+                record_time = 360 - Global.time_left;
+            if(record_time < Global.shortest_time)
+                Global.shortest_time = record_time;
         }
 
         Global.score = total_points;
@@ -60,6 +68,7 @@ cc.Class({
             score: Global.score,
             total_battle: Global.total_battle,
             total_win: Global.total_win,
+            shortest_time: Global.shortest_time,
         })
         .then(function () {
             console.log("profile data upload success");

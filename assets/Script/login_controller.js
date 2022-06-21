@@ -72,6 +72,7 @@ cc.Class({
     signup_handler: function (event) {
         //这里的 event 是一个 EventCustom 对象，你可以通过 event.detail 获取 Button 组件
         var button = event.detail;
+        var today = new Date();
         //do whatever you want with button
         //另外，注意这种方式注册的事件，也无法传递 customEventData
         //alert('here')
@@ -93,6 +94,8 @@ cc.Class({
                         armor_level: 1,
                         machinegun_level: 1,
                         missile_level: 1,
+                        shortest_time: 500,
+                        register_date: today.toLocaleDateString(),
                     })
                     .then(function () {
                         console.log("profile data upload success");

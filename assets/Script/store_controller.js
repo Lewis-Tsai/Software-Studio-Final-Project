@@ -96,27 +96,35 @@ cc.Class({
         var armor_level_table = [-1, 0, 300, 700, 1100];
         var machinegun_level_table = [-1, 0, 250, 500, 1300];
         var missile_level_table = [-1, 0, 450, 900, 1500];
-        if(Global.engine_level == 4)
+        if(Global.engine_level == 4){
+            this.engine_level_text.getComponent(cc.Label).string = "LVL " + "--";
+            this.engine_button_text.getComponent(cc.Label).string = "--";
             this.engine_button.getComponent(cc.Button).interactable = false;
-        else{
+        }else{
             this.engine_level_text.getComponent(cc.Label).string = "LVL " + (Global.engine_level + 1);
             this.engine_button_text.getComponent(cc.Label).string = engine_level_table[Global.engine_level + 1];
         }
-        if(Global.armor_level == 4)
+        if(Global.armor_level == 4){
+            this.armor_level_text.getComponent(cc.Label).string = "LVL " + "--";
+            this.armor_button_text.getComponent(cc.Label).string = "--";
             this.armor_button.getComponent(cc.Button).interactable = false;
-        else{
+        }else{
             this.armor_level_text.getComponent(cc.Label).string = "LVL " + (Global.armor_level + 1);
             this.armor_button_text.getComponent(cc.Label).string = armor_level_table[Global.armor_level + 1];
         }
-        if(Global.machinegun_level == 4)
+        if(Global.machinegun_level == 4){
+            this.machinegun_level_text.getComponent(cc.Label).string = "LVL " + "--";
+            this.machinegun_button_text.getComponent(cc.Label).string = "--";
             this.machinegun_button.getComponent(cc.Button).interactable = false;
-        else{
+        }else{
             this.machinegun_level_text.getComponent(cc.Label).string = "LVL " + (Global.machinegun_level + 1);
             this.machinegun_button_text.getComponent(cc.Label).string = machinegun_level_table[Global.machinegun_level + 1];
         }
-        if(Global.missile_level == 4)
+        if(Global.missile_level == 4){
+            this.missile_level_text.getComponent(cc.Label).string = "LVL " + "--";
+            this.missile_button_text.getComponent(cc.Label).string = "--";
             this.missile_button.getComponent(cc.Button).interactable = false;
-        else{
+        }else{
             this.missile_level_text.getComponent(cc.Label).string = "LVL " + (Global.missile_level + 1);
             this.missile_button_text.getComponent(cc.Label).string = missile_level_table[Global.missile_level + 1];
         }
