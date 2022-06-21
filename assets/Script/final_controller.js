@@ -41,7 +41,7 @@ cc.Class({
             + " + " + Global.time_left + " X 50 = " + total_points;
 
             var record_time;
-            if(180 - Global.time_left > 0)
+            if(Globa.hostage_mode == false)
                 record_time = 180 - Global.time_left;
             else
                 record_time = 360 - Global.time_left;

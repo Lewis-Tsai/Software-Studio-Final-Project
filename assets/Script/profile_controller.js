@@ -49,10 +49,10 @@ cc.Class({
         if(Global.shortest_time == 500)
             this.shortest_time_count_text.getComponent(cc.Label).string = "N/A";
         else{
-            if(this.time % 60 < 10)
-                this.time_label.getComponent(cc.Label).string = Math.floor(this.time/60).toString() + ":0" + (this.time%60);
+            if(Global.shortest_time % 60 < 10)
+                this.shortest_time_count_text.getComponent(cc.Label).string = Math.floor(Global.shortest_time/60).toString() + ":0" + (Global.shortest_time%60);
             else
-                this.time_label.getComponent(cc.Label).string = Math.floor(this.time/60).toString() + ":" + (this.time%60);
+                this.shortest_time_count_text.getComponent(cc.Label).string = Math.floor(Global.shortest_time/60).toString() + ":" + (Global.shortest_time%60);
         }
         this.register_date_text.getComponent(cc.Label).string = "Registered: " + Global.register_date;
     },

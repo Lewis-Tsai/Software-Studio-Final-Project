@@ -72,7 +72,7 @@ cc.Class({
 
     UpdateUI: function(){
         this.username_text.getComponent(cc.Label).string = Global.user_name;
-        this.xpvalue_text.getComponent(cc.Label).string = Global.score;
+        this.xpvalue_text.getComponent(cc.Label).string = " " + Global.score;
     },
 
     play_btn_handler: function (event) {
