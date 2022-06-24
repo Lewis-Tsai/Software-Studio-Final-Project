@@ -1,4 +1,4 @@
-# 2022-Spring-Software-Studio-Final-Project
+# 2022 Spring Software Studio Final Project
 ## Goal
 Create an online web game.
 
