@@ -1,37 +1,52 @@
-# 2022 Spring Software Studio Final Project
-## Goal
-Create an online web game.
+<a name="readme-top"></a>
 
-## User Story
+<!-- PROJECT SHIELDS -->
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url]
+[![LinkedIn][linkedin-shield]][linkedin-url]
+
+# <center>Software Studio Final Project</center>
+
+<div align="center">
+
+  <p align="center">
+    project_description
+    <br />
+    <a href="https://github.com/Lewis-Tsai/2022-Spring-Software-Studio-Final-Project"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://github.com/Lewis-Tsai/2022-Spring-Software-Studio-Final-Project">View Demo</a>
+    ·
+    <a href="https://github.com/Lewis-Tsai/2022-Spring-Software-Studio-Final-Project/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/Lewis-Tsai/2022-Spring-Software-Studio-Final-Project/issues">Request Feature</a>
+  </p>
+</div>
+
+## Semester and class
+2022 Spring NTHU CS 241002		
+
+<!-- ABOUT THE PROJECT -->
+## About The Project
+
+This is an online web game.
+
 * Players will be a soldier who serves in the special force, driving helicopters to maintain peace of the world around the world.
 * The helicopter opened by the player can destroy the enemy by firing bullets, missiles as well as bombs.
 * At the same time, the enemy will also fire the player with bullets, anti-tank missiles, the enemy-owned tanks can attack the helicopter as well, and the player will be deducted after being hit.
 * If the player's blood bars are zero, the mission fails. Conversely, if the player can kill all the soldiers and destroy all the vehicles before the blood bars return to zero, and defeat all enemies, the mission is successful.
 
+## Built With
+
+* ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+* ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+* ![Firebase](https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=Firebase&logoColor=white)
+
 ## Controls
 ![](https://i.imgur.com/P1XpiMh.png)
-
-## High risk analysis
-**Basic**
-* players can control the helicopter and let it fly in any direction.
-* With smooth and skillful flying skills, the player will be able to prevent the helicopter from being hit by the enemy (passive defense).
-
-**Shooting effect**
-* Players can throw bombs(will be dropped vertically), shoot bullets and guild missiles to attack the enemies.
-
-**Interacton** 
-* enemies will attack the helicopter in any ways they can.
-
-**Strategy**
-* Similar to real life, the bombs and missiles a helicopter can carry is limited.
-* Though they are powerful, try to use them wisely, instead of throwing them whenever you see enemies. Don’t forget you’re a special force soldier who is implementing stay-behind operations.
-* A supplement base is provided, for the player to get weapon supply and increase HP.
-
-## High value analysis
-* Background : althoung it is an 2D game, but we want to make the background looks like 3D
-* Enemies : As time passes, the enemies will be harder to beat and its attaking power will grow
-* Variety : Besides the enimies on the ground, we let some enemies randomly exits on the sky, so the game will be more interesting
-* Sounds : the sound of the helicopter may vary due to its speed or altitude
 
 ## Implementation Result
 ### Basic
@@ -50,12 +65,36 @@ Create an online web game.
 | Game leaderboard     | Compete with other players' experience points on the leaderboard     | 
 | Player Profile Page     | Display the player's win rate, account creation date, and related game information     |
 
+## Links
+* [Game link](https://software-studio-final-pr-cb8dd.web.app/) (Link may expire due to firebase policy)
+* [Slide of technical detail in the game implementation](https://docs.google.com/presentation/d/1AuD8WxYeNrQEyAemIyQW1CipYhMemDyLrYU0JyUJIoQ/edit?usp=sharing)
+
 ## Project team members
 * 蔡侑廷 Lewis Tsai
 * 吳振群 Ken Wu
 * 呂尚豪 Hower Lu
 * 郭柏均 Gino Kuo
 
-## Links
-[Game link](https://software-studio-final-pr-cb8dd.web.app/)
-[Slide of technical detail in the game implementation](https://docs.google.com/presentation/d/1AuD8WxYeNrQEyAemIyQW1CipYhMemDyLrYU0JyUJIoQ/edit?usp=sharing)
+## Contact
+
+[![gmail][gmail]][gmail-url]
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[contributors-shield]: https://img.shields.io/github/contributors/Lewis-Tsai/2022-Spring-Software-Studio-Final-Project.svg?style=for-the-badge
+[contributors-url]: https://github.com/Lewis-Tsai/2022-Spring-Software-Studio-Final-Project/contributors
+[forks-shield]: https://img.shields.io/github/forks/Lewis-Tsai/2022-Spring-Software-Studio-Final-Project.svg?style=for-the-badge
+[forks-url]: https://github.com/Lewis-Tsai/2022-Spring-Software-Studio-Final-Project/network/members
+[stars-shield]: https://img.shields.io/github/stars/Lewis-Tsai/2022-Spring-Software-Studio-Final-Project.svg?style=for-the-badge
+[stars-url]: https://github.com/Lewis-Tsai/2022-Spring-Software-Studio-Final-Project/stargazers
+[issues-shield]: https://img.shields.io/github/issues/Lewis-Tsai/2022-Spring-Software-Studio-Final-Project.svg?style=for-the-badge
+[issues-url]: https://github.com/Lewis-Tsai/2022-Spring-Software-Studio-Final-Project/issues
+[license-shield]: https://img.shields.io/github/license/Lewis-Tsai/repo_name.svg?style=for-the-badge
+[license-url]: https://github.com/Lewis-Tsai/repo_name/blob/master/LICENSE.txt
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://linkedin.com/in/lewis-tsai-7b570421a
+
+[gmail]: https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white
+[gmail-url]: mailto:A38050787@gmail.com
